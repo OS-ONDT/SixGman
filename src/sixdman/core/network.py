@@ -8,8 +8,6 @@ import os
 import networkx as nx
 from typing import Dict, List, Set, Tuple
 
-####
-
 class Network:
     """A class representing an optical network topology and its properties.
     
@@ -60,7 +58,7 @@ class Network:
             .mat : 
                 MATLAB file (requires `matrixName` to specify the variable)
             .npz : 
-                NumPy compressed archive (variable name required if multiple arrays exist)
+                NumPy compressed archive (variable name required)
             .npy : 
                 NumPy single-array file
 
@@ -548,8 +546,8 @@ class Network:
 
         Output:
         ---------
-            Dict[int, int]: 
-                Dictionary mapping node IDs to their degree (the number of edges).
+            np.ndarray: 
+                2D numpy array containing node IDs and their relative degree.
         """
         return np.array(self.graph.degree(nodes))
             

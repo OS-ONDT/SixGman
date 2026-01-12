@@ -5,6 +5,8 @@ from .network import Network
 import matplotlib.pyplot as plt
 from itertools import accumulate
 
+# NoRep
+
 class analyse_result:
     """"
     A class for analyzing and managing results from hierarchical optical network simulations.
@@ -479,6 +481,9 @@ class analyse_result:
         All_BVT_CBand = 0
         All_BVT_SuperC = 0
         All_BVT_L = 0
+        All_license_CBand = 0
+        All_license_SuperC = 0
+        All_license_L = 0
         Total_License = 0
 
         # Accumulate values across all processing levels
@@ -486,6 +491,9 @@ class analyse_result:
             All_BVT_CBand += self.bvt_data[f"HL{hierarchy_level}"]['HL_BVTNum_CBand']
             All_BVT_SuperC += self.bvt_data[f"HL{hierarchy_level}"]['HL_BVTNum_SuperCBand']
             All_BVT_L += self.bvt_data[f"HL{hierarchy_level}"]['HL_BVTNum_LBand']
+            All_license_CBand += self.bvt_data[f"HL{hierarchy_level}"]['HL_CBand_license']
+            All_license_SuperC += self.bvt_data[f"HL{hierarchy_level}"]['HL_SuperCBand_license']
+            All_license_L += self.bvt_data[f"HL{hierarchy_level}"]['HL_LBand_license']
             Total_License += self.bvt_data[f"HL{hierarchy_level}"]['HL_All_100G_lincense']
 
         # Save accumulated results for external access
@@ -495,9 +503,9 @@ class analyse_result:
 
         # Calculate total BVTs and proportional 100G license allocation
         Total_BVT = All_BVT_CBand + All_BVT_SuperC + All_BVT_L
-        self.CBand_100G_License = (All_BVT_CBand / Total_BVT) * Total_License
-        self.SupCBand_100G_License = (All_BVT_SuperC / Total_BVT) * Total_License
-        self.LBand_100G_License = (All_BVT_L / Total_BVT) * Total_License
+        self.CBand_100G_License = All_license_CBand.sum(axis = 1)
+        self.SupCBand_100G_License = All_license_SuperC.sum(axis = 1)
+        self.LBand_100G_License = All_license_L.sum(axis = 1)
         Total_100G_License = (
             self.CBand_100G_License +
             self.SupCBand_100G_License +
@@ -516,10 +524,10 @@ class analyse_result:
 
             # --- Plot 100G Licenses on Right Y-axis ---
             ax2.set_ylabel("Cumulative 100G - License Number", color='red')
-            ax2.plot(year, self.CBand_100G_License, 'r-.>', label='C-Band-100GL[#]', linewidth=1.5)
-            ax2.plot(year, self.SupCBand_100G_License, 'r-.o', label='SupC-Band-100GL', linewidth=1.5)
-            ax2.plot(year, self.LBand_100G_License, 'r-.s', label='L-Band-100GL', linewidth=1.5)
-            ax2.plot(year, Total_100G_License, 'r-.+', label='Total-100GL', linewidth=1.5)
+            ax2.plot(year, self.CBand_100G_License.cumsum(), 'r-.>', label='C-Band-100GL[#]', linewidth=1.5)
+            ax2.plot(year, self.SupCBand_100G_License.cumsum(), 'r-.o', label='SupC-Band-100GL', linewidth=1.5)
+            ax2.plot(year, self.LBand_100G_License.cumsum(), 'r-.s', label='L-Band-100GL', linewidth=1.5)
+            ax2.plot(year, Total_100G_License.cumsum(), 'r-.+', label='Total-100GL', linewidth=1.5)
             ax2.tick_params(axis='y', labelcolor='red')
 
             # --- Finalize plot ---
@@ -539,7 +547,8 @@ class analyse_result:
     def calc_cost(self, 
                   save_flag: int,
                   save_suffix: str = "", 
-                  C_100GL: float = 1,
+                  C_100GL_First: float = 1,
+                  C_100G_Added: float = 0.333, 
                   C_MCS: float = 0.7,
                   C_RoB: float = 1.9,
                   C_IRU: float = 0.5):
@@ -555,8 +564,10 @@ class analyse_result:
                 Whether to save the output CSV file (1) or not (0).
             save_suffix (str): 
                 Optional suffix for the saved file name.
-            C_100GL (float): 
-                Unit cost of a 100G license [default = 1].
+            C_100GL_First (float): 
+                Unit cost of the first activated 100G license [default = 1].
+            C_100G_Added (float):
+                Unit cost of the following activated 100G licenses after the first one [default = 0.333].
             C_MCS (float): 
                 Unit cost of a multi-cast switch [default = 0.7].
             C_RoB (float): 
@@ -625,9 +636,18 @@ class analyse_result:
                 Capex_MCS_L[y] = ((self.All_BVT_L[y] - self.All_BVT_L[y - 1]) / 16) * C_MCS * (1 + 0.2 * (1 - 0.1)**(y + 1))
 
                 # Compute annual increment for 100G License cost
-                Capex_100GL_Cband[y] = (self.CBand_100G_License[y]) * C_100GL
-                Capex_100GL_SupCBand[y] = (self.SupCBand_100G_License[y]) * C_100GL * (1 + 0.1 * (1 - 0.1)**(y + 1))
-                Capex_100GL_LBand[y] = (self.LBand_100G_License[y]) * C_100GL * (1 + 0.2 * (1 - 0.1)**(y + 1))
+                Added_BVT_annual_CBand = self.All_BVT_CBand[y] - self.All_BVT_CBand[y - 1]
+                Added_BVT_annual_supCBand = self.All_BVT_SuperC[y] - self.All_BVT_SuperC[y - 1]
+                Added_BVT_annual_LBand = self.All_BVT_L[y] - self.All_BVT_L[y - 1]
+                
+                Capex_100GL_Cband[y] += Added_BVT_annual_CBand * C_100GL_First
+                Capex_100GL_Cband[y] += (self.CBand_100G_License[y] - Added_BVT_annual_CBand) * C_100G_Added
+                
+                Capex_100GL_SupCBand[y] += Added_BVT_annual_supCBand * C_100GL_First * (1 + 0.1 * (1 - 0.1)**(y + 1))
+                Capex_100GL_SupCBand[y] += (self.SupCBand_100G_License[y] - Added_BVT_annual_supCBand) * C_100G_Added * (1 + 0.1 * (1 - 0.1)**(y + 1))
+                
+                Capex_100GL_LBand[y] += Added_BVT_annual_LBand * C_100GL_First * (1 + 0.2 * (1 - 0.1)**(y + 1))
+                Capex_100GL_LBand[y] += (self.LBand_100G_License[y] - Added_BVT_annual_LBand) * C_100G_Added * (1 + 0.2 * (1 - 0.1)**(y + 1))
             else:
                 # Initial year costs
                 Capex_RoB_C[y] = self.deg_pure_c[y] * C_RoB
@@ -638,9 +658,14 @@ class analyse_result:
                 Capex_MCS_SupC[y] = self.All_BVT_SuperC[y] / 16 * C_MCS * 1.1
                 Capex_MCS_L[y] = self.All_BVT_L[y] / 16 * C_MCS * 1.2
 
-                Capex_100GL_Cband[y] = self.CBand_100G_License[y] * C_100GL
-                Capex_100GL_SupCBand[y] = self.SupCBand_100G_License[y] * C_100GL * 1.1
-                Capex_100GL_LBand[y] = self.LBand_100G_License[y] * C_100GL * 1.2
+                Capex_100GL_Cband[y] += self.All_BVT_CBand[y] * C_100GL_First
+                Capex_100GL_Cband[y] += (self.CBand_100G_License[y] - self.All_BVT_CBand[y]) * C_100G_Added
+                
+                Capex_100GL_SupCBand[y] += self.All_BVT_SuperC[y] * C_100GL_First * 1.1
+                Capex_100GL_SupCBand[y] += (self.SupCBand_100G_License[y] - self.All_BVT_SuperC[y]) * C_100G_Added * 1.1
+                
+                Capex_100GL_LBand[y] += self.All_BVT_L[y] * C_100GL_First * 1.2
+                Capex_100GL_LBand[y] = (self.LBand_100G_License[y] - self.All_BVT_L[y]) * C_100G_Added * 1.2
 
         # --- Aggregate CAPEX components ---
         Capex_RoB = Capex_RoB_C + Capex_RoB_SupC + Capex_RoB_L

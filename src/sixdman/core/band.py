@@ -28,6 +28,7 @@ class OpticalParameters:
         L_eff_a (float): Effective length (m)
         B_ch_mat (float): Channel bandwidth (Hz)
         B_ch (float): Channel bandwidth (Hz) [alias]
+        target_SNR_dB (list): Target SNR of modulation formats to reach the target_ber
 
     Example:
     ------- 
@@ -82,6 +83,17 @@ class OpticalParameters:
         # Compute channel bandwidth
         self.B_ch_mat = self.Rs_mat * (1 + self.rof)
         self.B_ch = self.B_ch_mat  # alias
+        
+        # Compute fixed target SNR values based on target BER
+        # Modulation Formats: 64-QAM, 32-QAM, 16-QAM, 8-QAM, QPSK, BPSK
+        self.target_SNR_dB = np.array([
+            10 * np.log10(2 * (erfcinv(np.log2(64) * self.target_ber / 2 / (1 - 1 / np.sqrt(64)))) ** 2 * (64 - 1) / 3), 
+            10 * np.log10(2 * (erfcinv(np.log2(32) * self.target_ber / 2 / (1 - 1 / np.sqrt(32)))) ** 2 * (32 - 1) / 3),
+            10 * np.log10(10 * (erfcinv((8 / 3) * self.target_ber)) ** 2),
+            10 * np.log10((14 / 3) * (erfcinv(1.5 * self.target_ber)) ** 2),
+            10 * np.log10(2 * (erfcinv(2 * self.target_ber)) ** 2),
+            10 * np.log10(1 * (erfcinv(2 * self.target_ber)) ** 2), 
+        ])
 
 class Band:
     """Class representing an optical transmission band with its characteristics.
@@ -150,12 +162,12 @@ class Band:
         self.channel_spacing = channel_spacing
         self.opt_params = opt_params
         self.network = network_instance
-
+    
         # Computed attributes
         self.spectrum: np.ndarray = self.calc_spectrum()
         self.num_channels: int = len(self.spectrum)
                                
-    def calc_spectrum(self):
+    def calc_spectrum(self) -> np.ndarray:
         """
         Compute the frequency grid (spectrum) for this band based on
         start_freq, end_freq, and channel_spacing.
@@ -166,7 +178,7 @@ class Band:
                 Array of center frequencies in THz.
 
         Example:
-        --------- 
+        ------- 
         >>> # define C-band frequency slots
         >>> spectrum_C = c_band.calc_spectrum()
         >>> # define total number of frequency slots
@@ -254,16 +266,6 @@ class Band:
             epsilon = self.opt_params.epsilon
             phi_MFL = self.opt_params.phi_MFL
 
-            # Compute fixed target SNR values based on target BER
-            target_SNR_dB = [
-                10 * np.log10(1 * (erfcinv(2 * self.opt_params.target_ber)) ** 2),
-                10 * np.log10(2 * (erfcinv(2 * self.opt_params.target_ber)) ** 2),
-                10 * np.log10((14 / 3) * (erfcinv(1.5 * self.opt_params.target_ber)) ** 2),
-                10 * np.log10(10 * (erfcinv((8 / 3) * self.opt_params.target_ber)) ** 2),
-                10 * np.log10(2 * (erfcinv(np.log2(32) * self.opt_params.target_ber / 2 / (1 - 1 / np.sqrt(32)))) ** 2 * (32 - 1) / 3),
-                10 * np.log10(2 * (erfcinv(np.log2(64) * self.opt_params.target_ber / 2 / (1 - 1 / np.sqrt(64)))) ** 2 * (64 - 1) / 3)
-            ]
-
             fc = np.median(f_c_axis)  # Median frequency
             weights_Lspan = self.network.weights_array / Nspan_array
             alpha_norm_bar = alpha_norm
@@ -316,7 +318,7 @@ class Band:
                         eta_total = 0  # Initialize non-linear coefficient
 
                         if n_s == 1:
-                            n_bar = 0 
+                            n_bar = 0  # TODO: ASM n_bar is always 0 ??
                         else:
                             n_bar = n_s
 
@@ -385,9 +387,9 @@ class Band:
                             (p_cut - 0 * P_NLI_span[num_fcut]) / (P_ASE_span + P_NLI_span[num_fcut]))  # SNR Calculation
 
                         # ASM: Check if [5] 64-QAM or [1] BPSK should be used
-                        if SNR_CUT[num_fcut] < target_SNR_dB[5]:
+                        if SNR_CUT[num_fcut] < self.target_SNR_dB[0]:
                             flag = 1
-                            print("It is less than expected SNR! ", SNR_CUT[num_fcut])
+                            print("It is less than target SNR of 64-QAM! ", SNR_CUT[num_fcut])
                             # break
 
                         if SNR_CUT[num_fcut] < 0:
