@@ -18,7 +18,7 @@ Key Classes
 ------------
 
 - **OpticalParameters**
-    ~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~
     .. autoclass:: sixdman.core.band.OpticalParameters
         :members:
         :undoc-members:
