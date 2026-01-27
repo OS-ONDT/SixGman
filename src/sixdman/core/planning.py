@@ -37,6 +37,7 @@ class PlanningTool:
         Initialize the PlanningTool object with a given network topology and bands.
 
         Args:
+        ---------
             network_instance (Network): The network structure including nodes, links,
                 weights, and hierarchical levels.
             bands (List[Band]): The optical bands considered for transmission planning.
@@ -49,7 +50,7 @@ class PlanningTool:
                 traffic updates or recalculation windows. Default is 10.
 
         Example:
-        -------
+        ---------
         >>> from sixdman.core.planning import PlanningTool
         
         >>> # Initialize planning tool
@@ -86,18 +87,28 @@ class PlanningTool:
         spectrum usage planning across different optical bands.
 
         Args:
-            num_fslots (int): Number of frequency slots available in the network.
-            hierarchy_level (int): Target hierarchy level for current planning.
-            minimum_hierarchy_level (int): Minimum hierarchy level for subgraph planning.
-            rolloff (float): Rolloff factor for spectral shaping (default: 0.1).
-            SR (float): Symbol rate in baud (default: 40 Gbaud).
-            Max_bit_rate_BVT (np.ndarray): Array of supported BVT bitrates in Gbps.
-            Ref_license_capacity (np.ndarray): Array of reference license capacities of different BVT bitrates.
-            FP_max_num (int): Maximum number of available fiber pairs per link.
-            band_sepration_idx (list): Index of the last frequency slot of the C-Band and SuperC-Band.
+        ---------
+            num_fslots (int): 
+                Number of frequency slots available in the network.
+            hierarchy_level (int): 
+                Target hierarchy level for current planning.
+            minimum_hierarchy_level (int): 
+                Minimum hierarchy level for subgraph planning.
+            rolloff (float): 
+                Rolloff factor for spectral shaping (default: 0.1).
+            SR (float): 
+                Symbol rate in baud (default: 40 Gbaud).
+            Max_bit_rate_BVT (np.ndarray): 
+                Array of supported BVT bitrates in Gbps.
+            Ref_license_capacity (np.ndarray): 
+                Array of reference license capacities of different BVT bitrates.
+            FP_max_num (int): 
+                Maximum number of available fiber pairs per link.
+            band_sepration_idx (list): 
+                Index of the last frequency slot of the C-Band and SuperC-Band.
 
         Example:
-        -------
+        ---------
         >>> planner.initialize_planner(
         ...     num_fslots = num_fslots, # number of frequency slots
         ...     hierarchy_level = 4, # current hierarchy level
@@ -247,7 +258,7 @@ class PlanningTool:
                                         min_rate: float,
                                         max_rate: float,
                                         seed: int, 
-                                        result_directory) -> np.ndarray:
+                                        result_directory):
         """
         Generate or load the initial traffic capacity profile for network nodes using Monte Carlo simulation.
 
@@ -343,7 +354,7 @@ class PlanningTool:
     def simulate_traffic_annual(self,
                                  lowest_hierarchy_dict: dict,
                                  CAGR: int, 
-                                 result_directory) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+                                 result_directory):
         """
         Simulate annual traffic evolution for the lowest hierarchy-level nodes using a Compound Annual Growth Rate (CAGR).
 
@@ -452,7 +463,7 @@ class PlanningTool:
                             GSNR_link: np.ndarray, 
                             LSP_array_pair: np.ndarray, 
                             Year_FP_pair: np.ndarray, 
-                            HL_subnet_links = np.ndarray) -> dict:
+                            HL_subnet_links = np.ndarray):
         """
         Perform spectrum and fiber pair assignment for a given lightpath in a hierarchical network.
 
@@ -538,7 +549,9 @@ class PlanningTool:
             - Assigns FS in C-band, SuperC-band, and SuperCL-band.
             - Stops searching for further slots once a valid assignment is made.
             - Calculate the total bitrate of established BVTs and continue BVT allocation to reach the pure_traffic_to_assign of this node.
+            
         """
+        
         if path_IDx != None:
             
             # Initialize dict for path information
@@ -949,7 +962,7 @@ class PlanningTool:
         
     def _update_hl_node_degrees(self, 
                                 hierarchy_level: dict,
-                                Year_FP: np.ndarray) -> np.ndarray:
+                                Year_FP: np.ndarray):
         """
         Update and track the average node degree of nodes in the {hierarchy_level} across the planning period.
 
@@ -1014,7 +1027,7 @@ class PlanningTool:
  
         self.degree_number_HLs = degree_number_HLs
 
-    def _calculate_BVT_usage(self) -> dict:
+    def _calculate_BVT_usage(self):
         """
         Calculate cumulative BVT (Bitrate Variable Transceiver) usage and 100G license counts per year.
 
@@ -1053,7 +1066,7 @@ class PlanningTool:
     def _save_network_results(self,
                          hierarchy_level: int,
                          minimum_hierarchy_level: int,
-                         result_directory):
+                         result_directory): 
         """
         Save detailed network planning results for a given hierarchy level to compressed NPZ files.
 
@@ -1064,13 +1077,15 @@ class PlanningTool:
 
         Args:
         ---------
-            hierarchy_level (int): The current hierarchy level being analyzed.
-            minimum_hierarchy_level (int): The minimum hierarchy level considered for subgraph generation.
-            result_directory (Path): Directory where the output files will be saved.
+            hierarchy_level (int): 
+                The current hierarchy level being analyzed.
+            minimum_hierarchy_level (int): 
+                The minimum hierarchy level considered for subgraph generation.
+            result_directory (Path): 
+                Directory where the output files will be saved.
 
         Saves:
         ---------
-
             1. `{topology_name}_HL{hierarchy_level}_bvt_info.npz`:
                 - `HL_All_100G_lincense`: Cumulative number of activated 100G licenses.
                 - `HL_annual_license`: Number of activated 100G licenses per year.
@@ -1189,7 +1204,8 @@ class PlanningTool:
                     P_opt_links: np.ndarray, 
                     minimum_level: int,
                     node_cap_update_idx: int, 
-                    result_directory) -> float:
+                    result_directory): 
+        
         """
         Executes the hierarchical optical network planning algorithm for a given hierarchy level.
     
@@ -1238,7 +1254,6 @@ class PlanningTool:
 
         Updates:
         ---------
-            
             self.Residual_Throughput_BVT_standalone_HLs_primary (np.ndarray): 
                 Residual unallocated throughput for primary paths of standalone nodes.
             self.Residual_Throughput_BVT_standalone_HLs_secondary (np.ndarray): 
@@ -1297,6 +1312,7 @@ class PlanningTool:
                 Number of fiber pairs with at least one allocated SuperC-Band FS in each link per year.
             self.num_link_LBand_annual (np.ndarray):
                  Number of fiber pairs with at least one allocated L-Band FS in each link per year.
+                 
         Output:
         ---------
             None
@@ -1317,7 +1333,8 @@ class PlanningTool:
         ...         node_cap_update_idx = 2, # Index of node capacity vector to update
         ...         result_directory = results_dir # Directory to save results
         ... )
-        """
+        """ 
+        
         self.Nspan_array = Nspan_array
         self.wss_penalty_degree = [0, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 3.5, 4, 5, 6, 7, 8]
         self.all_node_degree = all_node_degree
