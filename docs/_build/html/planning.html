@@ -307,7 +307,7 @@
 <li><dl>
 <dt><strong>PlanningTool</strong></dt><dd><dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.planning.PlanningTool">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.planning.</span></span><span class="sig-name descname"><span class="pre">PlanningTool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.planning.</span></span><span class="sig-name descname"><span class="pre">PlanningTool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optical_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Main class for SixDman (6-Dimensional Metro-Area Network) planning and optimization.</p>
 <p>This tool integrates physical layer modeling with hierarchical network topology
@@ -352,21 +352,22 @@ demand aggregation or optimization planning is conducted.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.planning.PlanningTool.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optical_parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize the PlanningTool object with a given network topology and bands.</p>
-<section id="args">
-<h3>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h3>
-<blockquote>
-<div><dl class="simple">
-<dt>network_instance (Network):</dt><dd><p>The network structure including nodes, links, weights, and hierarchical levels.</p>
-</dd>
-<dt>bands (List[Band]):</dt><dd><p>The optical bands considered for transmission planning. Each Band includes start/end frequencies and physical layer parameters.</p>
-</dd>
-<dt>period_time (int, optional):</dt><dd><p>Time granularity (e.g., 10 units) for periodic traffic updates or recalculation windows. Default is 10.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network_instance</strong> (<a class="reference internal" href="network.html#sixdman.core.network.Network" title="sixdman.core.network.Network"><em>Network</em></a>) – The network structure including nodes, links,
+weights, and hierarchical levels.</p></li>
+<li><p><strong>bands</strong> (<em>List</em><em>[</em><a class="reference internal" href="band.html#sixdman.core.band.Band" title="sixdman.core.band.Band"><em>Band</em></a><em>]</em>) – The optical bands considered for transmission planning.
+Each Band includes start/end frequencies and physical layer parameters.</p></li>
+<li><p><strong>optical_parameters</strong> (<em>dict</em>) – Dictionary containing the optical transmision parameters.</p></li>
+<li><p><strong>grid_center</strong> (<em>np.ndarray</em>) – Numpy array containing the center frequency of frequency channels.</p></li>
+<li><p><strong>period_time</strong> (<em>int</em><em>, </em><em>optional</em>) – Time granularity (e.g., 10 units) for periodic
+traffic updates or recalculation windows. Default is 10.</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
-</section>
 <section id="example">
 <h3>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.planning</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlanningTool</span>
@@ -376,6 +377,8 @@ demand aggregation or optimization planning is conducted.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">planner</span> <span class="o">=</span> <span class="n">PlanningTool</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">network_instance</span> <span class="o">=</span> <span class="n">net</span><span class="p">,</span> <span class="c1"># the network instance</span>
 <span class="gp">... </span>    <span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_band</span><span class="p">],</span> <span class="c1"># list of all band instances</span>
+<span class="gp">... </span>    <span class="n">optical_parameters</span> <span class="o">=</span> <span class="n">c_band_params</span><span class="p">,</span> <span class="c1"># optical transmission parameters</span>
+<span class="gp">... </span>    <span class="n">grid_center</span> <span class="o">=</span> <span class="n">f_c_axis</span><span class="p">,</span> <span class="c1"># center frequncy of frequency channels</span>
 <span class="gp">... </span>    <span class="n">period_time</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># the time period for planning (e.g., 10 years)</span>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
@@ -385,42 +388,38 @@ demand aggregation or optimization planning is conducted.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.planning.PlanningTool.initialize_planner">
-<span class="sig-name descname"><span class="pre">initialize_planner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_fslots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolloff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BVT_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Max_bit_rate_BVT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([400])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FP_max_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band_sepration_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[96,</span> <span class="pre">120]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.initialize_planner" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">initialize_planner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_fslots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rolloff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Max_bit_rate_BVT</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([400,</span> <span class="pre">348,</span> <span class="pre">280,</span> <span class="pre">200,</span> <span class="pre">120,</span> <span class="pre">80])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ref_license_capacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([100,</span> <span class="pre">87,</span> <span class="pre">70,</span> <span class="pre">50,</span> <span class="pre">30,</span> <span class="pre">20])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FP_max_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band_sepration_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[96,</span> <span class="pre">120]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.initialize_planner" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize planning-related matrices and spectrum parameters.</p>
 <p>This method prepares internal state variables needed for simulating
 BVT allocations, GSNR calculations, fiber placement tracking, and
 spectrum usage planning across different optical bands.</p>
-<section id="id1">
-<h3>Args:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
-<blockquote>
-<div><dl class="simple">
-<dt>num_fslots (int):</dt><dd><p>Number of frequency slots available in the network.</p>
-</dd>
-<dt>hierarchy_level (int):</dt><dd><p>Target hierarchy level for current planning.</p>
-</dd>
-<dt>minimum_hierarchy_level (int):</dt><dd><p>Minimum hierarchy level for subgraph planning.</p>
-</dd>
-<dt>rolloff (float):</dt><dd><p>Rolloff factor for spectral shaping (default: 0.1).</p>
-</dd>
-<dt>SR (float):</dt><dd><p>Symbol rate in baud (default: 40 Gbaud).</p>
-</dd>
-<dt>BVT_type (int):</dt><dd><p>Identifier for BVT type (default: 1).</p>
-</dd>
-<dt>Max_bit_rate_BVT (np.ndarray):</dt><dd><p>Array of supported BVT bitrates in Gbps.</p>
-</dd>
-<dt>FP_max_num (int):</dt><dd><p>Maximum number of fiber pairs per link (default: 20).</p>
-</dd>
-<dt>band_sepration_idx (list):</dt><dd><p>list that contains the start index of C-band and superC-band in the spectrum</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_fslots</strong> (<em>int</em>) – Number of frequency slots available in the network.</p></li>
+<li><p><strong>hierarchy_level</strong> (<em>int</em>) – Target hierarchy level for current planning.</p></li>
+<li><p><strong>minimum_hierarchy_level</strong> (<em>int</em>) – Minimum hierarchy level for subgraph planning.</p></li>
+<li><p><strong>rolloff</strong> (<em>float</em>) – Rolloff factor for spectral shaping (default: 0.1).</p></li>
+<li><p><strong>SR</strong> (<em>float</em>) – Symbol rate in baud (default: 40 Gbaud).</p></li>
+<li><p><strong>Max_bit_rate_BVT</strong> (<em>np.ndarray</em>) – Array of supported BVT bitrates in Gbps.</p></li>
+<li><p><strong>Ref_license_capacity</strong> (<em>np.ndarray</em>) – Array of reference license capacities of different BVT bitrates.</p></li>
+<li><p><strong>FP_max_num</strong> (<em>int</em>) – Maximum number of available fiber pairs per link.</p></li>
+<li><p><strong>band_sepration_idx</strong> (<em>list</em>) – Index of the last frequency slot of the C-Band and SuperC-Band.</p></li>
+</ul>
 </dd>
 </dl>
-</div></blockquote>
-</section>
-<section id="id2">
-<h3>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id1">
+<h3>Example:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">planner</span><span class="o">.</span><span class="n">initialize_planner</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">num_fslots</span> <span class="o">=</span> <span class="n">num_fslots</span><span class="p">,</span> <span class="c1"># number of frequency slots</span>
 <span class="gp">... </span>    <span class="n">hierarchy_level</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="c1"># current hierarchy level</span>
 <span class="gp">... </span>    <span class="n">minimum_hierarchy_level</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># minimum hierarchy levels</span>
+<span class="gp">... </span>    <span class="n">rolloff</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">SR</span> <span class="o">=</span> <span class="mf">64e9</span><span class="p">,</span> <span class="mi">64</span> <span class="n">Gbaud</span> <span class="n">symbol</span> <span class="n">rate</span> <span class="k">for</span> <span class="mi">75</span><span class="n">GHz</span> <span class="n">channel</span> <span class="n">spacing</span>
+<span class="gp">... </span>    <span class="n">Max_bit_rate_BVT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">400</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">64</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="n">Ref_license_capacity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">16</span><span class="p">]),</span>
+<span class="gp">... </span>    <span class="n">FP_max_num</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># 100 fiber pairs is available for assignment,</span>
+<span class="gp">... </span>    <span class="n">band_sepration_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="c1"># 64 and 80 are the last FS of C-Band and SuperC-Band</span>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
@@ -429,7 +428,7 @@ spectrum usage planning across different optical bands.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.planning.PlanningTool.generate_initial_traffic_profile">
-<span class="sig-name descname"><span class="pre">generate_initial_traffic_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monteCarlo_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.generate_initial_traffic_profile" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generate_initial_traffic_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optical_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monteCarlo_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.generate_initial_traffic_profile" title="Link to this definition">¶</a></dt>
 <dd><p>Generate or load the initial traffic capacity profile for network nodes using Monte Carlo simulation.</p>
 <p>This method estimates the initial traffic demand or capacity for each network node by
 performing multiple Monte Carlo simulations. For each iteration, it generates random
@@ -438,11 +437,18 @@ If a precomputed capacity file exists in the given directory, it is loaded inste
 to avoid redundant computation.</p>
 <p>The resulting per-node average capacities are stored internally in
 <cite>self.HL_capacity_final</cite>. This method does not return any value.</p>
-<section id="id3">
-<h3>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
+<section id="args">
+<h3>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>num_nodes (int):</dt><dd><p>Number of nodes in the network for which to simulate traffic.</p>
+</dd>
+<dt>optical_nodes (list):</dt><dd><p>List of all nodes with no electrical aggregation (optically bypass nodes), these nodes not have any initial traffic and can’t be the destination of any node</p>
 </dd>
 <dt>monteCarlo_steps (int):</dt><dd><p>Number of Monte Carlo iterations used for averaging.</p>
 </dd>
@@ -472,11 +478,12 @@ to avoid redundant computation.</p>
 <div><p>None</p>
 </div></blockquote>
 </section>
-<section id="id4">
-<h3>Example:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># generate port capacity for HL4 nodes uisng Monte Carlo simulation</span>
+<section id="id2">
+<h3>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># generate port capacity for the lowest HL nodes uisng Monte Carlo simulation</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">planner</span><span class="o">.</span><span class="n">generate_initial_traffic_profile</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">num_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">HL4_all</span><span class="p">),</span> <span class="c1"># all the nodes of minimum hierarchy level</span>
+<span class="gp">... </span>    <span class="n">Optical_nodes</span> <span class="o">=</span> <span class="p">[],</span> <span class="c1"># there is no any all optical node</span>
 <span class="gp">... </span>    <span class="n">monteCarlo_steps</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="c1"># Number of Monte Carlo iterations</span>
 <span class="gp">... </span>    <span class="n">min_rate</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="c1"># minimum allowed traffic rate per node in Gbps</span>
 <span class="gp">... </span>    <span class="n">max_rate</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="c1"># maximum allowed traffic rate per node in Gbps</span>
@@ -498,8 +505,13 @@ It calculates annual traffic, added traffic, number of 100G licenses, and residu
 for both standalone and colocated nodes.</p>
 <p>If precomputed results are available in the specified directory, they are loaded from file
 to save computation time. Otherwise, the full annual simulation is performed and results are saved.</p>
-<section id="id5">
-<h3>Args:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>]</span></p>
+</dd>
+</dl>
+<section id="id3">
+<h3>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>lowest_hierarchy_dict (dict):</dt><dd><p>Dictionary containing node IDs for the lowest hierarchy level, with keys <cite>‘standalone’</cite> and <cite>‘colocated’</cite>.</p>
@@ -511,29 +523,25 @@ to save computation time. Otherwise, the full annual simulation is performed and
 </dl>
 </div></blockquote>
 </section>
-<section id="id6">
-<h3>Updates:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<section id="id4">
+<h3>Updates:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>self.lowest_HL_added_traffic_annual_standalone (np.ndarray):</dt><dd><p>Annual incremental traffic for standalone nodes (years × nodes).</p>
 </dd>
 <dt>self.lowest_HL_added_traffic_annual_colocated (np.ndarray):</dt><dd><p>Annual incremental traffic for colocated nodes (years × nodes).</p>
 </dd>
-<dt>self.num_100G_licence_annual (np.ndarray):</dt><dd><p>Number of required 100G licenses per node per year.</p>
-</dd>
-<dt>self.residual_capacity_annual (np.ndarray):</dt><dd><p>Unused capacity per node per year after license allocation (if stored).</p>
-</dd>
 </dl>
 </div></blockquote>
 </section>
-<section id="id7">
-<h3>Output:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<section id="id5">
+<h3>Output:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
-<section id="id8">
-<h3>Example:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<section id="id6">
+<h3>Example:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Traffic growth simulation over 10 years</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">planner</span><span class="o">.</span><span class="n">simulate_traffic_annual</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">lowest_hierarchy_dict</span> <span class="o">=</span> <span class="n">hl_dict</span><span class="p">[</span><span class="s1">&#39;HL4&#39;</span><span class="p">],</span> <span class="c1"># Dictionary with minimum hierarchy level standalone and colocated nodes</span>
@@ -547,13 +555,18 @@ to save computation time. Otherwise, the full annual simulation is performed and
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.planning.PlanningTool.run_planner">
-<span class="sig-name descname"><span class="pre">run_planner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_disjoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpair_standalone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpair_colocated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_paths_standalone_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_paths_colocated_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GSNR_opt_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_cap_update_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.run_planner" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">run_planner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prev_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_disjoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpair_standalone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kpair_colocated</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_paths_standalone_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_paths_colocated_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">GSNR_opt_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nspan_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_node_degree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P_opt_links</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_cap_update_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.planning.PlanningTool.run_planner" title="Link to this definition">¶</a></dt>
 <dd><p>Executes the hierarchical optical network planning algorithm for a given hierarchy level.</p>
 <p>This function performs traffic allocation, spectrum assignment, and resource planning
 for both standalone and colocated High-Level (HL) nodes across multiple years.
 It computes primary and secondary paths, assigns BVTs (Bandwidth Variable Transceivers),
 updates frequency plans (FPs), tracks GSNR (Generalized Signal-to-Noise Ratio) evolution,
 and saves annual network performance results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
 <dl class="simple">
 <dt>The planner operates iteratively per year and per HL node, handling:</dt><dd><ul class="simple">
 <li><p>Traffic growth and residual throughput updates</p></li>
@@ -565,8 +578,8 @@ and saves annual network performance results.</p>
 </ul>
 </dd>
 </dl>
-<section id="id9">
-<h3>Args:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<section id="id7">
+<h3>Args:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>hierarchy_level (int):</dt><dd><p>The current hierarchy level being processed.</p>
@@ -575,15 +588,19 @@ and saves annual network performance results.</p>
 </dd>
 <dt>pairs_disjoint (pd.DataFrame):</dt><dd><p>DataFrame containing disjoint node pairs for routing and path computation.</p>
 </dd>
-<dt>kpair_standalone (int):</dt><dd><p>Number of K-shortest paths to consider for standalone HL nodes.</p>
+<dt>kpair_standalone (int):</dt><dd><p>Maximum number of LAND pairs to consider for standalone HL nodes.</p>
 </dd>
-<dt>kpair_colocated (int):</dt><dd><p>Number of K-shortest paths to consider for colocated HL nodes.</p>
+<dt>kpair_colocated (int):</dt><dd><p>Maximum number of K-shortest paths to consider for colocated HL nodes (secondary path).</p>
 </dd>
-<dt>candidate_paths_standalone_df (pd.DataFrame):</dt><dd><p>DataFrame of candidate paths for standalone HL pairs, including metrics like hops, costs, and GSNR.</p>
+<dt>candidate_paths_standalone_df (pd.DataFrame):</dt><dd><p>DataFrame of candidate paths for standalone HL pairs, including metrics like hops.</p>
 </dd>
 <dt>candidate_paths_colocated_df (pd.DataFrame):</dt><dd><p>DataFrame of candidate paths for colocated HL pairs, used for colocated spectrum assignment.</p>
 </dd>
 <dt>GSNR_opt_link (np.ndarray):</dt><dd><p>Array of per-link GSNR (Generalized Signal-to-Noise Ratio) values.</p>
+</dd>
+<dt>Nspan_array (np.ndarray):</dt><dd><p>Array that contains number of spans per link in the whole network.</p>
+</dd>
+<dt>all_node_degree (np.ndarray):</dt><dd><p>Initial node degress for WSS penalty calculation.</p>
 </dd>
 <dt>minimum_level (int):</dt><dd><p>Minimum hierarchy level considered in the network for FP continuity and reference.</p>
 </dd>
@@ -594,15 +611,17 @@ and saves annual network performance results.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id10">
-<h3>Updates:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<section id="id8">
+<h3>Updates:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
-<dt>self.HL_BVT_number_all_annual (np.ndarray):</dt><dd><p>Annual count of deployed BVTs across all nodes.</p>
+<dt>self.Residual_Throughput_BVT_standalone_HLs_primary (np.ndarray):</dt><dd><p>Residual unallocated throughput for primary paths of standalone nodes.</p>
 </dd>
-<dt>self.Residual_Throughput_BVT_standalone_HLs (np.ndarray):</dt><dd><p>Residual unallocated throughput for standalone HLs per year.</p>
+<dt>self.Residual_Throughput_BVT_standalone_HLs_secondary (np.ndarray):</dt><dd><p>Residual unallocated throughput for secondary paths of standalone nodes.</p>
 </dd>
-<dt>self.Residual_Throughput_BVT_colocated_HLs (np.ndarray):</dt><dd><p>Residual unallocated throughput for colocated HLs per year.</p>
+<dt>self.Residual_Throughput_BVT_colocated_HLs_primary (np.ndarray):</dt><dd><p>Residual unallocated throughput for primary paths of colocated nodes.</p>
+</dd>
+<dt>self.Residual_Throughput_BVT_colocated_HLs_secondary (np.ndarray):</dt><dd><p>Residual unallocated throughput for secondary paths of colocated nodes.</p>
 </dd>
 <dt>self.Year_FP (np.ndarray):</dt><dd><p>Number of fiber pairs in different years for network links.</p>
 </dd>
@@ -612,41 +631,59 @@ and saves annual network performance results.</p>
 </dd>
 <dt>self.Total_effective_FP_new_annual (np.ndarray):</dt><dd><p>Total km of fiber pair usage across all links per year.</p>
 </dd>
-<dt>self.GSNR_BVT_array (np.ndarray):</dt><dd><p>GSNR records per year.</p>
+<dt>self.GSNR_BVT_all_annual (np.ndarray):</dt><dd><p>GSNR records of all BVTs (primary and secondary) per year.</p>
 </dd>
-<dt>self.GSNR_BVT_array_primary (np.ndarray):</dt><dd><p>GSNR records per year for primary paths.</p>
+<dt>self.GSNR_BVT_primary_annual (np.ndarray):</dt><dd><p>GSNR records of primary BVTs per year.</p>
 </dd>
-<dt>self.GSNR_BVT_array_secondary (np.ndarray):</dt><dd><p>GSNR records per year for secondary paths.</p>
+<dt>self.GSNR_BVT_secondary_annual (np.ndarray):</dt><dd><p>GSNR records of secondary BVTs per year.</p>
 </dd>
 <dt>self.node_capacity_profile_array (np.ndarray):</dt><dd><p>Node capacity evolution per year, including allocations and residual capacities.</p>
 </dd>
 <dt>self.traffic_flow_links_array (np.ndarray):</dt><dd><p>Annual traffic volume per network link.</p>
 </dd>
-<dt>self.num_link_CBand_annual (np.ndarray), self.num_link_SupCBand_annual (np.ndarray), self.num_link_LBand_annual (np.ndarray):</dt><dd><p>Band utilization counts across links.</p>
+<dt>self.num_100G_licence_annual (np.ndarray):</dt><dd><p>Annual count of activated 100G licenses.</p>
 </dd>
-<dt>self.num_100G_licence_annual (np.ndarray):</dt><dd><p>Annual count of 100G licenses in use.</p>
+<dt>self.num_100G_licence_CBand_annual (np.ndarray):</dt><dd><p>Annual count of activated 100G licenses in C-Band.</p>
 </dd>
-<dt>self.Residual_100G (np.ndarray):</dt><dd><p>Residual 100G traffic capacity not yet allocated.</p>
+<dt>self.num_100G_licence_superCBand_annual (np.ndarray):</dt><dd><p>Annual count of activated 100G licenses in SuperC-Band.</p>
 </dd>
-<dt>self.LAND_Links_Storage (np.ndarray):</dt><dd><p>Stores link assignments for LAND pairs.</p>
+<dt>self.num_100G_licence_LBand_annual (np.ndarray):</dt><dd><p>Annual count of activated 100G licenses in L-Band.</p>
 </dd>
-<dt>self.LSP_array (np.ndarray):</dt><dd><p>Link-State-Profile array representing wavelength/channel allocation states across links in eeach year.</p>
+<dt>self.Residual_Throughput_LC_standalone_HLs_primary (np.ndarray):</dt><dd><p>Residual capacity of the last activated licenses (primary path) per standalone node.</p>
+</dd>
+<dt>self.Residual_Throughput_LC_standalone_HLs_secondary (np.ndarray):</dt><dd><p>Residual capacity of the last activated licenses (secondary path) per standalone node.</p>
+</dd>
+<dt>self.Residual_Throughput_LC_colocated_HLs_primary (np.ndarray):</dt><dd><p>Residual capacity of the last activated licenses (primary path) per colocated node.</p>
+</dd>
+<dt>self.Residual_Throughput_LC_colocated_HLs_secondary (np.ndarray):</dt><dd><p>Residual capacity of the last activated licenses (secondary path) per colocated node.</p>
+</dd>
+<dt>self.LAND_Links_Storage (np.ndarray):</dt><dd><p>Links of selected LAND pair for each node.</p>
+</dd>
+<dt>self.LSP_array (np.ndarray):</dt><dd><p>Link-State-Profile array that show the occupied frequency slots in different fiber pairs.</p>
+</dd>
+<dt>self.LSP_array_Colocated (np.ndarray):</dt><dd><p>Link-State-Profile array that show the occupied frequency slots in different fiber pairs for primary colocated paths.</p>
 </dd>
 <dt>self.path_latency_storage (list):</dt><dd><p>Latency records for primary and secondary paths.</p>
 </dd>
 <dt>self.destinations_storage (list):</dt><dd><p>Destination node records for primary and secondary paths.</p>
 </dd>
+<dt>self.num_link_CBand_annual (np.ndarray):</dt><dd><p>Number of fiber pairs with at least one allocated C-Band FS in each link per year.</p>
+</dd>
+<dt>self.num_link_SupCBand_annual (np.ndarray):</dt><dd><p>Number of fiber pairs with at least one allocated SuperC-Band FS in each link per year.</p>
+</dd>
+<dt>self.num_link_LBand_annual (np.ndarray):</dt><dd><p>Number of fiber pairs with at least one allocated L-Band FS in each link per year.</p>
+</dd>
 </dl>
 </div></blockquote>
 </section>
-<section id="id11">
-<h3>Output:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<section id="id9">
+<h3>Output:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
-<section id="id12">
-<h3>Example:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<section id="id10">
+<h3>Example:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">planner</span><span class="o">.</span><span class="n">run_planner</span><span class="p">(</span><span class="n">hierarchy_level</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="c1"># Current hierarchy level</span>
 <span class="gp">... </span>        <span class="n">prev_hierarchy_level</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># Previous hierarchy level</span>
 <span class="gp">... </span>        <span class="n">pairs_disjoint</span> <span class="o">=</span> <span class="n">pairs_disjoint</span><span class="p">,</span> <span class="c1"># DataFrame of disjoint LAND pairs</span>
@@ -655,6 +692,8 @@ and saves annual network performance results.</p>
 <span class="gp">... </span>        <span class="n">candidate_paths_standalone_df</span> <span class="o">=</span> <span class="n">K_path_attributes_df</span><span class="p">,</span> <span class="c1"># DataFrame of candidate paths for standalone HL nodes</span>
 <span class="gp">... </span>        <span class="n">candidate_paths_colocated_df</span> <span class="o">=</span> <span class="n">K_path_attributes_colocated_df</span><span class="p">,</span> <span class="c1"># DataFrame of candidate paths for colocated HL nodes</span>
 <span class="gp">... </span>        <span class="n">GSNR_opt_link</span> <span class="o">=</span> <span class="n">GSNR_opt_link</span><span class="p">,</span> <span class="c1"># GSNR values for each link in this hierarchy level</span>
+<span class="gp">... </span>        <span class="n">Nspan_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_links</span><span class="p">)),</span> <span class="c1"># number of spans for each link in the whole network</span>
+<span class="gp">... </span>        <span class="n">P_opt_links</span> <span class="o">=</span> <span class="n">opt_power_links</span><span class="p">,</span> <span class="c1"># Optimum power values for each link</span>
 <span class="gp">... </span>        <span class="n">minimum_level</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="c1"># Minimum hierarchy level</span>
 <span class="gp">... </span>        <span class="n">node_cap_update_idx</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="c1"># Index of node capacity vector to update</span>
 <span class="gp">... </span>        <span class="n">result_directory</span> <span class="o">=</span> <span class="n">results_dir</span> <span class="c1"># Directory to save results</span>

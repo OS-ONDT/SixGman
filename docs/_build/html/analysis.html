@@ -655,7 +655,7 @@ separate different hierarchical levels using the provided splitter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.calc_cost">
-<span class="sig-name descname"><span class="pre">calc_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100GL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_MCS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_RoB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_IRU</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.calc_cost" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calc_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100GL_First</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100G_Added</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.333</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_MCS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_RoB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_IRU</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.calc_cost" title="Link to this definition">¶</a></dt>
 <dd><p>Compute OPEX and CAPEX values for network deployment over time.</p>
 <p>This function evaluates capital and operational expenditures based on
 nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p>
@@ -667,7 +667,9 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 </dd>
 <dt>save_suffix (str):</dt><dd><p>Optional suffix for the saved file name.</p>
 </dd>
-<dt>C_100GL (float):</dt><dd><p>Unit cost of a 100G license [default = 1].</p>
+<dt>C_100GL_First (float):</dt><dd><p>Unit cost of the first activated 100G license [default = 1].</p>
+</dd>
+<dt>C_100G_Added (float):</dt><dd><p>Unit cost of the following activated 100G licenses after the first one [default = 0.333].</p>
 </dd>
 <dt>C_MCS (float):</dt><dd><p>Unit cost of a multi-cast switch [default = 0.7].</p>
 </dd>

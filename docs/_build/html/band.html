@@ -235,7 +235,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="https://github.com/MatinRafiei/SixDman/blob/main/LICENSE" class="reference">License <outboundlink></outboundlink></a>
+              <a href="https://github.com/UC3M-ONDT/SixDman/blob/main/LICENSE" class="reference">License <outboundlink></outboundlink></a>
             
 
             
@@ -244,7 +244,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="https://github.com/MatinRafiei/SixDman.git" class="reference">GitHub Repository <outboundlink></outboundlink></a>
+              <a href="https://github.com/UC3M-ONDT/SixDman.git" class="reference">GitHub Repository <outboundlink></outboundlink></a>
             
 
             
@@ -305,209 +305,6 @@
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">OpticalParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h_plank=6.626e-34</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_ber=0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_3=1.4e-40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cr=2.8e-17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_db=0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2=-2.17e-26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gama=0.00121</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_C=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_L=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rs_mat=40000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rof=0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.OpticalParameters" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A data class to store and compute fiber and system parameters for optical network modeling.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Attributes">
-<span class="sig-name descname"><span class="pre">Attributes</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Attributes" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.h_plank">
-<span class="sig-name descname"><span class="pre">h_plank</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.h_plank" title="Link to this definition">¶</a></dt>
-<dd><p>Planck’s constant (J·s)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.target_ber">
-<span class="sig-name descname"><span class="pre">target_ber</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_ber" title="Link to this definition">¶</a></dt>
-<dd><p>Target bit error rate</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.phi_MFL">
-<span class="sig-name descname"><span class="pre">phi_MFL</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.phi_MFL" title="Link to this definition">¶</a></dt>
-<dd><p>Modulation format penalty factors</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.epsilon">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.epsilon" title="Link to this definition">¶</a></dt>
-<dd><p>Auxiliary variable for modeling purposes</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.beta_3">
-<span class="sig-name descname"><span class="pre">beta_3</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_3" title="Link to this definition">¶</a></dt>
-<dd><p>Third-order dispersion coefficient (s^3/m)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Cr">
-<span class="sig-name descname"><span class="pre">Cr</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Cr" title="Link to this definition">¶</a></dt>
-<dd><p>Chromatic dispersion coefficient (1/(m·Hz²))</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.alpha_db">
-<span class="sig-name descname"><span class="pre">alpha_db</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_db" title="Link to this definition">¶</a></dt>
-<dd><p>Fiber attenuation (dB/km)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.beta_2">
-<span class="sig-name descname"><span class="pre">beta_2</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_2" title="Link to this definition">¶</a></dt>
-<dd><p>Second-order dispersion coefficient (s²/m)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.gamma">
-<span class="sig-name descname"><span class="pre">gamma</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.gamma" title="Link to this definition">¶</a></dt>
-<dd><p>Nonlinear coefficient (1/(W·m))</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.F_C">
-<span class="sig-name descname"><span class="pre">F_C</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_C" title="Link to this definition">¶</a></dt>
-<dd><p>Noise figure in linear scale for C-band</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.F_L">
-<span class="sig-name descname"><span class="pre">F_L</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_L" title="Link to this definition">¶</a></dt>
-<dd><p>Noise figure in linear scale for L-band</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Rs_mat">
-<span class="sig-name descname"><span class="pre">Rs_mat</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Rs_mat" title="Link to this definition">¶</a></dt>
-<dd><p>Symbol rate (Baud)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.MFL">
-<span class="sig-name descname"><span class="pre">MFL</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.MFL" title="Link to this definition">¶</a></dt>
-<dd><p>Available modulation format levels</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>np.ndarray</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.rof">
-<span class="sig-name descname"><span class="pre">rof</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.rof" title="Link to this definition">¶</a></dt>
-<dd><p>Roll-off factor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.alpha_norm">
-<span class="sig-name descname"><span class="pre">alpha_norm</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_norm" title="Link to this definition">¶</a></dt>
-<dd><p>Normalized attenuation (1/m)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.L_eff_a">
-<span class="sig-name descname"><span class="pre">L_eff_a</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.L_eff_a" title="Link to this definition">¶</a></dt>
-<dd><p>Effective length (m)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.B_ch_mat">
-<span class="sig-name descname"><span class="pre">B_ch_mat</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch_mat" title="Link to this definition">¶</a></dt>
-<dd><p>Channel bandwidth (Hz)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.B_ch">
-<span class="sig-name descname"><span class="pre">B_ch</span></span><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch" title="Link to this definition">¶</a></dt>
-<dd><p>Channel bandwidth (Hz) [alias]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
 <section id="example">
 <h3>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.band</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpticalParameters</span>
@@ -518,94 +315,118 @@
 </pre></div>
 </div>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">h_plank</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.626e-34</span></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.h_plank">
+<span class="sig-name descname"><span class="pre">h_plank</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.626e-34</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.h_plank" title="Link to this definition">¶</a></dt>
+<dd><p>Planck’s constant (J·s)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">target_ber</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.target_ber">
+<span class="sig-name descname"><span class="pre">target_ber</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_ber" title="Link to this definition">¶</a></dt>
+<dd><p>Target bit error rate</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">phi_MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.phi_MFL">
+<span class="sig-name descname"><span class="pre">phi_MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.phi_MFL" title="Link to this definition">¶</a></dt>
+<dd><p>Modulation format penalty factors</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.epsilon">
+<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.epsilon" title="Link to this definition">¶</a></dt>
+<dd><p>Auxiliary variable for modeling purposes</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">beta_3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.4e-40</span></em><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.beta_3">
+<span class="sig-name descname"><span class="pre">beta_3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.4e-40</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_3" title="Link to this definition">¶</a></dt>
+<dd><p>Third-order dispersion coefficient (s^3/m)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">Cr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2.8e-17</span></em><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Cr">
+<span class="sig-name descname"><span class="pre">Cr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2.8e-17</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Cr" title="Link to this definition">¶</a></dt>
+<dd><p>Chromatic dispersion coefficient (1/(m·Hz²))</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id6">
-<span class="sig-name descname"><span class="pre">alpha_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.alpha_db">
+<span class="sig-name descname"><span class="pre">alpha_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_db" title="Link to this definition">¶</a></dt>
+<dd><p>Fiber attenuation (dB/km)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id7">
-<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-2.17e-26</span></em><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.beta_2">
+<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-2.17e-26</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_2" title="Link to this definition">¶</a></dt>
+<dd><p>Second-order dispersion coefficient (s²/m)</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.gama">
 <span class="sig-name descname"><span class="pre">gama</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.00121</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.gama" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Nonlinear coefficient (1/(W·m))</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id8">
-<span class="sig-name descname"><span class="pre">F_C</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#id8" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.F_C">
+<span class="sig-name descname"><span class="pre">F_C</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_C" title="Link to this definition">¶</a></dt>
+<dd><p>Noise figure in linear scale for C-band.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id9">
-<span class="sig-name descname"><span class="pre">F_L</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#id9" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.F_L">
+<span class="sig-name descname"><span class="pre">F_L</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_L" title="Link to this definition">¶</a></dt>
+<dd><p>Noise figure in linear scale for L-band</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id10">
-<span class="sig-name descname"><span class="pre">Rs_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40000000000.0</span></em><a class="headerlink" href="#id10" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Rs_mat">
+<span class="sig-name descname"><span class="pre">Rs_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40000000000.0</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Rs_mat" title="Link to this definition">¶</a></dt>
+<dd><p>Symbol rate (Baud)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id11">
-<span class="sig-name descname"><span class="pre">MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#id11" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.MFL">
+<span class="sig-name descname"><span class="pre">MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.MFL" title="Link to this definition">¶</a></dt>
+<dd><p>Available modulation format levels (1 to 6)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id12">
-<span class="sig-name descname"><span class="pre">rof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#id12" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.rof">
+<span class="sig-name descname"><span class="pre">rof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.rof" title="Link to this definition">¶</a></dt>
+<dd><p>Roll-off factor</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id13">
-<span class="sig-name descname"><span class="pre">alpha_norm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#id13" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.alpha_norm">
+<span class="sig-name descname"><span class="pre">alpha_norm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_norm" title="Link to this definition">¶</a></dt>
+<dd><p>Normalized attenuation (1/m)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id14">
-<span class="sig-name descname"><span class="pre">L_eff_a</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#id14" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.L_eff_a">
+<span class="sig-name descname"><span class="pre">L_eff_a</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.L_eff_a" title="Link to this definition">¶</a></dt>
+<dd><p>Effective fiber length (m)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id15">
-<span class="sig-name descname"><span class="pre">B_ch_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#id15" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.B_ch_mat">
+<span class="sig-name descname"><span class="pre">B_ch_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch_mat" title="Link to this definition">¶</a></dt>
+<dd><p>Channel bandwidth (Hz)</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id16">
-<span class="sig-name descname"><span class="pre">B_ch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#id16" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.B_ch">
+<span class="sig-name descname"><span class="pre">B_ch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch" title="Link to this definition">¶</a></dt>
+<dd><p>Channel bandwidth (Hz) [alias]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.target_SNR_dB">
+<span class="sig-name descname"><span class="pre">target_SNR_dB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_SNR_dB" title="Link to this definition">¶</a></dt>
+<dd><p>Target SNR of modulation formats to reach the target_ber (dB)</p>
+</dd></dl>
 
 </section>
 </dd></dl>
@@ -711,8 +532,8 @@ compute the channel frequencies.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id17">
-<h3>Example:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<section id="id1">
+<h3>Example:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.band</span><span class="w"> </span><span class="kn">import</span> <span class="n">Band</span>
 </pre></div>
 </div>
@@ -735,6 +556,11 @@ compute the channel frequencies.</p>
 <span class="sig-name descname"><span class="pre">calc_spectrum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.calc_spectrum" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the frequency grid (spectrum) for this band based on
 start_freq, end_freq, and channel_spacing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+</dd>
+</dl>
 <section id="output">
 <h3>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
 <blockquote>
@@ -744,8 +570,8 @@ start_freq, end_freq, and channel_spacing.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id18">
-<h3>Example:<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<section id="id2">
+<h3>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define C-band frequency slots</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">spectrum_C</span> <span class="o">=</span> <span class="n">c_band</span><span class="o">.</span><span class="n">calc_spectrum</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># define total number of frequency slots</span>
@@ -759,8 +585,8 @@ start_freq, end_freq, and channel_spacing.</p>
 <dt class="sig sig-object py" id="sixdman.core.band.Band.process_link_gsnr">
 <span class="sig-name descname"><span class="pre">process_link_gsnr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_c_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pch_dBm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_Ch_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nspan_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.process_link_gsnr" title="Link to this definition">¶</a></dt>
 <dd><p>Processes the GSNR and throughput of all links at a given hierarchy level.</p>
-<section id="id19">
-<h3>Args:<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h3>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>f_c_axis (np.ndarray):</dt><dd><p>Center frequencies of the channels [THz].</p>
@@ -782,8 +608,8 @@ start_freq, end_freq, and channel_spacing.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id20">
-<h3>Output:<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<section id="id4">
+<h3>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Tuple:</dt><dd><p>GSNR matrix, throughput per power, optimal throughput, and optimal power array.</p>
@@ -791,8 +617,8 @@ start_freq, end_freq, and channel_spacing.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id21">
-<h3>Example:<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<section id="id5">
+<h3>Example:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f_c_axis</span> <span class="o">=</span> <span class="n">spectrum_C</span> <span class="o">*</span> <span class="mf">1e12</span>  <span class="c1"># Convert to Hz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Pch_dBm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># Channel power in dBm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_Ch_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">spectrum_C</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Channel indices</span>

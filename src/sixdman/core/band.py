@@ -6,69 +6,80 @@ from .network import Network
 
 @dataclass
 class OpticalParameters:
-    """A data class to store and compute fiber and system parameters for optical network modeling.
+    """
+        A data class to store and compute fiber and system parameters for optical network modeling.
     
-    Attributes:
-        Attributes:
-        h_plank (float): Planck's constant (J·s)
-        target_ber (float): Target bit error rate
-        phi_MFL (np.ndarray): Modulation format penalty factors
-        epsilon (int): Auxiliary variable for modeling purposes
-        beta_3 (float): Third-order dispersion coefficient (s^3/m)
-        Cr (float): Chromatic dispersion coefficient (1/(m·Hz²))
-        alpha_db (float): Fiber attenuation (dB/km)
-        beta_2 (float): Second-order dispersion coefficient (s²/m)
-        gamma (float): Nonlinear coefficient (1/(W·m))
-        F_C (float): Noise figure in linear scale for C-band
-        F_L (float): Noise figure in linear scale for L-band
-        Rs_mat (float): Symbol rate (Baud)
-        MFL (np.ndarray): Available modulation format levels
-        rof (float): Roll-off factor
-        alpha_norm (float): Normalized attenuation (1/m)
-        L_eff_a (float): Effective length (m)
-        B_ch_mat (float): Channel bandwidth (Hz)
-        B_ch (float): Channel bandwidth (Hz) [alias]
-        target_SNR_dB (list): Target SNR of modulation formats to reach the target_ber
-
-    Example:
-    ------- 
-    >>> from sixdman.core.band import OpticalParameters
-    
-    >>> # Define C-band parameters
-    >>> c_band_params = OpticalParameters()
+        Example:
+        --------
+        >>> from sixdman.core.band import OpticalParameters
+        
+        >>> # Define C-band parameters
+        >>> c_band_params = OpticalParameters()
     """
     
     # Fundamental constants
     h_plank: float = 6.626e-34
+    """Planck's constant (J·s)"""
+    
     target_ber: float = 1e-2 
+    """Target bit error rate"""
 
     # Modulation format penalty factors
     phi_MFL: np.ndarray = field(default_factory=lambda: -1 * np.array([1, 1, 2 / 3, 17 / 25, 69 / 100, 13 / 21]))
+    """Modulation format penalty factors"""
 
     # System Parameters
     epsilon: int = 0
+    """Auxiliary variable for modeling purposes"""
+    
     beta_3: float = 0.14e-39
+    """Third-order dispersion coefficient (s^3/m)""" 
+    
     Cr: float = 0.028 / 1e3 / 1e12
+    """Chromatic dispersion coefficient (1/(m·Hz²))"""
 
     # Fiber Parameters
     alpha_db: float = 0.2 
+    """Fiber attenuation (dB/km)"""
+    
     beta_2: float = -21.7e-27 
+    """Second-order dispersion coefficient (s²/m)"""
+    
     gama: float = 1.21e-3 
+    """Nonlinear coefficient (1/(W·m))"""
 
     # Noise figures (converted from dB to linear scale)
     F_C: float = field(default_factory=lambda: 10 ** 0.45)  # Noise figure for C-band (6 dB)
+    """Noise figure in linear scale for C-band."""
+    
     F_L: float = field(default_factory=lambda: 10 ** 0.5)   # Noise figure for L-band (6 dB)
+    """Noise figure in linear scale for L-band"""
 
     # Symbol transmission
     Rs_mat: float = 40e9 
+    """Symbol rate (Baud)"""
+    
     MFL: np.ndarray = field(default_factory=lambda: np.arange(1, 7)) 
+    """Available modulation format levels (1 to 6)"""
+    
     rof: float = 0.1 
+    """Roll-off factor"""
 
     # Computed attributes (set in __post_init__)
     alpha_norm: float = field(init=False)  # 1/m
-    L_eff_a: float = field(init=False)     # m
-    B_ch_mat: float = field(init=False)    # Hz
-    B_ch: float = field(init=False)        # Hz (alias for B_ch_mat)
+    """Normalized attenuation (1/m)"""
+    
+    L_eff_a: float = field(init=False) # m
+    """Effective fiber length (m)"""
+    
+    B_ch_mat: float = field(init=False) # Hz
+    """Channel bandwidth (Hz)"""
+    
+    B_ch: float = field(init=False) # Hz (alias for B_ch_mat)
+    """Channel bandwidth (Hz) [alias]"""
+    
+    target_SNR_dB: np.ndarray = field(init=False)
+    """Target SNR of modulation formats to reach the target_ber (dB)"""
 
     def __post_init__(self):
         """
@@ -96,19 +107,20 @@ class OpticalParameters:
         ])
 
 class Band:
-    """Class representing an optical transmission band with its characteristics.
+    """
+    Class representing an optical transmission band with its characteristics.
     
-        Used in multi-band optical network planning. Stores frequency grid information
-        for the specified band (e.g., C-band, L-band), and provides utilities to 
-        compute the channel frequencies.
+    Used in multi-band optical network planning. Stores frequency grid information
+    for the specified band (e.g., C-band, L-band), and provides utilities to 
+    compute the channel frequencies.
 
-        Attributes:
-            name (str): Band identifier (e.g., 'C', 'L')
-            start_freq (float): Start frequency in THz
-            end_freq (float): End frequency in THz
-            channel_spacing (float): Channel spacing in THz (default: 0.05 THz = 50 GHz)
-            spectrum (np.ndarray): Array of center frequencies for each channel
-            num_channels (int): Total number of channels in the band
+    Attributes:
+        name (str): Band identifier (e.g., 'C', 'L')
+        start_freq (float): Start frequency in THz
+        end_freq (float): End frequency in THz
+        channel_spacing (float): Channel spacing in THz (default: 0.05 THz = 50 GHz)
+        spectrum (np.ndarray): Array of center frequencies for each channel
+        num_channels (int): Total number of channels in the band
         
     """
     
@@ -138,7 +150,7 @@ class Band:
                 Frequency spacing between channels in THz
 
         Example:
-        -------    
+        --------    
         >>> from sixdman.core.band import Band
 
         >>> # Create C-band instance
@@ -178,7 +190,7 @@ class Band:
                 Array of center frequencies in THz.
 
         Example:
-        ------- 
+        -------- 
         >>> # define C-band frequency slots
         >>> spectrum_C = c_band.calc_spectrum()
         >>> # define total number of frequency slots
@@ -223,7 +235,7 @@ class Band:
                 GSNR matrix, throughput per power, optimal throughput, and optimal power array.
 
         Example:
-        ---------
+        --------
         >>> f_c_axis = spectrum_C * 1e12  # Convert to Hz
         >>> Pch_dBm = np.arange(-6, -0.9, 0.1)  # Channel power in dBm
         >>> num_Ch_mat = np.arange(1, len(spectrum_C) - 1)  # Channel indices
