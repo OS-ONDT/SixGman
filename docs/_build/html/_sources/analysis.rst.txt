@@ -46,7 +46,7 @@ Key Methods
 - **``plot_bvt_license(save_flag, save_suffix='', flag_plot=1)``**  
   Plot and optionally save the cumulative BVT usage and 100G license allocation over time.
 
-- **``calc_cost(save_flag, save_suffix='', C_100GL=1, C_MCS=0.7, C_RoB=1.9, C_IRU=0.5)``**  
+- **``calc_cost(save_flag, save_suffix='', C_100GL_First=1, C_100G_Added=0.333, C_MCS=0.7, C_RoB=1.9, C_IRU=0.5)``**  
   Compute OPEX and CAPEX values for network deployment over time.
 
 - **``calc_E2E_latency_Total(latency_core_array, destination_core_array, processing_level_list, save_flag, save_suffix='')``**  

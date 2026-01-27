@@ -1,291 +1,426 @@
+
 <!DOCTYPE html>
-<html  lang="en">
+
+
+<html lang="en" data-content_root="./" >
+
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>post_process Module</title>
-    
-          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
-      
-      <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=01f34227"></script>
-        <script src="_static/doctools.js?v=9bcbadda"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <title>post_process Module &#8212; SixDman 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-      
-      <!-- bundled in js (rollup iife) -->
-      <!-- <script src="_static/theme-vendors.js"></script> -->
-      <script src="_static/theme.js" defer></script>
-    
-  <link rel="index" title="Index" href="genindex.html" />
-  <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="Contributing to SixDman" href="contributing.html" />
-  <link rel="prev" title="planning Module" href="planning.html" /> 
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'analysis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to SixDman" href="contributing.html" />
+    <link rel="prev" title="planning Module" href="planning.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-
-  <body>
-    <div id="app">
-    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
-  <router-link to="index.html" class="home-link">
-    
-      <span class="site-name">SixDman</span>
-    
-  </router-link>
-
-  <div class="links">
-    <navlinks class="can-hide">
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Getting Started
-      </a>
-    </div>
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link  router-link-active">
-         User Guide
-      </a>
-    </div>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Contributing
-      </a>
-    </div>
+  <div id="pst-scroll-pixel-helper"></div>
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Project Info
-      </a>
-    </div>
-  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-
-
-    </navlinks>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
   </div>
-</navbar>
 
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-      <div class="sidebar-mask" @click="toggleSidebar(false)">
-      </div>
-        <sidebar @toggle-sidebar="toggleSidebar">
-          
-          <navlinks>
-            
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Getting Started
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link  router-link-active">
-         User Guide
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Contributing
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Project Info
-      </a>
-    </div>
-  
-
-
-
-            
-          </navlinks><div id="searchbox" class="searchbox" role="search">
-  <div class="caption"><span class="caption-text">Quick search</span>
-    <div class="searchformwrapper">
-      <form class="search" action="search.html" method="get">
-        <input type="text" name="q" />
-        <input type="submit" value="Search" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-      </form>
-    </div>
-  </div>
-</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">Getting Started</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="installation.html" class="reference internal ">Installation</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="quickstart.html" class="reference internal ">Quick Start</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">User Guide</a></span>
-      </p>
-      <ul class="current">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="network.html" class="reference internal ">network Module</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="band.html" class="reference internal ">band Module</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="planning.html" class="reference internal ">planning Module</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 current">
-            
-              <a href="#" class="reference internal current">post_process Module</a>
-            
-
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#module-overview" class="reference internal">Module Overview</a></li>
-                
-                  <li class="toctree-l2"><a href="#key-class" class="reference internal">Key Class</a></li>
-                
-                  <li class="toctree-l2"><a href="#key-methods" class="reference internal">Key Methods</a></li>
-                
-              </ul>
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">Contributing</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="contributing.html" class="reference internal ">Contributing to SixDman</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">Project Info</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="https://github.com/UC3M-ONDT/SixDman/blob/main/LICENSE" class="reference">License <outboundlink></outboundlink></a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="https://github.com/UC3M-ONDT/SixDman.git" class="reference">GitHub Repository <outboundlink></outboundlink></a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-</div>
-        </sidebar>
-
-      <page>
-          <div class="body-header" role="navigation" aria-label="navigation">
-  
-  <ul class="breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <li>post_process Module</li>
-  </ul>
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
   
 
-  <ul class="page-nav">
-  <li class="prev">
-    <a href="planning.html"
-       title="previous chapter">← planning Module</a>
-  </li>
-  <li class="next">
-    <a href="contributing.html"
-       title="next chapter">Contributing to SixDman →</a>
-  </li>
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SixDman 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="network.html">network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="band.html">band Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planning.html">planning Module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">post_process Module</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to SixDman</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/UC3M-ONDT/SixDman/blob/main/LICENSE">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/UC3M-ONDT/SixDman.git">GitHub Repository</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/UC3M-ONDT/SixDman" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UC3M-ONDT/SixDman/edit/main/docs/analysis.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UC3M-ONDT/SixDman/issues/new?title=Issue%20on%20page%20%2Fanalysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/analysis.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
   
 </div>
-<hr>
-          <div class="content" role="main" v-pre>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>post_process Module</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-overview">Module Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-class">Key Class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-result">analyse_result</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result"><code class="docutils literal notranslate"><span class="pre">analyse_result</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.network"><code class="docutils literal notranslate"><span class="pre">analyse_result.network</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.period_time"><code class="docutils literal notranslate"><span class="pre">analyse_result.period_time</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.processing_level_list"><code class="docutils literal notranslate"><span class="pre">analyse_result.processing_level_list</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.results_directory"><code class="docutils literal notranslate"><span class="pre">analyse_result.results_directory</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.save_directory"><code class="docutils literal notranslate"><span class="pre">analyse_result.save_directory</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.link_data"><code class="docutils literal notranslate"><span class="pre">analyse_result.link_data</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.bvt_data"><code class="docutils literal notranslate"><span class="pre">analyse_result.bvt_data</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.__init__"><code class="docutils literal notranslate"><span class="pre">analyse_result.__init__()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_link_state"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_link_state()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_FP_usage"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_FP_usage()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_FP_degree"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_FP_degree()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_bvt_license"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_bvt_license()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.calc_cost"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_cost()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.compute_E2E_path_latency"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_E2E_path_latency()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.calc_E2E_latency_Total"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_E2E_latency_Total()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-methods">Key Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="post-process-module">
-<h1>post_process Module<a class="headerlink" href="#post-process-module" title="Link to this heading">¶</a></h1>
+<h1>post_process Module<a class="headerlink" href="#post-process-module" title="Link to this heading">#</a></h1>
 <section id="module-overview">
-<h2>Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading">¶</a></h2>
+<h2>Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading">#</a></h2>
 <p>This module provides utilities for <strong>analyzing and managing results</strong> from
 hierarchical optical network simulations and planning processes.</p>
 <p>Its primary responsibilities include:</p>
@@ -303,12 +438,12 @@ hierarchical optical network simulations and planning processes.</p>
 </ul>
 </section>
 <section id="key-class">
-<h2>Key Class<a class="headerlink" href="#key-class" title="Link to this heading">¶</a></h2>
+<h2>Key Class<a class="headerlink" href="#key-class" title="Link to this heading">#</a></h2>
 <section id="analyse-result">
-<h3>analyse_result<a class="headerlink" href="#analyse-result" title="Link to this heading">¶</a></h3>
+<h3>analyse_result<a class="headerlink" href="#analyse-result" title="Link to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.post_process.</span></span><span class="sig-name descname"><span class="pre">analyse_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.post_process.</span></span><span class="sig-name descname"><span class="pre">analyse_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>”
 A class for analyzing and managing results from hierarchical optical network simulations.</p>
@@ -316,7 +451,7 @@ A class for analyzing and managing results from hierarchical optical network sim
 including link-level and transceiver-level (BVT) metrics.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.network">
-<span class="sig-name descname"><span class="pre">network</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.network" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">network</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.network" title="Link to this definition">#</a></dt>
 <dd><p>An instance of the Network class defining topology and metadata.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -327,7 +462,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.period_time">
-<span class="sig-name descname"><span class="pre">period_time</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.period_time" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">period_time</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.period_time" title="Link to this definition">#</a></dt>
 <dd><p>Duration (in years or time units) for planning or simulation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -338,7 +473,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.processing_level_list">
-<span class="sig-name descname"><span class="pre">processing_level_list</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.processing_level_list" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">processing_level_list</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.processing_level_list" title="Link to this definition">#</a></dt>
 <dd><p>List of hierarchy levels to be analyzed (e.g., [2, 3, 4]).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -349,7 +484,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.results_directory">
-<span class="sig-name descname"><span class="pre">results_directory</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.results_directory" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">results_directory</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.results_directory" title="Link to this definition">#</a></dt>
 <dd><p>Directory containing result .npz files for each hierarchy level.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -360,7 +495,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.save_directory">
-<span class="sig-name descname"><span class="pre">save_directory</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.save_directory" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save_directory</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.save_directory" title="Link to this definition">#</a></dt>
 <dd><p>Directory where output plots will save in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -371,7 +506,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.link_data">
-<span class="sig-name descname"><span class="pre">link_data</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.link_data" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">link_data</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.link_data" title="Link to this definition">#</a></dt>
 <dd><p>Dictionary containing link-level data for each HL.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -382,7 +517,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.bvt_data">
-<span class="sig-name descname"><span class="pre">bvt_data</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.bvt_data" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">bvt_data</span></span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.bvt_data" title="Link to this definition">#</a></dt>
 <dd><p>Dictionary containing transceiver (BVT) data for each HL.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -393,10 +528,10 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.__init__" title="Link to this definition">#</a></dt>
 <dd><p>Initialize the AnalyseResult object.</p>
 <section id="args">
-<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>network_instance (Network):</dt><dd><p>The optical network structure.</p>
@@ -413,7 +548,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 </div></blockquote>
 </section>
 <section id="example">
-<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.optical_result_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyse_result</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span> <span class="o">=</span> <span class="n">analyse_result</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">net</span><span class="p">,</span> <span class="c1"># Network instance</span>
@@ -428,13 +563,13 @@ including link-level and transceiver-level (BVT) metrics.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.plot_link_state">
-<span class="sig-name descname"><span class="pre">plot_link_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">splitter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_link_state" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_link_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">splitter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_link_state" title="Link to this definition">#</a></dt>
 <dd><p>Plot or return the evolution of link states (Fiber Pairs numbers) across all hierarchy levels over time.</p>
 <p>This function creates a heatmap-style visualization of link states (FP numbers) over a multi-year period,
 where each row corresponds to a specific link and each column to a simulation year. Vertical dashed lines
 separate different hierarchical levels using the provided splitter.</p>
 <section id="id1">
-<h4>Args:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>splitter (List):</dt><dd><p>A list indicating how many links are in each hierarchy level (used for dashed separators).</p>
@@ -449,7 +584,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="output">
-<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>If flag_plot == 0, returns the link state matrix of shape (years, total_links). Each element corresponds to the FP number assigned to a specific link in a given year.</p>
@@ -458,7 +593,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="notes">
-<h4>Notes:<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#notes" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>When save_flag = 1, the figure is saved in the output directory with the filename pattern {topology_name}_Link_State{save_suffix}.png</p></li>
@@ -467,7 +602,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id2">
-<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_link_state</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">splitter</span><span class="p">,</span> <span class="c1"># List of integers indicating the number of links per hierarchy level</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
@@ -480,7 +615,7 @@ separate different hierarchical levels using the provided splitter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.plot_FP_usage">
-<span class="sig-name descname"><span class="pre">plot_FP_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_FP_usage" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_FP_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_FP_usage" title="Link to this definition">#</a></dt>
 <dd><p>Plot and optionally save the Fiber Pair (FP) usage over time across all hierarchy levels.</p>
 <dl class="simple">
 <dt>This function visualizes:</dt><dd><ul class="simple">
@@ -490,7 +625,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </dd>
 </dl>
 <section id="id3">
-<h4>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>If 1, saves the plot to the result directory.</p>
@@ -503,13 +638,13 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id4">
-<h4>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
 <section id="id5">
-<h4>Notes:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -523,7 +658,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id6">
-<h4>Example:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_FP_usage</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -535,7 +670,7 @@ separate different hierarchical levels using the provided splitter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.plot_FP_degree">
-<span class="sig-name descname"><span class="pre">plot_FP_degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_FP_degree" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_FP_degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_FP_degree" title="Link to this definition">#</a></dt>
 <dd><p>Plot and optionally save the cumulative Fiber Pair (FP) usage and Band degree types.</p>
 <dl class="simple">
 <dt>This function visualizes:</dt><dd><ul class="simple">
@@ -545,7 +680,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </dd>
 </dl>
 <section id="id7">
-<h4>Args:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>If 1, saves the plot as an image to the save_directory.</p>
@@ -558,13 +693,13 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id8">
-<h4>Output:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
 <section id="id9">
-<h4>Notes:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -579,7 +714,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id10">
-<h4>Example:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_FP_degree</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -591,7 +726,7 @@ separate different hierarchical levels using the provided splitter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.plot_bvt_license">
-<span class="sig-name descname"><span class="pre">plot_bvt_license</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_bvt_license" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_bvt_license</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.plot_bvt_license" title="Link to this definition">#</a></dt>
 <dd><p>Plot and optionally save the cumulative BVT usage and 100G license allocation over time.</p>
 <dl class="simple">
 <dt>This function visualizes:</dt><dd><ul class="simple">
@@ -609,7 +744,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </dd>
 </dl>
 <section id="id11">
-<h4>Args:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>If 1, saves the plot as an image to the save_directory.</p>
@@ -622,13 +757,13 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id12">
-<h4>Output:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
 <section id="id13">
-<h4>Notes:<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -643,7 +778,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id14">
-<h4>Example:<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_bvt_license</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -655,12 +790,12 @@ separate different hierarchical levels using the provided splitter.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.calc_cost">
-<span class="sig-name descname"><span class="pre">calc_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100GL_First</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100G_Added</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.333</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_MCS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_RoB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_IRU</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.calc_cost" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calc_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100GL_First</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_100G_Added</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.333</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_MCS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_RoB</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_IRU</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.calc_cost" title="Link to this definition">#</a></dt>
 <dd><p>Compute OPEX and CAPEX values for network deployment over time.</p>
 <p>This function evaluates capital and operational expenditures based on
 nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p>
 <section id="id15">
-<h4>Args:<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>Whether to save the output CSV file (1) or not (0).</p>
@@ -681,13 +816,13 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 </div></blockquote>
 </section>
 <section id="id16">
-<h4>Output:<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><p>dict: A dataframe containing columns for OPEX and CAPEX components for different years.</p>
 </div></blockquote>
 </section>
 <section id="id17">
-<h4>Notes:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -701,7 +836,7 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 </div></blockquote>
 </section>
 <section id="id18">
-<h4>Example:<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">calc_cost</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the results; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -713,7 +848,7 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.compute_E2E_path_latency">
-<span class="sig-name descname"><span class="pre">compute_E2E_path_latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.compute_E2E_path_latency" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">compute_E2E_path_latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.compute_E2E_path_latency" title="Link to this definition">#</a></dt>
 <dd><p>Recursively compute all possible end-to-end (E2E) latency paths from a given core node
 to its higher-level (top-hierarchy) destination nodes.</p>
 <p>This method traces both primary and secondary (dual-home) connectivity paths defined
@@ -723,7 +858,7 @@ until reaching the top-level standalone HL nodes.</p>
 <p>Latency is assumed to be precomputed for each direct connection (typically derived from
 the physical link distance multiplied by a latency constant, e.g., 5 µs/km).</p>
 <section id="id19">
-<h4>Args:<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>node (int):</dt><dd><p>Index of the starting node (e.g., a lower-level core or access node).</p>
@@ -741,7 +876,7 @@ when recursion should terminate (the top-level HL layer).</p>
 </div></blockquote>
 </section>
 <section id="id20">
-<h4>Output:<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>List[Tuple[List[int], float]]:</dt><dd><dl class="simple">
@@ -756,7 +891,7 @@ when recursion should terminate (the top-level HL layer).</p>
 </div></blockquote>
 </section>
 <section id="id21">
-<h4>Notes:<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>The recursion terminates when the current node belongs to the top hierarchy</p></li>
@@ -784,7 +919,7 @@ when recursion should terminate (the top-level HL layer).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result.calc_E2E_latency_Total">
-<span class="sig-name descname"><span class="pre">calc_E2E_latency_Total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latency_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.calc_E2E_latency_Total" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calc_E2E_latency_Total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latency_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.calc_E2E_latency_Total" title="Link to this definition">#</a></dt>
 <dd><p>Compute and optionally save the total end-to-end (E2E) latency from the lowest
 hierarchy-level nodes (e.g., HL4) up to the top-level core nodes (e.g., HL1).</p>
 <p>This function iterates over all nodes at the lowest hierarchy level and calls
@@ -794,7 +929,7 @@ from the propagation delay (e.g., 5 µs/km) stored in <cite>latency_core_array</
 additional per-level processing delays (default: 200 µs per hierarchy level).</p>
 <p>The resulting latencies can optionally be saved to a compressed NumPy <cite>.npz</cite> file.</p>
 <section id="id22">
-<h4>Args:<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>latency_core_array (np.ndarray):</dt><dd><p>Array of per-node propagation latencies (in microseconds), where each element <cite>[i]</cite> contains a list or array of hop latencies from node <cite>i</cite> to its higher-level destination nodes.</p>
@@ -812,7 +947,7 @@ If <cite>0</cite>, results are only returned.</p>
 </div></blockquote>
 </section>
 <section id="id23">
-<h4>Output:<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>A 1D NumPy array containing the total end-to-end latency (in microseconds) for each lowest-level node path.</p>
@@ -821,7 +956,7 @@ If <cite>0</cite>, results are only returned.</p>
 </div></blockquote>
 </section>
 <section id="id24">
-<h4>Notes:<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h4>
+<h4>Notes:<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>Each end-to-end latency value includes: <strong>1. Propagation latency</strong> accumulated over the full path. <strong>2. Processing overhead</strong> added per hierarchy transition (default: 200 µs per hop).</p></li>
@@ -831,7 +966,7 @@ If <cite>0</cite>, results are only returned.</p>
 </div></blockquote>
 </section>
 <section id="id25">
-<h4>Example:<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">E2E_latencies</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">calc_E2E_latency_Total</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">latency_core_array</span><span class="o">=</span><span class="n">latency_core_array</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">destination_core_array</span><span class="o">=</span><span class="n">destination_core_array</span><span class="p">,</span>
@@ -851,7 +986,7 @@ If <cite>0</cite>, results are only returned.</p>
 </section>
 </section>
 <section id="key-methods">
-<h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">¶</a></h2>
+<h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>``plot_link_state(splitter, save_flag, save_suffix=’’, flag_plot=1)``</strong>
 Plot or return the evolution of link states (Frequency Plan numbers) across all hierarchy levels over time.</p></li>
@@ -861,7 +996,7 @@ Plot and optionally save the Fiber Pair (FP) usage over time across all hierarch
 Plot and optionally save the cumulative Fiber Pair (FP) usage and Band degree types.</p></li>
 <li><p><strong>``plot_bvt_license(save_flag, save_suffix=’’, flag_plot=1)``</strong>
 Plot and optionally save the cumulative BVT usage and 100G license allocation over time.</p></li>
-<li><p><strong>``calc_cost(save_flag, save_suffix=’’, C_100GL=1, C_MCS=0.7, C_RoB=1.9, C_IRU=0.5)``</strong>
+<li><p><strong>``calc_cost(save_flag, save_suffix=’’, C_100GL_First=1, C_100G_Added=0.333, C_MCS=0.7, C_RoB=1.9, C_IRU=0.5)``</strong>
 Compute OPEX and CAPEX values for network deployment over time.</p></li>
 <li><p><strong>``calc_E2E_latency_Total(latency_core_array, destination_core_array, processing_level_list, save_flag, save_suffix=’’)``</strong>
 Compute end-to-end latency across hierarchical processing levels.</p></li>
@@ -870,27 +1005,128 @@ Compute end-to-end latency across hierarchical processing levels.</p></li>
 </section>
 
 
-          </div>
-          <div class="page-nav">
-            <div class="inner"><ul class="page-nav">
-  <li class="prev">
-    <a href="planning.html"
-       title="previous chapter">← planning Module</a>
-  </li>
-  <li class="next">
-    <a href="contributing.html"
-       title="next chapter">Contributing to SixDman →</a>
-  </li>
-</ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2025, Matin Rafiei Forooshani.
-    <br>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="planning.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">planning Module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="contributing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributing to SixDman</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
+                </footer>
+              
             </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-overview">Module Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-class">Key Class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-result">analyse_result</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result"><code class="docutils literal notranslate"><span class="pre">analyse_result</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.network"><code class="docutils literal notranslate"><span class="pre">analyse_result.network</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.period_time"><code class="docutils literal notranslate"><span class="pre">analyse_result.period_time</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.processing_level_list"><code class="docutils literal notranslate"><span class="pre">analyse_result.processing_level_list</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.results_directory"><code class="docutils literal notranslate"><span class="pre">analyse_result.results_directory</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.save_directory"><code class="docutils literal notranslate"><span class="pre">analyse_result.save_directory</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.link_data"><code class="docutils literal notranslate"><span class="pre">analyse_result.link_data</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.bvt_data"><code class="docutils literal notranslate"><span class="pre">analyse_result.bvt_data</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.__init__"><code class="docutils literal notranslate"><span class="pre">analyse_result.__init__()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_link_state"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_link_state()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_FP_usage"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_FP_usage()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_FP_degree"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_FP_degree()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.plot_bvt_license"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_bvt_license()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.calc_cost"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_cost()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.compute_E2E_path_latency"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_E2E_path_latency()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.post_process.analyse_result.calc_E2E_latency_Total"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_E2E_latency_Total()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-methods">Key Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
           </div>
-      </page>
-    </div></div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
+<p class="component-author">
+By Matin Rafiei Forooshani
+</p>
+
+  </div>
+  
+  <div class="footer-item">
     
+
+  <p class="copyright">
+    
+      © Copyright 2026, Matin Rafiei Forooshani.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

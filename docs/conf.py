@@ -15,7 +15,7 @@ print("DEBUG: Imported sixdman version:", getattr(sixdman, "__version__", "unkno
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'SixDman'
-copyright = '2025, Matin Rafiei Forooshani'
+copyright = '2026, Matin Rafiei Forooshani'
 author = 'Matin Rafiei Forooshani'
 release = '0.1.0'
 
@@ -35,10 +35,16 @@ extensions = [
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'press'
+html_theme = 'sphinx_book_theme'
 
-# html_permalinks_icon = '§'
-# html_theme = 'insipid'
+
+html_theme_options = {
+    "repository_url": "https://github.com/UC3M-ONDT/SixDman",
+    "use_repository_button": True,
+    "use_edit_page_button": True,
+    "path_to_docs": "docs",
+    "use_issues_button": True,
+}
 
 
 autodoc_member_order = "bysource"

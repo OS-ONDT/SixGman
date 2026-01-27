@@ -1,293 +1,447 @@
+
 <!DOCTYPE html>
-<html  lang="en">
+
+
+<html lang="en" data-content_root="./" >
+
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <title>band Module</title>
-    
-          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
-      
-      <!-- sphinx script_files -->
-        <script src="_static/documentation_options.js?v=01f34227"></script>
-        <script src="_static/doctools.js?v=9bcbadda"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <title>band Module &#8212; SixDman 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-      
-      <!-- bundled in js (rollup iife) -->
-      <!-- <script src="_static/theme-vendors.js"></script> -->
-      <script src="_static/theme.js" defer></script>
-    
-  <link rel="index" title="Index" href="genindex.html" />
-  <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="planning Module" href="planning.html" />
-  <link rel="prev" title="network Module" href="network.html" /> 
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'band';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="planning Module" href="planning.html" />
+    <link rel="prev" title="network Module" href="network.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-
-  <body>
-    <div id="app">
-    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
-  <router-link to="index.html" class="home-link">
-    
-      <span class="site-name">SixDman</span>
-    
-  </router-link>
-
-  <div class="links">
-    <navlinks class="can-hide">
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Getting Started
-      </a>
-    </div>
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link  router-link-active">
-         User Guide
-      </a>
-    </div>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Contributing
-      </a>
-    </div>
+  <div id="pst-scroll-pixel-helper"></div>
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Project Info
-      </a>
-    </div>
-  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-
-
-    </navlinks>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
   </div>
-</navbar>
 
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-      <div class="sidebar-mask" @click="toggleSidebar(false)">
-      </div>
-        <sidebar @toggle-sidebar="toggleSidebar">
-          
-          <navlinks>
-            
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
   
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Getting Started
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link  router-link-active">
-         User Guide
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Contributing
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#contents"
-         class="nav-link ">
-         Project Info
-      </a>
-    </div>
-  
-
-
-
-            
-          </navlinks><div id="searchbox" class="searchbox" role="search">
-  <div class="caption"><span class="caption-text">Quick search</span>
-    <div class="searchformwrapper">
-      <form class="search" action="search.html" method="get">
-        <input type="text" name="q" />
-        <input type="submit" value="Search" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-      </form>
-    </div>
-  </div>
-</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">Getting Started</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="installation.html" class="reference internal ">Installation</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="quickstart.html" class="reference internal ">Quick Start</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">User Guide</a></span>
-      </p>
-      <ul class="current">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="network.html" class="reference internal ">network Module</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 current">
-            
-              <a href="#" class="reference internal current">band Module</a>
-            
-
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#module-overview" class="reference internal">Module Overview</a></li>
-                
-                  <li class="toctree-l2"><a href="#key-classes" class="reference internal">Key Classes</a></li>
-                
-                  <li class="toctree-l2"><a href="#key-methods" class="reference internal">Key Methods</a></li>
-                
-              </ul>
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="planning.html" class="reference internal ">planning Module</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="analysis.html" class="reference internal ">post_process Module</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">Contributing</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="contributing.html" class="reference internal ">Contributing to SixDman</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#contents">Project Info</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="https://github.com/UC3M-ONDT/SixDman/blob/main/LICENSE" class="reference">License <outboundlink></outboundlink></a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="https://github.com/UC3M-ONDT/SixDman.git" class="reference">GitHub Repository <outboundlink></outboundlink></a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-</div>
-        </sidebar>
-
-      <page>
-          <div class="body-header" role="navigation" aria-label="navigation">
-  
-  <ul class="breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <li>band Module</li>
-  </ul>
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
   
 
-  <ul class="page-nav">
-  <li class="prev">
-    <a href="network.html"
-       title="previous chapter">← network Module</a>
-  </li>
-  <li class="next">
-    <a href="planning.html"
-       title="next chapter">planning Module →</a>
-  </li>
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">SixDman 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="network.html">network Module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">band Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="planning.html">planning Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">post_process Module</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to SixDman</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/UC3M-ONDT/SixDman/blob/main/LICENSE">License</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/UC3M-ONDT/SixDman.git">GitHub Repository</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/UC3M-ONDT/SixDman" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UC3M-ONDT/SixDman/edit/main/docs/band.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UC3M-ONDT/SixDman/issues/new?title=Issue%20on%20page%20%2Fband.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/band.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
   
 </div>
-<hr>
-          <div class="content" role="main" v-pre>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>band Module</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-overview">Module Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-classes">Key Classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opticalparameters">OpticalParameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters"><code class="docutils literal notranslate"><span class="pre">OpticalParameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.h_plank"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.h_plank</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.target_ber"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.target_ber</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.phi_MFL"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.phi_MFL</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.epsilon"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.epsilon</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.beta_3"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.beta_3</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.Cr"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.Cr</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.alpha_db"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.alpha_db</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.beta_2"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.beta_2</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.gama"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.gama</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.F_C"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.F_C</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.F_L"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.F_L</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.Rs_mat"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.Rs_mat</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.MFL"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.MFL</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.rof"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.rof</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.alpha_norm"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.alpha_norm</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.L_eff_a"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.L_eff_a</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.B_ch_mat"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.B_ch_mat</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.B_ch"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.B_ch</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.target_SNR_dB"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.target_SNR_dB</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band">Band</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band"><code class="docutils literal notranslate"><span class="pre">Band</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.name"><code class="docutils literal notranslate"><span class="pre">Band.name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.start_freq"><code class="docutils literal notranslate"><span class="pre">Band.start_freq</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.end_freq"><code class="docutils literal notranslate"><span class="pre">Band.end_freq</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.channel_spacing"><code class="docutils literal notranslate"><span class="pre">Band.channel_spacing</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.spectrum"><code class="docutils literal notranslate"><span class="pre">Band.spectrum</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.num_channels"><code class="docutils literal notranslate"><span class="pre">Band.num_channels</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.__init__"><code class="docutils literal notranslate"><span class="pre">Band.__init__()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.calc_spectrum"><code class="docutils literal notranslate"><span class="pre">Band.calc_spectrum()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.process_link_gsnr"><code class="docutils literal notranslate"><span class="pre">Band.process_link_gsnr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-methods">Key Methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="band-module">
-<h1>band Module<a class="headerlink" href="#band-module" title="Link to this heading">¶</a></h1>
+<h1>band Module<a class="headerlink" href="#band-module" title="Link to this heading">#</a></h1>
 <p>This module provides classes for <strong>optical transmission bands</strong> and their
 <strong>parameters</strong> used in multi-band optical network planning.</p>
 <section id="module-overview">
-<h2>Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading">¶</a></h2>
+<h2>Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading">#</a></h2>
 <p>This module is responsible for:</p>
 <ul class="simple">
 <li><p>Defining <strong>optical transmission bands</strong> (e.g., <strong>C-band</strong>, <strong>L-band</strong>)</p></li>
@@ -298,16 +452,16 @@
 </ul>
 </section>
 <section id="key-classes">
-<h2>Key Classes<a class="headerlink" href="#key-classes" title="Link to this heading">¶</a></h2>
+<h2>Key Classes<a class="headerlink" href="#key-classes" title="Link to this heading">#</a></h2>
 <section id="opticalparameters">
-<h3>OpticalParameters<a class="headerlink" href="#opticalparameters" title="Link to this heading">¶</a></h3>
+<h3>OpticalParameters<a class="headerlink" href="#opticalparameters" title="Link to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">OpticalParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h_plank=6.626e-34</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_ber=0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_3=1.4e-40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cr=2.8e-17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_db=0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2=-2.17e-26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gama=0.00121</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_C=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_L=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rs_mat=40000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rof=0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.OpticalParameters" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">OpticalParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h_plank=6.626e-34</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_ber=0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_3=1.4e-40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cr=2.8e-17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_db=0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2=-2.17e-26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gama=0.00121</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_C=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_L=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rs_mat=40000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rof=0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.OpticalParameters" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A data class to store and compute fiber and system parameters for optical network modeling.</p>
 <section id="example">
-<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.band</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpticalParameters</span>
 </pre></div>
 </div>
@@ -317,115 +471,115 @@
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.h_plank">
-<span class="sig-name descname"><span class="pre">h_plank</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.626e-34</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.h_plank" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">h_plank</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.626e-34</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.h_plank" title="Link to this definition">#</a></dt>
 <dd><p>Planck’s constant (J·s)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.target_ber">
-<span class="sig-name descname"><span class="pre">target_ber</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_ber" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">target_ber</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_ber" title="Link to this definition">#</a></dt>
 <dd><p>Target bit error rate</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.phi_MFL">
-<span class="sig-name descname"><span class="pre">phi_MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.phi_MFL" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">phi_MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.phi_MFL" title="Link to this definition">#</a></dt>
 <dd><p>Modulation format penalty factors</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.epsilon">
-<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.epsilon" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">epsilon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.epsilon" title="Link to this definition">#</a></dt>
 <dd><p>Auxiliary variable for modeling purposes</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.beta_3">
-<span class="sig-name descname"><span class="pre">beta_3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.4e-40</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_3" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">beta_3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.4e-40</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_3" title="Link to this definition">#</a></dt>
 <dd><p>Third-order dispersion coefficient (s^3/m)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Cr">
-<span class="sig-name descname"><span class="pre">Cr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2.8e-17</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Cr" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Cr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2.8e-17</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Cr" title="Link to this definition">#</a></dt>
 <dd><p>Chromatic dispersion coefficient (1/(m·Hz²))</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.alpha_db">
-<span class="sig-name descname"><span class="pre">alpha_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_db" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">alpha_db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_db" title="Link to this definition">#</a></dt>
 <dd><p>Fiber attenuation (dB/km)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.beta_2">
-<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-2.17e-26</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_2" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">beta_2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-2.17e-26</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.beta_2" title="Link to this definition">#</a></dt>
 <dd><p>Second-order dispersion coefficient (s²/m)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.gama">
-<span class="sig-name descname"><span class="pre">gama</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.00121</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.gama" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">gama</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.00121</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.gama" title="Link to this definition">#</a></dt>
 <dd><p>Nonlinear coefficient (1/(W·m))</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.F_C">
-<span class="sig-name descname"><span class="pre">F_C</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_C" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">F_C</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_C" title="Link to this definition">#</a></dt>
 <dd><p>Noise figure in linear scale for C-band.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.F_L">
-<span class="sig-name descname"><span class="pre">F_L</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_L" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">F_L</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.F_L" title="Link to this definition">#</a></dt>
 <dd><p>Noise figure in linear scale for L-band</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.Rs_mat">
-<span class="sig-name descname"><span class="pre">Rs_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40000000000.0</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Rs_mat" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Rs_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40000000000.0</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.Rs_mat" title="Link to this definition">#</a></dt>
 <dd><p>Symbol rate (Baud)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.MFL">
-<span class="sig-name descname"><span class="pre">MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.MFL" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">MFL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.MFL" title="Link to this definition">#</a></dt>
 <dd><p>Available modulation format levels (1 to 6)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.rof">
-<span class="sig-name descname"><span class="pre">rof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.rof" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">rof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.rof" title="Link to this definition">#</a></dt>
 <dd><p>Roll-off factor</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.alpha_norm">
-<span class="sig-name descname"><span class="pre">alpha_norm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_norm" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">alpha_norm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.alpha_norm" title="Link to this definition">#</a></dt>
 <dd><p>Normalized attenuation (1/m)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.L_eff_a">
-<span class="sig-name descname"><span class="pre">L_eff_a</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.L_eff_a" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">L_eff_a</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.L_eff_a" title="Link to this definition">#</a></dt>
 <dd><p>Effective fiber length (m)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.B_ch_mat">
-<span class="sig-name descname"><span class="pre">B_ch_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch_mat" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">B_ch_mat</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch_mat" title="Link to this definition">#</a></dt>
 <dd><p>Channel bandwidth (Hz)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.B_ch">
-<span class="sig-name descname"><span class="pre">B_ch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">B_ch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.B_ch" title="Link to this definition">#</a></dt>
 <dd><p>Channel bandwidth (Hz) [alias]</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters.target_SNR_dB">
-<span class="sig-name descname"><span class="pre">target_SNR_dB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_SNR_dB" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">target_SNR_dB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></em><a class="headerlink" href="#sixdman.core.band.OpticalParameters.target_SNR_dB" title="Link to this definition">#</a></dt>
 <dd><p>Target SNR of modulation formats to reach the target_ber (dB)</p>
 </dd></dl>
 
@@ -434,10 +588,10 @@
 
 </section>
 <section id="band">
-<h3>Band<a class="headerlink" href="#band" title="Link to this heading">¶</a></h3>
+<h3>Band<a class="headerlink" href="#band" title="Link to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.band.Band">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">Band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">Band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class representing an optical transmission band with its characteristics.</p>
 <p>Used in multi-band optical network planning. Stores frequency grid information
@@ -445,7 +599,7 @@ for the specified band (e.g., C-band, L-band), and provides utilities to
 compute the channel frequencies.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#sixdman.core.band.Band.name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#sixdman.core.band.Band.name" title="Link to this definition">#</a></dt>
 <dd><p>Band identifier (e.g., ‘C’, ‘L’)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -456,7 +610,7 @@ compute the channel frequencies.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.start_freq">
-<span class="sig-name descname"><span class="pre">start_freq</span></span><a class="headerlink" href="#sixdman.core.band.Band.start_freq" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">start_freq</span></span><a class="headerlink" href="#sixdman.core.band.Band.start_freq" title="Link to this definition">#</a></dt>
 <dd><p>Start frequency in THz</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -467,7 +621,7 @@ compute the channel frequencies.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.end_freq">
-<span class="sig-name descname"><span class="pre">end_freq</span></span><a class="headerlink" href="#sixdman.core.band.Band.end_freq" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">end_freq</span></span><a class="headerlink" href="#sixdman.core.band.Band.end_freq" title="Link to this definition">#</a></dt>
 <dd><p>End frequency in THz</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -478,7 +632,7 @@ compute the channel frequencies.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.channel_spacing">
-<span class="sig-name descname"><span class="pre">channel_spacing</span></span><a class="headerlink" href="#sixdman.core.band.Band.channel_spacing" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">channel_spacing</span></span><a class="headerlink" href="#sixdman.core.band.Band.channel_spacing" title="Link to this definition">#</a></dt>
 <dd><p>Channel spacing in THz (default: 0.05 THz = 50 GHz)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -489,7 +643,7 @@ compute the channel frequencies.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.spectrum">
-<span class="sig-name descname"><span class="pre">spectrum</span></span><a class="headerlink" href="#sixdman.core.band.Band.spectrum" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">spectrum</span></span><a class="headerlink" href="#sixdman.core.band.Band.spectrum" title="Link to this definition">#</a></dt>
 <dd><p>Array of center frequencies for each channel</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -500,7 +654,7 @@ compute the channel frequencies.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.num_channels">
-<span class="sig-name descname"><span class="pre">num_channels</span></span><a class="headerlink" href="#sixdman.core.band.Band.num_channels" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">num_channels</span></span><a class="headerlink" href="#sixdman.core.band.Band.num_channels" title="Link to this definition">#</a></dt>
 <dd><p>Total number of channels in the band</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -511,10 +665,10 @@ compute the channel frequencies.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.__init__" title="Link to this definition">#</a></dt>
 <dd><p>Initialize Band instance.</p>
 <section id="args">
-<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>name (str):</dt><dd><p>Band name (e.g., ‘C’, ‘L’)</p>
@@ -533,7 +687,7 @@ compute the channel frequencies.</p>
 </div></blockquote>
 </section>
 <section id="id1">
-<h4>Example:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.band</span><span class="w"> </span><span class="kn">import</span> <span class="n">Band</span>
 </pre></div>
 </div>
@@ -553,7 +707,7 @@ compute the channel frequencies.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.calc_spectrum">
-<span class="sig-name descname"><span class="pre">calc_spectrum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.calc_spectrum" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">calc_spectrum</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.calc_spectrum" title="Link to this definition">#</a></dt>
 <dd><p>Compute the frequency grid (spectrum) for this band based on
 start_freq, end_freq, and channel_spacing.</p>
 <dl class="field-list simple">
@@ -562,7 +716,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </dd>
 </dl>
 <section id="output">
-<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>Array of center frequencies in THz.</p>
@@ -571,7 +725,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </div></blockquote>
 </section>
 <section id="id2">
-<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define C-band frequency slots</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">spectrum_C</span> <span class="o">=</span> <span class="n">c_band</span><span class="o">.</span><span class="n">calc_spectrum</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># define total number of frequency slots</span>
@@ -583,10 +737,10 @@ start_freq, end_freq, and channel_spacing.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sixdman.core.band.Band.process_link_gsnr">
-<span class="sig-name descname"><span class="pre">process_link_gsnr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_c_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pch_dBm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_Ch_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nspan_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.process_link_gsnr" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">process_link_gsnr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_c_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pch_dBm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_Ch_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nspan_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.process_link_gsnr" title="Link to this definition">#</a></dt>
 <dd><p>Processes the GSNR and throughput of all links at a given hierarchy level.</p>
 <section id="id3">
-<h4>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<h4>Args:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>f_c_axis (np.ndarray):</dt><dd><p>Center frequencies of the channels [THz].</p>
@@ -609,7 +763,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </div></blockquote>
 </section>
 <section id="id4">
-<h4>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<h4>Output:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>Tuple:</dt><dd><p>GSNR matrix, throughput per power, optimal throughput, and optimal power array.</p>
@@ -618,7 +772,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </div></blockquote>
 </section>
 <section id="id5">
-<h4>Example:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<h4>Example:<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f_c_axis</span> <span class="o">=</span> <span class="n">spectrum_C</span> <span class="o">*</span> <span class="mf">1e12</span>  <span class="c1"># Convert to Hz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Pch_dBm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># Channel power in dBm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_Ch_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">spectrum_C</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Channel indices</span>
@@ -646,7 +800,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </section>
 </section>
 <section id="key-methods">
-<h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">¶</a></h2>
+<h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">#</a></h2>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">process_link_gsnr(f_c_axis,</span> <span class="pre">Pch_dBm,</span> <span class="pre">num_Ch_mat,</span> <span class="pre">spectrum_C,</span>
 <span class="pre">Nspan_array,</span> <span class="pre">hierarchy_level,</span> <span class="pre">minimum_hierarchy_level,</span> <span class="pre">result_directory)</span></code></p>
@@ -657,27 +811,147 @@ start_freq, end_freq, and channel_spacing.</p>
 </section>
 
 
-          </div>
-          <div class="page-nav">
-            <div class="inner"><ul class="page-nav">
-  <li class="prev">
-    <a href="network.html"
-       title="previous chapter">← network Module</a>
-  </li>
-  <li class="next">
-    <a href="planning.html"
-       title="next chapter">planning Module →</a>
-  </li>
-</ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2025, Matin Rafiei Forooshani.
-    <br>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 8.2.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.9.1.
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="network.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">network Module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="planning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">planning Module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
+                </footer>
+              
             </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-overview">Module Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-classes">Key Classes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opticalparameters">OpticalParameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters"><code class="docutils literal notranslate"><span class="pre">OpticalParameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.h_plank"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.h_plank</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.target_ber"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.target_ber</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.phi_MFL"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.phi_MFL</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.epsilon"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.epsilon</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.beta_3"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.beta_3</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.Cr"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.Cr</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.alpha_db"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.alpha_db</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.beta_2"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.beta_2</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.gama"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.gama</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.F_C"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.F_C</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.F_L"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.F_L</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.Rs_mat"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.Rs_mat</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.MFL"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.MFL</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.rof"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.rof</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.alpha_norm"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.alpha_norm</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.L_eff_a"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.L_eff_a</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.B_ch_mat"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.B_ch_mat</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.B_ch"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.B_ch</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.OpticalParameters.target_SNR_dB"><code class="docutils literal notranslate"><span class="pre">OpticalParameters.target_SNR_dB</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#band">Band</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band"><code class="docutils literal notranslate"><span class="pre">Band</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.name"><code class="docutils literal notranslate"><span class="pre">Band.name</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.start_freq"><code class="docutils literal notranslate"><span class="pre">Band.start_freq</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.end_freq"><code class="docutils literal notranslate"><span class="pre">Band.end_freq</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.channel_spacing"><code class="docutils literal notranslate"><span class="pre">Band.channel_spacing</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.spectrum"><code class="docutils literal notranslate"><span class="pre">Band.spectrum</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.num_channels"><code class="docutils literal notranslate"><span class="pre">Band.num_channels</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.__init__"><code class="docutils literal notranslate"><span class="pre">Band.__init__()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.calc_spectrum"><code class="docutils literal notranslate"><span class="pre">Band.calc_spectrum()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixdman.core.band.Band.process_link_gsnr"><code class="docutils literal notranslate"><span class="pre">Band.process_link_gsnr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-methods">Key Methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
           </div>
-      </page>
-    </div></div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
+<p class="component-author">
+By Matin Rafiei Forooshani
+</p>
+
+  </div>
+  
+  <div class="footer-item">
     
+
+  <p class="copyright">
+    
+      © Copyright 2026, Matin Rafiei Forooshani.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
