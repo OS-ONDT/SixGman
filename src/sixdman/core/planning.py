@@ -666,7 +666,7 @@ class PlanningTool:
                             if len(link_in_subnet) != 0:
                                 flag_GSNR_calculation = 1
 
-                                for n_span in range(int(self.Nspan_array[link_in_subnet])):
+                                for n_span in range(int(self.Nspan_array[linkList_path_sorted[link_idx]])):
                                     GSNR_BVT1 += (10 ** (GSNR_link[link_in_subnet, FS_path] / 10)) ** -1 # compute GSNR
 
                         GSNR_connection = 10 * np.log10((GSNR_BVT1[0] + 10 ** -3.6) ** -1)
