@@ -284,29 +284,30 @@
             
   <section id="band-module">
 <h1>band Module<a class="headerlink" href="#band-module" title="Link to this heading">¶</a></h1>
-<p>This module provides classes for <strong>optical transmission bands</strong> and their <strong>parameters</strong> used in multi-band optical network planning.</p>
+<p>This module provides classes for <strong>optical transmission bands</strong> and their
+<strong>parameters</strong> used in multi-band optical network planning.</p>
 <section id="module-overview">
 <h2>Module Overview<a class="headerlink" href="#module-overview" title="Link to this heading">¶</a></h2>
 <p>This module is responsible for:</p>
 <ul class="simple">
-<li><p>Defining <strong>optical transmission bands</strong> (e.g., <strong>C-band</strong>, <strong>L-band</strong>) used in multi-band optical network planning.</p></li>
-<li><p>Storing and computing <strong>fiber and system parameters</strong> for optical modeling through the <code class="docutils literal notranslate"><span class="pre">OpticalParameters</span></code> class.</p></li>
-<li><p>Computing <strong>channel frequency grids (spectra)</strong> based on start frequency, end frequency, and channel spacing.</p></li>
-<li><p>Associating <strong>band characteristics</strong> with a given network topology.</p></li>
-<li><p>Preparing the <strong>frequency plan</strong> for further optical performance evaluation such as GSNR calculations.</p></li>
+<li><p>Defining <strong>optical transmission bands</strong> (e.g., <strong>C-band</strong>, <strong>L-band</strong>)</p></li>
+<li><p>Storing and computing <strong>fiber and system parameters</strong> for optical modeling</p></li>
+<li><p>Computing <strong>channel frequency grids (spectra)</strong></p></li>
+<li><p>Associating <strong>band characteristics</strong> with a given network topology</p></li>
+<li><p>Preparing the <strong>frequency plan</strong> for optical performance evaluation</p></li>
 </ul>
 </section>
 <section id="key-classes">
 <h2>Key Classes<a class="headerlink" href="#key-classes" title="Link to this heading">¶</a></h2>
-<ul>
-<li><dl>
-<dt><strong>OpticalParameters</strong></dt><dd><dl class="py class">
+<section id="opticalparameters">
+<h3>OpticalParameters<a class="headerlink" href="#opticalparameters" title="Link to this heading">¶</a></h3>
+<dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.band.OpticalParameters">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">OpticalParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h_plank=6.626e-34</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_ber=0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi_MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_3=1.4e-40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cr=2.8e-17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_db=0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_2=-2.17e-26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gama=0.00121</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_C=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_L=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rs_mat=40000000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MFL=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rof=0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.OpticalParameters" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A data class to store and compute fiber and system parameters for optical network modeling.</p>
 <section id="example">
-<h3>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.band</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpticalParameters</span>
 </pre></div>
 </div>
@@ -431,11 +432,10 @@
 </section>
 </dd></dl>
 
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt><strong>Band</strong></dt><dd><dl class="py class">
+</section>
+<section id="band">
+<h3>Band<a class="headerlink" href="#band" title="Link to this heading">¶</a></h3>
+<dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.band.Band">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.band.</span></span><span class="sig-name descname"><span class="pre">Band</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -514,7 +514,7 @@ compute the channel frequencies.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize Band instance.</p>
 <section id="args">
-<h3>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>name (str):</dt><dd><p>Band name (e.g., ‘C’, ‘L’)</p>
@@ -533,7 +533,7 @@ compute the channel frequencies.</p>
 </div></blockquote>
 </section>
 <section id="id1">
-<h3>Example:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.band</span><span class="w"> </span><span class="kn">import</span> <span class="n">Band</span>
 </pre></div>
 </div>
@@ -562,7 +562,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </dd>
 </dl>
 <section id="output">
-<h3>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>Array of center frequencies in THz.</p>
@@ -571,7 +571,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </div></blockquote>
 </section>
 <section id="id2">
-<h3>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># define C-band frequency slots</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">spectrum_C</span> <span class="o">=</span> <span class="n">c_band</span><span class="o">.</span><span class="n">calc_spectrum</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># define total number of frequency slots</span>
@@ -586,7 +586,7 @@ start_freq, end_freq, and channel_spacing.</p>
 <span class="sig-name descname"><span class="pre">process_link_gsnr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f_c_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pch_dBm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_Ch_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum_C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nspan_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimum_hierarchy_level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.band.Band.process_link_gsnr" title="Link to this definition">¶</a></dt>
 <dd><p>Processes the GSNR and throughput of all links at a given hierarchy level.</p>
 <section id="id3">
-<h3>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>f_c_axis (np.ndarray):</dt><dd><p>Center frequencies of the channels [THz].</p>
@@ -609,7 +609,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </div></blockquote>
 </section>
 <section id="id4">
-<h3>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>Tuple:</dt><dd><p>GSNR matrix, throughput per power, optimal throughput, and optimal power array.</p>
@@ -618,7 +618,7 @@ start_freq, end_freq, and channel_spacing.</p>
 </div></blockquote>
 </section>
 <section id="id5">
-<h3>Example:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f_c_axis</span> <span class="o">=</span> <span class="n">spectrum_C</span> <span class="o">*</span> <span class="mf">1e12</span>  <span class="c1"># Convert to Hz</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Pch_dBm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># Channel power in dBm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_Ch_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">spectrum_C</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Channel indices</span>
@@ -643,18 +643,14 @@ start_freq, end_freq, and channel_spacing.</p>
 
 </dd></dl>
 
-</dd>
-</dl>
-</li>
-</ul>
+</section>
 </section>
 <section id="key-methods">
 <h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><dl class="simple">
-<dt><strong>``process_link_gsnr(f_c_axis, Pch_dBm, num_Ch_mat, spectrum_C, Nspan_array, hierarchy_level, minimum_hierarchy_level, result_directory)``</strong></dt><dd><p>Processes the GSNR and throughput of all links at a given hierarchy level.</p>
-</dd>
-</dl>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">process_link_gsnr(f_c_axis,</span> <span class="pre">Pch_dBm,</span> <span class="pre">num_Ch_mat,</span> <span class="pre">spectrum_C,</span>
+<span class="pre">Nspan_array,</span> <span class="pre">hierarchy_level,</span> <span class="pre">minimum_hierarchy_level,</span> <span class="pre">result_directory)</span></code></p>
+<p>Processes the GSNR and throughput of all links at a given hierarchy level.</p>
 </li>
 </ul>
 </section>

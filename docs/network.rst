@@ -16,16 +16,17 @@ This module is responsible for:
 - Compute k-shortest paths between source and destination nodes using Yen's algorithm.
 - Identify link- and node-disjoint path pairs (LAND pairs) for each source node. 
 
-Key Classes
+Key Class
 ------------
 
-- **Network**
-    ~~~~~~~~~~~~~~~
-    .. autoclass:: sixdman.core.network.Network
-        :members:
-        :special-members: __init__
-        :undoc-members:
-        :show-inheritance: 
+Network
+~~~~~~~~
+
+.. autoclass:: sixdman.core.network.Network
+    :members:
+    :special-members: __init__
+    :undoc-members:
+    :show-inheritance: 
 
 
 Key Methods

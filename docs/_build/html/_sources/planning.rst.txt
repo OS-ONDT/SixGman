@@ -17,16 +17,17 @@ Its primary responsibilities include:
   - ``network.py`` → Topology and hierarchy modeling
   - ``band.py`` → Optical band definition and physical parameters
 
-Key Classes
+Key Class
 ------------
 
-- **PlanningTool**
-    ~~~~~~~~~~~~~~~
-    .. autoclass:: sixdman.core.planning.PlanningTool
-        :members:
-        :special-members: __init__
-        :undoc-members:
-        :show-inheritance: 
+PlanningTool
+~~~~~~~~~~~~
+
+.. autoclass:: sixdman.core.planning.PlanningTool
+    :members:
+    :special-members: __init__
+    :undoc-members:
+    :show-inheritance: 
 
 Key Methods
 ------------

@@ -23,13 +23,13 @@ Typical applications include:
 Key Class
 ----------
 
-- **analyse_result**
-    ~~~~~~~
-    .. autoclass:: sixdman.core.post_process.analyse_result
-        :members:
-        :special-members: __init__
-        :undoc-members:
-        :show-inheritance: 
+analyse_result
+~~~~~~~~~~~~~~
+.. autoclass:: sixdman.core.post_process.analyse_result
+    :members:
+    :special-members: __init__
+    :undoc-members:
+    :show-inheritance: 
 
 Key Methods
 ------------

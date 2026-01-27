@@ -304,9 +304,9 @@ hierarchical optical network simulations and planning processes.</p>
 </section>
 <section id="key-class">
 <h2>Key Class<a class="headerlink" href="#key-class" title="Link to this heading">¶</a></h2>
-<ul>
-<li><dl>
-<dt><strong>analyse_result</strong></dt><dd><dl class="py class">
+<section id="analyse-result">
+<h3>analyse_result<a class="headerlink" href="#analyse-result" title="Link to this heading">¶</a></h3>
+<dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.post_process.analyse_result">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.post_process.</span></span><span class="sig-name descname"><span class="pre">analyse_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -396,7 +396,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.post_process.analyse_result.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize the AnalyseResult object.</p>
 <section id="args">
-<h3>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>network_instance (Network):</dt><dd><p>The optical network structure.</p>
@@ -413,7 +413,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 </div></blockquote>
 </section>
 <section id="example">
-<h3>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">sixdman.core.optical_result_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyse_result</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span> <span class="o">=</span> <span class="n">analyse_result</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">net</span><span class="p">,</span> <span class="c1"># Network instance</span>
@@ -434,7 +434,7 @@ including link-level and transceiver-level (BVT) metrics.</p>
 where each row corresponds to a specific link and each column to a simulation year. Vertical dashed lines
 separate different hierarchical levels using the provided splitter.</p>
 <section id="id1">
-<h3>Args:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>splitter (List):</dt><dd><p>A list indicating how many links are in each hierarchy level (used for dashed separators).</p>
@@ -449,7 +449,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="output">
-<h3>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>If flag_plot == 0, returns the link state matrix of shape (years, total_links). Each element corresponds to the FP number assigned to a specific link in a given year.</p>
@@ -458,7 +458,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="notes">
-<h3>Notes:<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>When save_flag = 1, the figure is saved in the output directory with the filename pattern {topology_name}_Link_State{save_suffix}.png</p></li>
@@ -467,7 +467,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id2">
-<h3>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_link_state</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">splitter</span><span class="p">,</span> <span class="c1"># List of integers indicating the number of links per hierarchy level</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
@@ -490,7 +490,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </dd>
 </dl>
 <section id="id3">
-<h3>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>If 1, saves the plot to the result directory.</p>
@@ -503,13 +503,13 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id4">
-<h3>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
 <section id="id5">
-<h3>Notes:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -523,7 +523,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id6">
-<h3>Example:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_FP_usage</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -545,7 +545,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </dd>
 </dl>
 <section id="id7">
-<h3>Args:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>If 1, saves the plot as an image to the save_directory.</p>
@@ -558,13 +558,13 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id8">
-<h3>Output:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
 <section id="id9">
-<h3>Notes:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -579,7 +579,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id10">
-<h3>Example:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_FP_degree</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -609,7 +609,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </dd>
 </dl>
 <section id="id11">
-<h3>Args:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>If 1, saves the plot as an image to the save_directory.</p>
@@ -622,13 +622,13 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id12">
-<h3>Output:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>None</p>
 </div></blockquote>
 </section>
 <section id="id13">
-<h3>Notes:<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -643,7 +643,7 @@ separate different hierarchical levels using the provided splitter.</p>
 </div></blockquote>
 </section>
 <section id="id14">
-<h3>Example:<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">plot_bvt_license</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the plot; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -660,7 +660,7 @@ separate different hierarchical levels using the provided splitter.</p>
 <p>This function evaluates capital and operational expenditures based on
 nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p>
 <section id="id15">
-<h3>Args:<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>save_flag (int):</dt><dd><p>Whether to save the output CSV file (1) or not (0).</p>
@@ -681,13 +681,13 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 </div></blockquote>
 </section>
 <section id="id16">
-<h3>Output:<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>dict: A dataframe containing columns for OPEX and CAPEX components for different years.</p>
 </div></blockquote>
 </section>
 <section id="id17">
-<h3>Notes:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
@@ -701,7 +701,7 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 </div></blockquote>
 </section>
 <section id="id18">
-<h3>Example:<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">calc_cost</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">save_flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># If 1, save the results; if 0, do not save</span>
 <span class="gp">... </span>    <span class="n">save_suffix</span> <span class="o">=</span> <span class="s2">&quot;_NoBypass&quot;</span> <span class="c1"># Optional suffix for the saved file name</span>
@@ -723,7 +723,7 @@ until reaching the top-level standalone HL nodes.</p>
 <p>Latency is assumed to be precomputed for each direct connection (typically derived from
 the physical link distance multiplied by a latency constant, e.g., 5 µs/km).</p>
 <section id="id19">
-<h3>Args:<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>node (int):</dt><dd><p>Index of the starting node (e.g., a lower-level core or access node).</p>
@@ -741,7 +741,7 @@ when recursion should terminate (the top-level HL layer).</p>
 </div></blockquote>
 </section>
 <section id="id20">
-<h3>Output:<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>List[Tuple[List[int], float]]:</dt><dd><dl class="simple">
@@ -756,7 +756,7 @@ when recursion should terminate (the top-level HL layer).</p>
 </div></blockquote>
 </section>
 <section id="id21">
-<h3>Notes:<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>The recursion terminates when the current node belongs to the top hierarchy</p></li>
@@ -794,7 +794,7 @@ from the propagation delay (e.g., 5 µs/km) stored in <cite>latency_core_array</
 additional per-level processing delays (default: 200 µs per hierarchy level).</p>
 <p>The resulting latencies can optionally be saved to a compressed NumPy <cite>.npz</cite> file.</p>
 <section id="id22">
-<h3>Args:<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>latency_core_array (np.ndarray):</dt><dd><p>Array of per-node propagation latencies (in microseconds), where each element <cite>[i]</cite> contains a list or array of hop latencies from node <cite>i</cite> to its higher-level destination nodes.</p>
@@ -812,7 +812,7 @@ If <cite>0</cite>, results are only returned.</p>
 </div></blockquote>
 </section>
 <section id="id23">
-<h3>Output:<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>A 1D NumPy array containing the total end-to-end latency (in microseconds) for each lowest-level node path.</p>
@@ -821,7 +821,7 @@ If <cite>0</cite>, results are only returned.</p>
 </div></blockquote>
 </section>
 <section id="id24">
-<h3>Notes:<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
+<h4>Notes:<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>Each end-to-end latency value includes: <strong>1. Propagation latency</strong> accumulated over the full path. <strong>2. Processing overhead</strong> added per hierarchy transition (default: 200 µs per hop).</p></li>
@@ -831,7 +831,7 @@ If <cite>0</cite>, results are only returned.</p>
 </div></blockquote>
 </section>
 <section id="id25">
-<h3>Example:<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<h4>Example:<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h4>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">E2E_latencies</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">calc_E2E_latency_Total</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">latency_core_array</span><span class="o">=</span><span class="n">latency_core_array</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">destination_core_array</span><span class="o">=</span><span class="n">destination_core_array</span><span class="p">,</span>
@@ -848,10 +848,7 @@ If <cite>0</cite>, results are only returned.</p>
 
 </dd></dl>
 
-</dd>
-</dl>
-</li>
-</ul>
+</section>
 </section>
 <section id="key-methods">
 <h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">¶</a></h2>

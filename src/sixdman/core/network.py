@@ -54,7 +54,7 @@ class Network:
         NetworkX graph, and initializes related network attributes.
         
         Supported formats:
-        ---------
+        ------------------
             .mat : 
                 MATLAB file (requires `matrixName` to specify the variable)
             .npz : 
@@ -162,7 +162,7 @@ class Network:
                 
         Args:
         ---------
-            **kwargs:  
+            ``**kwargs``:
                 Variable keyword arguments for HLx_standalone and HLx_colocated. 
 
         Output:
@@ -171,7 +171,7 @@ class Network:
                 Updated hierarchical levels structure. 
 
         
-        Examples
+        Example
         ---------
         >>> HL_dict = net.define_hierarchy(
         ...     HL3_standalone = [1, 2, 3],

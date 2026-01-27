@@ -170,7 +170,7 @@
                 
                   <li class="toctree-l2"><a href="#module-overview" class="reference internal">Module Overview</a></li>
                 
-                  <li class="toctree-l2"><a href="#key-classes" class="reference internal">Key Classes</a></li>
+                  <li class="toctree-l2"><a href="#key-class" class="reference internal">Key Class</a></li>
                 
                   <li class="toctree-l2"><a href="#key-methods" class="reference internal">Key Methods</a></li>
                 
@@ -298,11 +298,11 @@ loading them from different file formats, and preparing the data for
 <li><p>Identify link- and node-disjoint path pairs (LAND pairs) for each source node.</p></li>
 </ul>
 </section>
-<section id="key-classes">
-<h2>Key Classes<a class="headerlink" href="#key-classes" title="Link to this heading">¶</a></h2>
-<ul>
-<li><dl>
-<dt><strong>Network</strong></dt><dd><dl class="py class">
+<section id="key-class">
+<h2>Key Class<a class="headerlink" href="#key-class" title="Link to this heading">¶</a></h2>
+<section id="network">
+<h3>Network<a class="headerlink" href="#network" title="Link to this heading">¶</a></h3>
+<dl class="py class">
 <dt class="sig sig-object py" id="sixdman.core.network.Network">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sixdman.core.network.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.network.Network" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -347,7 +347,7 @@ for the SixDman planning tool.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.network.Network.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize a Network instance.</p>
 <section id="args">
-<h3>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#args" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>topology_name (str):</dt><dd><p>Name of the network topology.</p>
@@ -369,7 +369,7 @@ for the SixDman planning tool.</p>
 <p>This function reads an adjacency matrix from a file, converts it to a
 NetworkX graph, and initializes related network attributes.</p>
 <section id="supported-formats">
-<h3>Supported formats:<a class="headerlink" href="#supported-formats" title="Link to this heading">¶</a></h3>
+<h4>Supported formats:<a class="headerlink" href="#supported-formats" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>.mat :</dt><dd><p>MATLAB file (requires <cite>matrixName</cite> to specify the variable)</p>
@@ -382,7 +382,7 @@ NetworkX graph, and initializes related network attributes.</p>
 </div></blockquote>
 </section>
 <section id="id1">
-<h3>Args:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>filepath (str):</dt><dd><p>Path to the file containing network topology.</p>
@@ -393,13 +393,13 @@ NetworkX graph, and initializes related network attributes.</p>
 </div></blockquote>
 </section>
 <section id="output">
-<h3>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<h4>Output:<a class="headerlink" href="#output" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>nx.Graph: A NetworkX graph representing the loaded network topology.</p>
 </div></blockquote>
 </section>
 <section id="raises">
-<h3>Raises:<a class="headerlink" href="#raises" title="Link to this heading">¶</a></h3>
+<h4>Raises:<a class="headerlink" href="#raises" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>FileNotFoundError:</dt><dd><p>If the file does not exist.</p>
@@ -426,7 +426,7 @@ NetworkX graph, and initializes related network attributes.</p>
 <p>This method allows flexible assignment of nodes to hierarchical levels
 (HL1, HL2, …) with optional <cite>standalone</cite> and <cite>colocated</cite> classifications.</p>
 <section id="behavior">
-<h3>Behavior:<a class="headerlink" href="#behavior" title="Link to this heading">¶</a></h3>
+<h4>Behavior:<a class="headerlink" href="#behavior" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li><p>Accepts keyword arguments like HL1_standalone, HL2_colocated, etc.</p></li>
@@ -437,23 +437,23 @@ NetworkX graph, and initializes related network attributes.</p>
 </div></blockquote>
 </section>
 <section id="id2">
-<h3>Args:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<h4>Args:<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
-<dt><a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs:</dt><dd><p>Variable keyword arguments for HLx_standalone and HLx_colocated.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>:</dt><dd><p>Variable keyword arguments for HLx_standalone and HLx_colocated.</p>
 </dd>
 </dl>
 </div></blockquote>
 </section>
-<section id="id5">
-<h3>Output:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
+<section id="id3">
+<h4>Output:<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>Dict[str, Dict[str, List[str]]]:</dt><dd><p>Updated hierarchical levels structure.</p>
 </dd>
 </dl>
 </div></blockquote>
-<p class="rubric">Examples</p>
+<p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">HL_dict</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">define_hierarchy</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">HL3_standalone</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <span class="gp">... </span>    <span class="n">HL4_standalone</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
@@ -474,8 +474,8 @@ NetworkX graph, and initializes related network attributes.</p>
 <span class="sig-name descname"><span class="pre">get_standalone_hierarchy_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.network.Network.get_standalone_hierarchy_level" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the standalone hierarchical level (HL1, HL2, etc) of the given node.
 If the node is not found in any standalone level, returns None.</p>
-<section id="id6">
-<h3>Args:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<section id="id4">
+<h4>Args:<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>node:</dt><dd><p>The index of the node for which the standalone hierarchical level is to be determined.</p>
@@ -483,8 +483,8 @@ If the node is not found in any standalone level, returns None.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id7">
-<h3>Output:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<section id="id5">
+<h4>Output:<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>Integer representing the standalone hierarchical level of the input node (e.g., 2 for HL2).</p>
 </div></blockquote>
@@ -498,8 +498,8 @@ If the node is not found in any standalone level, returns None.</p>
 <p>Constructs a subgraph that includes edges where at least one endpoint is in
 the specified hierarchy level (HLx), and the other is not in any lower level
 between HL(x+1) and HL(minimum).</p>
-<section id="id8">
-<h3>Args:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<section id="id6">
+<h4>Args:<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>hierarchy_level (int):</dt><dd><p>The current HL level (e.g., 1 for HL1).</p>
@@ -509,8 +509,8 @@ between HL(x+1) and HL(minimum).</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id9">
-<h3>Output:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
+<section id="id7">
+<h4>Output:<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>Tuple[nx.Graph, np.ndarray]:</dt><dd><ul class="simple">
@@ -536,8 +536,8 @@ between HL(x+1) and HL(minimum).</p>
 <dd><p>Return the unique neighbors of a given list of nodes in the graph.</p>
 <p>This excludes the input nodes themselves. Each neighbor appears only once
 regardless of how many input nodes it is connected to.</p>
-<section id="id10">
-<h3>Args:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<section id="id8">
+<h4>Args:<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>nodes (List[int]):</dt><dd><p>List of node IDs.</p>
@@ -545,8 +545,8 @@ regardless of how many input nodes it is connected to.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id11">
-<h3>Output:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<section id="id9">
+<h4>Output:<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>List[int]:</dt><dd><p>Sorted list of unique neighbor node IDs.</p>
@@ -566,8 +566,8 @@ regardless of how many input nodes it is connected to.</p>
 <dd><p>Compute k-shortest paths between source and target nodes using Yen’s algorithm.</p>
 <p>This function computes candidate paths for optical network planning,
 calculates distances, and updates the <cite>paths</cite> list with detailed path information.</p>
-<section id="id12">
-<h3>Args:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<section id="id10">
+<h4>Args:<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>subnet_matrix (np.ndarray):</dt><dd><p>Adjacency matrix of the subnet.</p>
@@ -583,8 +583,8 @@ calculates distances, and updates the <cite>paths</cite> list with detailed path
 </dl>
 </div></blockquote>
 </section>
-<section id="id13">
-<h3>Output:<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
+<section id="id11">
+<h4>Output:<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>List[Dict]:</dt><dd><dl class="simple">
@@ -632,8 +632,8 @@ calculates distances, and updates the <cite>paths</cite> list with detailed path
 <dd><p>Get the degree of specified nodes in the graph.</p>
 <p>This method returns a dictionary where each key is a node ID, and each value
 is the degree of the corresponding node (the number of edges connected to it).</p>
-<section id="id14">
-<h3>Args:<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<section id="id12">
+<h4>Args:<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>nodes (List[int]):</dt><dd><p>List of node IDs for which to retrieve the degree.</p>
@@ -641,8 +641,8 @@ is the degree of the corresponding node (the number of edges connected to it).</
 </dl>
 </div></blockquote>
 </section>
-<section id="id15">
-<h3>Output:<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<section id="id13">
+<h4>Output:<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>np.ndarray:</dt><dd><p>2D numpy array containing node IDs and their relative degree.</p>
@@ -665,8 +665,8 @@ is the degree of the corresponding node (the number of edges connected to it).</
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></span></p>
 </dd>
 </dl>
-<section id="id16">
-<h3>Args:<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<section id="id14">
+<h4>Args:<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>src_list (List[int]):</dt><dd><p>List of source node IDs to process.</p>
@@ -678,8 +678,8 @@ is the degree of the corresponding node (the number of edges connected to it).</
 </dl>
 </div></blockquote>
 </section>
-<section id="id17">
-<h3>Output:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<section id="id15">
+<h4>Output:<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>pd.DataFrame:</dt><dd><p>DataFrame with columns: [‘primary_path_IDx’, ‘secondary_path_IDx’, ‘numHops_secondary’, ‘distance_secondary’, ‘src_node’]</p>
@@ -709,8 +709,8 @@ is the degree of the corresponding node (the number of edges connected to it).</
 <dt class="sig sig-object py" id="sixdman.core.network.Network.calc_num_pair">
 <span class="sig-name descname"><span class="pre">calc_num_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pairs_disjoint_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixdman.core.network.Network.calc_num_pair" title="Link to this definition">¶</a></dt>
 <dd><p>calculate the number of candidate link &amp; node disjoint (LAND) pairs.</p>
-<section id="id18">
-<h3>Args:<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<section id="id16">
+<h4>Args:<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><dl class="simple">
 <dt>pairs_disjoint_df:</dt><dd><p>Dataframe of disjoint_pairs</p>
@@ -718,8 +718,8 @@ is the degree of the corresponding node (the number of edges connected to it).</
 </dl>
 </div></blockquote>
 </section>
-<section id="id19">
-<h3>Output:<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<section id="id17">
+<h4>Output:<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
 <blockquote>
 <div><p>A numpy array containing the number of candidate LAND pairs for each source node</p>
 </div></blockquote>
@@ -728,10 +728,7 @@ is the degree of the corresponding node (the number of edges connected to it).</
 
 </dd></dl>
 
-</dd>
-</dl>
-</li>
-</ul>
+</section>
 </section>
 <section id="key-methods">
 <h2>Key Methods<a class="headerlink" href="#key-methods" title="Link to this heading">¶</a></h2>
