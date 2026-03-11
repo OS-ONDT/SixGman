@@ -1,10 +1,10 @@
-Welcome to SixDman's Documentation!
+Welcome to SixGman's Documentation!
 ====================================
 
-**SixDman** is a Python-based toolkit for **optical network modeling, planning, and simulation**.  
+**SixGman** is a Python-based toolkit for **optical network modeling, planning, and simulation**.  
 It is designed for **researchers, telecom engineers, and students** working in **optical communication networks**.
 
-With SixDman, you can:
+With SixGman, you can:
 
 - 🏗 **Model optical networks** with nodes, links, and multiple wavelength bands
 - 📊 **Analyze optical performance** with configurable physical parameters
@@ -35,9 +35,9 @@ Project Structure
 
 .. code-block:: text
 
-    sixdman/
-    ├── src/sixdman/core      # Core classes: Network, Band, PlanningTool
-    ├── src/sixdman/utils     # Utility functions and path handling
+    sixgman/
+    ├── src/sixgman/core      # Core classes: Network, Band, PlanningTool
+    ├── src/sixgman/utils     # Utility functions and path handling
     ├── tests/                # Unit tests for each module
     ├── examples/             # Jupyter notebooks for simulation examples
     ├── data/                 # Example data files (.mat, .npz)
@@ -74,8 +74,8 @@ Contents
    :maxdepth: 1
    :caption:  Project Info
 
-   License <https://github.com/UC3M-ONDT/SixDman/blob/main/LICENSE>
-   GitHub Repository <https://github.com/UC3M-ONDT/SixDman.git>
+   License <https://github.com/UC3M-ONDT/SixGman/blob/main/LICENSE>
+   GitHub Repository <https://github.com/UC3M-ONDT/SixGman.git>
 
 
 ----

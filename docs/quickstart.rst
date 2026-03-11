@@ -1,7 +1,7 @@
 Quick Start
 ============
 
-After installation, you can quickly get started with **network planning and simulation** in SixDman.
+After installation, you can quickly get started with **network planning and simulation** in SixGman.
 
 ----
 

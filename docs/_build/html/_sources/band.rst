@@ -21,7 +21,7 @@ Key Classes
 OpticalParameters
 ~~~~~~~~~~~~~~~~~
 
-.. autoclass:: sixdman.core.band.OpticalParameters
+.. autoclass:: sixgman.core.band.OpticalParameters
    :members:
    :undoc-members:
    :show-inheritance:
@@ -29,7 +29,7 @@ OpticalParameters
 Band
 ~~~~
 
-.. autoclass:: sixdman.core.band.Band
+.. autoclass:: sixgman.core.band.Band
    :members:
    :special-members: __init__
    :undoc-members:

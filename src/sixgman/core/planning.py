@@ -11,7 +11,7 @@ import os
 @dataclass
 class PlanningTool:
     """
-    Main class for SixDman (6-Dimensional Metro-Area Network) planning and optimization.
+    Main class for SixGman planning and optimization.
     
     This tool integrates physical layer modeling with hierarchical network topology
     and supports multi-band optical transmission planning. It is intended for
@@ -51,7 +51,7 @@ class PlanningTool:
 
         Example:
         ---------
-        >>> from sixdman.core.planning import PlanningTool
+        >>> from sixgman.core.planning import PlanningTool
         
         >>> # Initialize planning tool
         >>> planner = PlanningTool(

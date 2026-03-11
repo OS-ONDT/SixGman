@@ -11,7 +11,7 @@ class OpticalParameters:
     
         Example:
         --------
-        >>> from sixdman.core.band import OpticalParameters
+        >>> from sixgman.core.band import OpticalParameters
         
         >>> # Define C-band parameters
         >>> c_band_params = OpticalParameters()
@@ -151,7 +151,7 @@ class Band:
 
         Example:
         --------    
-        >>> from sixdman.core.band import Band
+        >>> from sixgman.core.band import Band
 
         >>> # Create C-band instance
         >>> c_band = Band(
@@ -399,7 +399,7 @@ class Band:
                             (p_cut - 0 * P_NLI_span[num_fcut]) / (P_ASE_span + P_NLI_span[num_fcut]))  # SNR Calculation
 
                         # ASM: Check if [5] 64-QAM or [1] BPSK should be used
-                        if SNR_CUT[num_fcut] < self.target_SNR_dB[0]:
+                        if SNR_CUT[num_fcut] < self.opt_params.target_SNR_dB[0]:
                             flag = 1
                             print("It is less than target SNR of 64-QAM! ", SNR_CUT[num_fcut])
                             # break

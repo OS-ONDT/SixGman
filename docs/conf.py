@@ -2,8 +2,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../src'))
 
-import sixdman
-print("DEBUG: Imported sixdman version:", getattr(sixdman, "__version__", "unknown"))
+import sixgman
+print("DEBUG: Imported sixgman version:", getattr(sixgman, "__version__", "unknown"))
 
 
 # Configuration file for the Sphinx documentation builder.
@@ -14,7 +14,7 @@ print("DEBUG: Imported sixdman version:", getattr(sixdman, "__version__", "unkno
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'SixDman'
+project = 'SixGman'
 copyright = '2026, Matin Rafiei Forooshani'
 author = 'Matin Rafiei Forooshani'
 release = '0.1.0'
@@ -39,7 +39,7 @@ html_theme = 'sphinx_book_theme'
 
 
 html_theme_options = {
-    "repository_url": "https://github.com/UC3M-ONDT/SixDman",
+    "repository_url": "https://github.com/UC3M-ONDT/SixGman",
     "use_repository_button": True,
     "use_edit_page_button": True,
     "path_to_docs": "docs",

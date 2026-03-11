@@ -16,8 +16,8 @@ import os
 sys.path.append(os.path.abspath(src_dir))
 
 import pytest
-from sixdman.core.band import Band, OpticalParameters
-from sixdman.core.network import Network
+from sixgman.core.band import Band, OpticalParameters
+from sixgman.core.network import Network
 
 @pytest.fixture
 def c_band_params():

@@ -48,7 +48,7 @@ class analyse_result:
 
         Example:
         --------
-        >>> from sixdman.core.optical_result_analyzer import analyse_result
+        >>> from sixgman.core.optical_result_analyzer import analyse_result
         >>> analyser = analyse_result(
         ...     net, # Network instance
         ...     10, # Planning period time in years

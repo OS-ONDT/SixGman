@@ -1,7 +1,7 @@
 planning Module
 ================
 
-This module provides the **planning and optimization core** for the SixDman (6-Dimensional Metro-Area Network) framework.  
+This module provides the **planning and optimization core** for the SixGman framework.  
 
 Module Overview
 ----------------
@@ -23,7 +23,7 @@ Key Class
 PlanningTool
 ~~~~~~~~~~~~
 
-.. autoclass:: sixdman.core.planning.PlanningTool
+.. autoclass:: sixgman.core.planning.PlanningTool
     :members:
     :special-members: __init__
     :undoc-members:

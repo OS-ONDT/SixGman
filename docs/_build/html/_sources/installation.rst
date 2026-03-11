@@ -1,7 +1,7 @@
 Installation
 =============
 
-SixDman can be installed in several ways depending on your workflow:
+SixGman can be installed in several ways depending on your workflow:
 
 - **Standard Installation** (from GitHub)  
 - **Editable / Development Installation** (recommended for contributors)  
@@ -33,24 +33,24 @@ You can install the latest version directly from GitHub:
     .venv\Scripts\activate       # Windows
     
     # Install the package
-    pip install git+https://github.com/UC3M-ONDT/SixDman.git
+    pip install git+https://github.com/UC3M-ONDT/SixGman.git
 
 - **Option 2: Using Conda (Recommended for data science users)**
 
 .. code-block:: bash
 
    # Create a conda environment with Python 3.9+
-  conda create -n sixdman-env python=3.9 -y
+  conda create -n sixgman-env python=3.9 -y
   
   # Activate environment
-  conda activate sixdman-env
+  conda activate sixgman-env
   
   # Install the package
-  pip install git+https://github.com/UC3M-ONDT/SixDman.git
+  pip install git+https://github.com/UC3M-ONDT/SixGman.git
 
 
 
-This will install SixDman and all required dependencies.
+This will install SixGman and all required dependencies.
 
 ----
 
@@ -63,8 +63,8 @@ If you plan to **modify the code** or **contribute**, use editable mode.
 
 .. code-block:: bash
 
-  git clone https://github.com/UC3M-ONDT/SixDman.git
-  cd sixdman
+  git clone https://github.com/UC3M-ONDT/SixGman.git
+  cd sixgman
 
 **Step 2: Create a virtual environment (Recommended)**
 
@@ -87,10 +87,10 @@ If you plan to **modify the code** or **contribute**, use editable mode.
 .. code-block:: bash
 
   # Create a conda environment with Python 3.9+
-  conda create -n sixdman-env python=3.9 -y
+  conda create -n sixgman-env python=3.9 -y
   
   # Activate environment
-  conda activate sixdman-env
+  conda activate sixgman-env
   
   # Install in editable mode
   pip install -e .
@@ -106,6 +106,6 @@ To check the installation:
 
 .. code-block:: bash
 
-   python -c "import sixdman; print(sixdman.__version__)"
+   python -c "import sixgman; print(sixgman.__version__)"
 
 If no error appears, the package is installed correctly.

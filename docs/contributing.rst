@@ -1,7 +1,7 @@
-Contributing to SixDman
+Contributing to SixGman
 =======================
 
-Thank you for considering contributing to **SixDman**, a Python-based toolkit for
+Thank you for considering contributing to **SixGman**, a Python-based toolkit for
 optical network planning and simulation!  
 We welcome contributions from the community to improve **features**, **documentation**, and **performance**.
 
@@ -14,10 +14,10 @@ We welcome contributions from the community to improve **features**, **documenta
 How to Contribute
 -----------------
 
-There are several ways you can contribute to SixDman:
+There are several ways you can contribute to SixGman:
 
 1. **Report Bugs**
-    - Check existing `issues <https://github.com/UC3M-ONDT/SixDman/issues>`_ to see if the bug is already reported.
+    - Check existing `issues <https://github.com/UC3M-ONDT/SixGman/issues>`_ to see if the bug is already reported.
     - Open a new issue and provide:
        - Steps to reproduce
        - Expected behavior
@@ -41,8 +41,8 @@ There are several ways you can contribute to SixDman:
 
       .. code-block:: bash
 
-         git clone https://github.com/your-username/SixDman.git
-         cd SixDman
+         git clone https://github.com/your-username/SixGman.git
+         cd sixgman
 
     - **Create a branch**:
 
@@ -56,7 +56,7 @@ There are several ways you can contribute to SixDman:
 
         .. code-block:: bash
 
-           git commit -m "Add SNR calculation for multi-band support"
+           git commit -m "Add SNR calculation for S-Band support"
 
     - **Push and open a Pull Request**:
 
@@ -91,8 +91,8 @@ Running the Project Locally
 
    .. code-block:: bash
 
-      git clone https://github.com/UC3M-ONDT/SixDman.git
-      cd sixdman
+      git clone https://github.com/UC3M-ONDT/SixGman.git
+      cd sixgman
       python -m venv .venv
       source .venv/bin/activate  # Linux/Mac
       .venv\Scripts\activate     # Windows
@@ -115,5 +115,5 @@ Code of Conduct
 ---------------
 
 Please note that this project follows the
-`Contributor Covenant Code of Conduct <https://github.com/UC3M-ONDT/SixDman/blob/main/CODE_OF_CONDUCT.md>`_.
+`Contributor Covenant Code of Conduct <https://github.com/UC3M-ONDT/SixGman/blob/main/CODE_OF_CONDUCT.md>`_.
 Be respectful and collaborative when interacting with the community.

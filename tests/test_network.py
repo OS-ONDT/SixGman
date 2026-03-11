@@ -15,10 +15,10 @@ import os
 # Navigate relative to the current working directory
 sys.path.append(os.path.abspath(src_dir))
 import pytest
-from sixdman.core.network import Network
+from sixgman.core.network import Network
 
 import pytest
-from sixdman.core.network import Network
+from sixgman.core.network import Network
 
 def test_network_initialization():
     """Test that a Network object can be initialized with a sample topology."""

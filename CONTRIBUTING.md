@@ -1,6 +1,6 @@
-# Contributing to SixDman
+# Contributing to SixGman
 
-Thank you for considering contributing to **SixDman**, a Python-based toolkit for optical network planning and simulation!  
+Thank you for considering contributing to **SixGman**, a Python-based toolkit for optical network planning and simulation!  
 We welcome contributions from the community to improve features, documentation, and performance.
 
 ---
@@ -32,8 +32,8 @@ There are several ways you can contribute:
    - **Clone your fork**
 
       ```bash
-      git clone https://github.com/your-username/SixDman.git
-      cd SixDman
+      git clone https://github.com/your-username/SixGman.git
+      cd SixGman
       ```
    
      ```bash
@@ -78,8 +78,8 @@ There are several ways you can contribute:
 1. Clone the repo and create a virtual environment:
 
    ```bash
-   git clone https://github.com/UC3M-ONDT/SixDman.git
-   cd sixdman
+   git clone https://github.com/UC3M-ONDT/SixGman.git
+   cd sixgman
    python -m venv .venv
    source .venv/bin/activate  # Linux/Mac
    .venv\Scripts\activate     # Windows

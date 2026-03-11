@@ -16,9 +16,9 @@ import os
 sys.path.append(os.path.abspath(src_dir))
 
 import pytest
-from sixdman.core.planning import PlanningTool
-from sixdman.core.network import Network
-from sixdman.core.band import Band, OpticalParameters
+from sixgman.core.planning import PlanningTool
+from sixgman.core.network import Network
+from sixgman.core.band import Band, OpticalParameters
 
 def c_band_params():
     """Fixture providing typical C-band parameters."""

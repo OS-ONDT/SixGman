@@ -12,7 +12,7 @@ Its primary responsibilities include:
 - Loading **link-level** and **transceiver-level (BVT)** metrics from saved simulation results.
 - Managing **results for multiple hierarchy levels** (HL2, HL3, HL4, etc.).
 - Providing structured access to **network simulation data** for further processing or visualization.
-- Acting as a **post-processing interface** for the SixDman planning framework.
+- Acting as a **post-processing interface** for the SixGman planning framework.
 
 Typical applications include:
 
@@ -25,7 +25,7 @@ Key Class
 
 analyse_result
 ~~~~~~~~~~~~~~
-.. autoclass:: sixdman.core.post_process.analyse_result
+.. autoclass:: sixgman.core.post_process.analyse_result
     :members:
     :special-members: __init__
     :undoc-members:

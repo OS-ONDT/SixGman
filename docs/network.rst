@@ -3,7 +3,7 @@ network Module
 
 The ``network`` module provides tools for **modeling optical network topologies**,
 loading them from different file formats, and preparing the data for
-**planning and simulation** in the SixDman toolkit.
+**planning and simulation** in the SixGman toolkit.
 
 Module Overview
 ----------------
@@ -22,7 +22,7 @@ Key Class
 Network
 ~~~~~~~~
 
-.. autoclass:: sixdman.core.network.Network
+.. autoclass:: sixgman.core.network.Network
     :members:
     :special-members: __init__
     :undoc-members:

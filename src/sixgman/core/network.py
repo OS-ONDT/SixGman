@@ -12,7 +12,7 @@ class Network:
     """A class representing an optical network topology and its properties.
     
     This class handles the network topology, hierarchical levels, and path computation
-    for the SixDman planning tool.
+    for the SixGman planning tool.
 
     Attributes:
         graph (nx.Graph): NetworkX graph representing the network topology graph.
@@ -32,7 +32,7 @@ class Network:
 
         Example
         ---------
-        >>> from sixdman.core.network import Network
+        >>> from sixgman.core.network import Network
         >>> net = Network("ExampleNetwork")
         """
         self.graph = nx.Graph()

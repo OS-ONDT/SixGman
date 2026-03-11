@@ -1,9 +1,9 @@
-# 🌐 SixDman: Optical Network Planning and Simulation Toolkit
+# 🌐 SixGman: Optical Network Planning and Simulation Toolkit
 
-SixDman is a **Python-based toolkit** for **optical network modeling, planning, and analysis**.  
+SixGman is a **Python-based toolkit** for **optical network modeling, planning, and analysis**.  
 It is designed for **researchers, telecom engineers, and students** working in **optical communication networks**.
 
-With SixDman, you can:
+With SixGman, you can:
 - 🏗 **Model optical networks** with nodes, links, and multiple wavelength bands.  
 - 📊 **Analyze optical performance** with configurable physical parameters.  
 - 📡 **Plan traffic routing & capacity allocation** for large-scale networks.  
@@ -26,9 +26,9 @@ With SixDman, you can:
 
 
 ```text
-sixdman/
-├── src/sixdman/core      # Core classes: Network, Band, PlanningTool
-├── src/sixdman/utils     # Utility functions and path handling
+sixgman/
+├── src/sixgman/core      # Core classes: Network, Band, PlanningTool
+├── src/sixgman/utils     # Utility functions and path handling
 ├── tests/                # Unit tests for each module
 ├── examples/             # Jupyter notebooks for simulation examples
 ├── data/                 # Example data files (.mat, .npz)
@@ -38,7 +38,7 @@ sixdman/
 ## 📖 Documentation
 
 Full project documentation is available at:  
-👉 [https://sixdman.readthedocs.io/en/latest/](https://sixdman.readthedocs.io/en/latest/)
+👉 [https://sixgman.readthedocs.io/en/latest/](https://sixgman.readthedocs.io/en/latest/)
 
 It includes:
 - Installation guide
@@ -61,27 +61,27 @@ It includes:
     .venv\Scripts\activate       # Windows
     
     # Install the package
-    pip install git+https://github.com/UC3M-ONDT/SixDman.git
+    pip install git+https://github.com/UC3M-ONDT/SixGman.git
     ```
 - Option 2: Using Conda (Recommended for data science users)  
 
   ```bash
   # Create a conda environment with Python 3.9+
-  conda create -n sixdman-env python=3.9 -y
+  conda create -n sixgman-env python=3.9 -y
   
   # Activate environment
-  conda activate sixdman-env
+  conda activate sixgman-env
   
   # Install the package
-  pip install git+https://github.com/UC3M-ONDT/SixDman.git
+  pip install git+https://github.com/UC3M-ONDT/SixGman.git
   ```
 2️⃣ Editable Install (Development Mode)
 
   Clone the repository:
   
   ```bash
-  git clone https://github.com/UC3M-ONDT/SixDman.git
-  cd sixdman
+  git clone https://github.com/UC3M-ONDT/SixGman.git
+  cd sixgman
   ```
 
 - Option 1: Using Python venv (Recommended for lightweight setup)
@@ -101,10 +101,10 @@ It includes:
 
   ```bash
   # Create a conda environment with Python 3.9+
-  conda create -n sixdman-env python=3.9 -y
+  conda create -n sixgman-env python=3.9 -y
   
   # Activate environment
-  conda activate sixdman-env
+  conda activate sixgman-env
   
   # Install in editable mode
   pip install -e .
