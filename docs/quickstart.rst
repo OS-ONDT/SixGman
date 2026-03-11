@@ -16,8 +16,8 @@ Navigate to the **examples/** directory and start Jupyter:
 
 You will find examples such as:
 
-- **MAN157_Singel_Level.ipynb** – Basic single-level network planning  
-- **MAN157_Total_Level_50G.ipynb** – Multi-level hierarchical network simulation
+- **MAN157_Singel_HL_Analysis.ipynb** – Basic single-level network planning  
+- **MAN157_Full_Hierarchical_50GHz.ipynb** – Multi-level hierarchical network simulation in 50GHz channel spacing
 
 Open a notebook and **run all cells** to see a full demo of:
 

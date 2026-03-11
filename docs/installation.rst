@@ -64,7 +64,7 @@ If you plan to **modify the code** or **contribute**, use editable mode.
 .. code-block:: bash
 
   git clone https://github.com/UC3M-ONDT/SixGman.git
-  cd sixgman
+  cd SixGman
 
 **Step 2: Create a virtual environment (Recommended)**
 

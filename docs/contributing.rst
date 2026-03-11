@@ -42,7 +42,7 @@ There are several ways you can contribute to SixGman:
       .. code-block:: bash
 
          git clone https://github.com/your-username/SixGman.git
-         cd sixgman
+         cd SixGman
 
     - **Create a branch**:
 
@@ -92,7 +92,7 @@ Running the Project Locally
    .. code-block:: bash
 
       git clone https://github.com/UC3M-ONDT/SixGman.git
-      cd sixgman
+      cd SixGman
       python -m venv .venv
       source .venv/bin/activate  # Linux/Mac
       .venv\Scripts\activate     # Windows
