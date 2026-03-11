@@ -56,7 +56,7 @@ There are several ways you can contribute to SixGman:
 
         .. code-block:: bash
 
-           git commit -m "Add SNR calculation for S-Band support"
+           git commit -m "Change QoT Estimation code for S-Band support"
 
     - **Push and open a Pull Request**:
 
