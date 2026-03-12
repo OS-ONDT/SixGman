@@ -26,7 +26,7 @@ With SixGman, you can:
 
 
 ```text
-sixgman/
+SixGman/
 ├── src/sixgman/core      # Core classes: Network, Band, PlanningTool
 ├── src/sixgman/utils     # Utility functions and path handling
 ├── tests/                # Unit tests for each module
