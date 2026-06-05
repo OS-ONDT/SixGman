@@ -61,7 +61,7 @@ It includes:
     .venv\Scripts\activate       # Windows
     
     # Install the package
-    pip install git+https://github.com/UC3M-ONDT/SixGman.git
+    pip install git+https://github.com/OS-ONDT/SixGman.git
     ```
 - Option 2: Using Conda (Recommended for data science users)  
 
@@ -73,14 +73,14 @@ It includes:
   conda activate sixgman-env
   
   # Install the package
-  pip install git+https://github.com/UC3M-ONDT/SixGman.git
+  pip install git+https://github.com/OS-ONDT/SixGman.git
   ```
 2️⃣ Editable Install (Development Mode)
 
   Clone the repository:
   
   ```bash
-  git clone https://github.com/UC3M-ONDT/SixGman.git
+  git clone https://github.com/OS-ONDT/SixGman.git
   cd sixgman
   ```
 
@@ -139,4 +139,4 @@ Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## 📧 Contact
 Maintainers: Matin Rafiei Forooshani, Farhad Arpanaei  
-Email: - matinrafiei007@gmail.com, - farhad.arpanaei@uc3m.es
+Email: - matinrafiei007@gmail.com, - farhad.arpanaei@OS.es

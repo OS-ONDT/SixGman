@@ -36,9 +36,9 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/UC3M-ONDT/SixDman.git"
-"Bug Tracker" = "https://github.com/UC3M-ONDT/SixDman/issues"
-"Documentation" = "https://github.com/UC3M-ONDT/SixDman#readme"
+"Homepage" = "https://github.com/OS-ONDT/SixDman.git"
+"Bug Tracker" = "https://github.com/OS-ONDT/SixDman/issues"
+"Documentation" = "https://github.com/OS-ONDT/SixDman#readme"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
