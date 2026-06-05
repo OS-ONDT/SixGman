@@ -39,7 +39,7 @@ html_theme = 'sphinx_book_theme'
 
 
 html_theme_options = {
-    "repository_url": "https://github.com/UC3M-ONDT/SixGman",
+    "repository_url": "https://github.com/OS-ONDT/SixGman",
     "use_repository_button": True,
     "use_edit_page_button": True,
     "path_to_docs": "docs",
