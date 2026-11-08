@@ -5,8 +5,6 @@ from .network import Network
 import matplotlib.pyplot as plt
 from itertools import accumulate
 
-# NoRep
-
 class analyse_result:
     """"
     A class for analyzing and managing results from hierarchical optical network simulations.
@@ -689,168 +687,345 @@ class analyse_result:
 
         return cost_df
     
+    def find_base_router_capacity(self, 
+                                  node_IDx: int, 
+                                  node_capacity_profile_annual: np.ndarray, 
+                                  reference_year: int,
+                                  reference_router_capacities: np.ndarray
+                                  ):
+        
+        """
+            Select the base capacity of IP router based on a traffic in a reference year.
+    
+            Args:
+            ---------
+                node_IDx (int): 
+                    IDx of the node that we want to find the base router for.
+                node_capacity_profile_annual (np.ndarray): 
+                    Traffic profile of nodes in the network 
+                reference_year (int): 
+                    The reference year that select the base capacity of IP router based on.
+                reference_router_capacities (np.ndarray):
+                    Array of different router types that can be deployed in the network.
+    
+            Output:
+            ---------
+                float: Choosen IP router capacity for the node
+                    
+            Example:
+            ---------
+            >>> analyser.find_base_router_capacity(
+            ...     node_IDx = 39, # Calc the base IP router capacity for node 30
+            ...     node_capacity_profile_annual = node_capacity_profile_annual,
+                    reference_year = 5, # the reference year for router selection is year 5
+                    reference_router_capacities = np.array([400, 800, 1600, 3200, 6400, 12800, 25600])
+            ... ) # Returns the base IP router for node 30
+    
+        """
+            
+        ref_traffic = node_capacity_profile_annual[reference_year - 1, node_IDx]
+        idx = np.searchsorted(reference_router_capacities, ref_traffic, side='left')
+        idx = idx if idx < len(reference_router_capacities) else len(reference_router_capacities) - 1
+        chosen_cap = reference_router_capacities[idx]
+        return chosen_cap
+        
+    def compute_electrical_latency(self, 
+                                    total_traffic_IP_node_Gbps: int, 
+                                    reference_capacity_Gbps: int,
+                                    Avg_Bytes_Packet: int = 1019, # in terms of btyes
+                                    packet_spike_variance: float = 1.3,
+                                    Pth_percentile: float = 0.99, 
+                                    processing_delay: float = 1, # in us, 
+                                    ):
+        
+        """
+        Computes the expected electrical latency and P-th percentile delay bound for an IP node.
+
+        This function estimates the total delay (queuing + service time) using queuing theory 
+        principles. If the incoming traffic exceeds the reference capacity, it assumes a 
+        load-balancing scenario where traffic is evenly split between two identical routers.
+
+        Args:
+        ---------
+            total_traffic_IP_node_Gbps (int): 
+                Total incoming traffic to the IP node in Gbps.
+            reference_capacity_Gbps (int): 
+                The processing capacity of a single router in Gbps.
+            Avg_Bytes_Packet (int, optional): 
+                Average size of an incoming packet in bytes. 
+                Defaults to 1019.
+            packet_spike_variance (float, optional): 
+                Variance multiplier used to account for bursty traffic in the expected queuing delay calculation. Defaults to 1.3.
+            Pth_percentile (float, optional): 
+                The target probability threshold for the worst-case delay bound (e.g., 0.99 for 99th percentile). Defaults to 0.99.
+            processing_delay (float, optional): 
+                Base processing delay in microseconds (µs). Defaults to 1. (Note: Currently unused in the mathematical calculation).
+
+        Output:
+        ---------
+            float: The P-th percentile worst-case delay bound (D_p) in nanoseconds.
+
+        Example:
+        ---------
+            >>> node = NetworkNode()
+            >>> delay = node.compute_electrical_latency(
+            ...     total_traffic_IP_node_Gbps=800,
+            ...     reference_capacity_Gbps=1000
+            ... )
+            >>> print(f"{delay:.2f}")
+            350.00
+        """
+        
+        if total_traffic_IP_node_Gbps < reference_capacity_Gbps:
+            utilization_factor = total_traffic_IP_node_Gbps / reference_capacity_Gbps
+        else: # apply load balancing, divide the traffic between two routers in the same capacities
+            utilization_factor = 0.5 * total_traffic_IP_node_Gbps / reference_capacity_Gbps
+        
+        # Calculate service time
+        E_X = Avg_Bytes_Packet * 8 / reference_capacity_Gbps # in terms of ns
+        
+        # Average queuing delay
+        E_W_q = E_X * (utilization_factor / (1 - utilization_factor)) * ((1 + packet_spike_variance) / 2)
+        
+        E_D = E_W_q + E_X
+        std_delay = E_D # in the exponentioal dist the average and standard deviation is equal
+        D_p = E_D + np.sqrt((4 / 9) * (1 / (1 - Pth_percentile))) * std_delay
+            
+        return D_p * 1e-3 + processing_delay
+    
     def compute_E2E_path_latency(self, 
-                                 node: int, 
-                                 latency_core_array: np.ndarray, 
-                                 destination_core_array: np.ndarray,
-                                 processing_level_list: list,
-                                 ):
+                                    node: int, 
+                                    latency_core_array_SA_global: np.ndarray, 
+                                    destination_core_array_SA_global: np.ndarray,
+                                    latency_core_array_co_global: np.ndarray, 
+                                    destination_core_array_co_global: np.ndarray,
+                                    processing_level_list: list,
+                                    hierarchy_level_src: int, 
+                                    node_capacity_profile_annual: np.ndarray, 
+                                    node_cap_index_list: list,
+                                    reference_year: int, 
+                                    reference_router_capacities: np.ndarray, 
+                                    year: int, 
+                                    Avg_Bytes_Packet: int = 1019, 
+                                    packet_spike_variance: float = 1.3,
+                                    Pth_percentile: float = 0.99, 
+                                    processing_delay: float = 1, 
+                                    ):
         """
         Recursively compute all possible end-to-end (E2E) latency paths from a given core node 
         to its higher-level (top-hierarchy) destination nodes.
 
         This method traces both primary and secondary (dual-home) connectivity paths defined 
-        in the input arrays, accumulating the total propagation latency along each possible route.
-        The computation proceeds recursively through hierarchy levels (e.g., HL4 → HL3 → HL2 → HL1),
-        until reaching the top-level standalone HL nodes.
-
-        Latency is assumed to be precomputed for each direct connection (typically derived from 
-        the physical link distance multiplied by a latency constant, e.g., 5 µs/km).
+        in the input arrays, accumulating the total propagation latency and electrical latency 
+        along each possible route. The computation proceeds recursively through hierarchy levels 
+        until reaching the top-level nodes.
 
         Args:
-        --------
-            node (int):
-                Index of the starting node (e.g., a lower-level core or access node).
-            
-            latency_core_array (np.ndarray):
-                2D or ragged array where each element `[i]` stores the per-path latency values 
-                (in microseconds) from node `i` to its directly connected higher-level nodes.
-
-            destination_core_array (np.ndarray):
-                2D or ragged array where each element `[i]` contains the destination node indices 
-                corresponding to the latency entries in `latency_core_array[i]`.
-
-            processing_level_list (List[int]):
-                Ordered list of hierarchy levels (e.g., `[1, 2, 3, 4]`) used to determine 
-                when recursion should terminate (the top-level HL layer).
-
-        Output:
         ---------
-            List[Tuple[List[int], float]]:
-                A list of tuples, where each tuple represents:
-                    - `path_list` (List[int]): Node sequence along the E2E path.
-                    - `total_latency` (float): Total accumulated latency in microseconds.
+            node (int): 
+                The index of the current node.
+            latency_core_array_SA_global (np.ndarray): 
+                Precomputed hop latencies for standalone nodes.
+            destination_core_array_SA_global (np.ndarray): 
+                Destination mappings for standalone nodes.
+            latency_core_array_co_global (np.ndarray): 
+                Precomputed hop latencies for central office nodes.
+            destination_core_array_co_global (np.ndarray): 
+                Destination mappings for central office nodes.
+            processing_level_list (list): 
+                List of network hierarchy levels (e.g., [4, 3, 2, 1]).
+            hierarchy_level_src (int): 
+                The hierarchy level of the current source node.
+            node_capacity_profile_annual (np.ndarray): 
+                Annual traffic profiles for all nodes.
+            node_cap_index_list (list): 
+                Indices mapping hierarchy levels to traffic profiles.
+            reference_year (int): 
+                The baseline year for capacity planning.
+            reference_router_capacities (np.ndarray): 
+                Available router capacities to match against.
+            year (int): 
+                The specific year for which the latency is being calculated.
+            Avg_Bytes_Packet (int, optional): 
+                Average packet size in bytes. Defaults to 1019.
+            packet_spike_variance (float, optional): 
+                Variance multiplier for bursty traffic. Defaults to 1.3.
+            Pth_percentile (float, optional): 
+                Target probability threshold for latency bound. Defaults to 0.99.
+            processing_delay (float, optional): 
+                Base processing delay in microseconds. Defaults to 1.
 
-        Notes:
-        --------
-            - The recursion terminates when the current node belongs to the top hierarchy 
-            - Latencies are cumulative: the function sums hop latencies at each recursion step.
-            - The function supports dual-homing scenarios by computing both primary and secondary paths defined in `destination_core_array`.
-            - The latency constant (e.g., 5 µs/km) should be applied during the construction of `latency_core_array` prior to calling this method.
+        Outputs:
+        ---------
+            list: A list of tuples, where each tuple contains (path_list, total_latency).
+                Example: [([node1, node2, node3], 450.5), ...]
 
         Example:
-            >>> # Suppose each km adds 5 µs latency, and HL4 nodes connect upward
-            >>> results = planner.compute_E2E_path_latency(
-            ...     node=10,
-            ...     latency_core_array=latency_core_array,
-            ...     destination_core_array=destination_core_array,
-            ...     processing_level_list=[1, 2, 3, 4]
+        ---------
+            >>> # Assuming 'self' is an instantiated network object
+            >>> paths = self.compute_E2E_path_latency(
+            ...     node=5, latency_core_array_SA_global=lat_SA, destination_core_array_SA_global=dest_SA,
+            ...     latency_core_array_co_global=lat_CO, destination_core_array_co_global=dest_CO,
+            ...     processing_level_list=[4, 3, 2, 1], hierarchy_level_src=4,
+            ...     node_capacity_profile_annual=traffic_profile, node_cap_index_list=[0, 1, 2, 3],
+            ...     reference_year=2024, reference_router_capacities=router_caps, year=2026
             ... )
-            >>> for path, latency in results:
-            ...     print(f"Path: {path}, Total Latency: {latency:.2f} µs")
-            Path: [10, 8, 5, 1], Total Latency: 1040.0 µs
-            Path: [10, 7, 3, 1], Total Latency: 960.0 µs
+            >>> print(paths[0])
+            ([5, 12, 0], 1250.75)
         """
-    
-        lat = latency_core_array[node]
-        dests = destination_core_array[node]
-
-        Final_dests = self.network.hierarchical_levels[f'HL{processing_level_list[-1] - 1}']['standalone']
-        # Base case: scalar latency or top-level node (0 or 1)
-        if isinstance(lat, (int, float, np.float64)) or node in Final_dests:
-            return [([node], float(lat))]
+        hl_src_idx = np.where(np.array(processing_level_list) == hierarchy_level_src)[0][0]
+        node_name_in_hl = self.network.all_nodes[node]
+        if self.network.get_standalone_hierarchy_level(node_name_in_hl) == hierarchy_level_src:
+            lat_paths = latency_core_array_SA_global[hl_src_idx][node]
+            dests = destination_core_array_SA_global[hl_src_idx][node]
+            if dests == 0:
+                dests = ()
+        else:
+            lat_paths = latency_core_array_co_global[hl_src_idx][node]
+            dests = destination_core_array_co_global[hl_src_idx][node]
+            if dests == 0:
+                dests = ()
+            
+        node_capacity_profile_annual_hl = node_capacity_profile_annual[:, :, node_cap_index_list[hl_src_idx]]
 
         results = []
         for i, d in enumerate(dests):
-            hop_latency = float(lat[i])
             d = int(d)
-            # Direct connection to top-level
-            if d in Final_dests:
-                results.append(([node, d], hop_latency))
-            else:
-                # Recursive call
-                subpaths = self.compute_E2E_path_latency(d, latency_core_array, destination_core_array, processing_level_list)
-                for subpath, sublat in subpaths:
-                    results.append(([node] + subpath, hop_latency + sublat))
+            if d != -1: # check for not valid destinations
+                hop_latency = float(lat_paths[i])
+                base_cap_router = self.find_base_router_capacity(node_IDx = d, 
+                                                                node_capacity_profile_annual = node_capacity_profile_annual_hl, 
+                                                                reference_year = reference_year, 
+                                                                reference_router_capacities = reference_router_capacities)
+                
+                total_traffic_dest = node_capacity_profile_annual_hl[year - 1, d]
+                electrical_latency = self.compute_electrical_latency(total_traffic_IP_node_Gbps = total_traffic_dest, 
+                                                                    reference_capacity_Gbps = base_cap_router, 
+                                                                    Avg_Bytes_Packet = Avg_Bytes_Packet, 
+                                                                    Pth_percentile = Pth_percentile, 
+                                                                    packet_spike_variance = packet_spike_variance, 
+                                                                    processing_delay = processing_delay)
+                
+
+                if hierarchy_level_src != processing_level_list[-1]:
+                    # Recursive call
+                    subpaths = self.compute_E2E_path_latency(d, latency_core_array_SA_global, destination_core_array_SA_global, latency_core_array_co_global, 
+                                                                destination_core_array_co_global, processing_level_list, processing_level_list[hl_src_idx + 1], 
+                                                                node_capacity_profile_annual, node_cap_index_list, reference_year, reference_router_capacities, year)
+                    for subpath, sublat in subpaths:
+                        results.append(([node] + subpath, hop_latency + sublat + electrical_latency))
+                else:
+                    results.append(([node, d], hop_latency + electrical_latency))
                     
         return results
 
     def calc_E2E_latency_Total(self, 
-                                latency_core_array: np.ndarray, 
-                                destination_core_array: np.ndarray,
+                                latency_core_array_SA_global: np.ndarray, 
+                                destination_core_array_SA_global: np.ndarray,
+                                latency_core_array_co_global: np.ndarray, 
+                                destination_core_array_co_global: np.ndarray,
                                 processing_level_list: list,
                                 save_flag: int, 
-                                save_suffix: str = ""):
-        
+                                node_capacity_profile_annual: np.ndarray, 
+                                node_cap_index_list: list,
+                                reference_year: int, 
+                                reference_router_capacities: np.ndarray, 
+                                year: int, 
+                                Avg_Bytes_Packet: int = 1019, 
+                                packet_spike_variance: float = 1.3,
+                                Pth_percentile: float = 0.99, 
+                                processing_delay: float = 1,
+                                save_suffix: str = ""
+                                ):
         """
         Compute and optionally save the total end-to-end (E2E) latency from the lowest 
-        hierarchy-level nodes (e.g., HL4) up to the top-level core nodes (e.g., HL1).
+        hierarchy-level nodes up to the top-level core nodes.
 
         This function iterates over all nodes at the lowest hierarchy level and calls 
-        :func:`compute_E2E_path_latency` recursively to determine the cumulative latency 
-        of all possible paths to top-level destinations. The latency values are derived 
-        from the propagation delay (e.g., 5 µs/km) stored in `latency_core_array` and 
-        additional per-level processing delays (default: 200 µs per hierarchy level).
-
-        The resulting latencies can optionally be saved to a compressed NumPy `.npz` file.
+        `compute_E2E_path_latency` recursively to determine the cumulative latency of all 
+        possible paths. Results can be saved to a `.npz` file.
 
         Args:
         ---------
-            latency_core_array (np.ndarray):
-                Array of per-node propagation latencies (in microseconds), where each element `[i]` contains a list or array of hop latencies from node `i` to its higher-level destination nodes.  
+            latency_core_array_SA_global (np.ndarray): 
+                Precomputed hop latencies for SA nodes.
+            destination_core_array_SA_global (np.ndarray): 
+                Destination mappings for SA nodes.
+            latency_core_array_co_global (np.ndarray): 
+                Precomputed hop latencies for CO nodes.
+            destination_core_array_co_global (np.ndarray): 
+                Destination mappings for CO nodes.
+            processing_level_list (list): 
+                List of network hierarchy levels (e.g., [4, 3, 2, 1]).
+            save_flag (int): 
+                1 to save the resulting array to disk, 0 otherwise.
+            node_capacity_profile_annual (np.ndarray): 
+                Annual traffic profiles for all nodes.
+            node_cap_index_list (list): 
+                Indices mapping hierarchy levels to traffic profiles.
+            reference_year (int): 
+                The baseline year for capacity planning.
+            reference_router_capacities (np.ndarray): 
+                Available router capacities to match against.
+            year (int): 
+                The specific year for which the latency is being calculated.
+            Avg_Bytes_Packet (int, optional): 
+                Average packet size in bytes. Defaults to 1019.
+            packet_spike_variance (float, optional): 
+                Variance multiplier for bursty traffic. Defaults to 1.3.
+            Pth_percentile (float, optional): 
+                Target probability threshold for latency bound. Defaults to 0.99.
+            processing_delay (float, optional): 
+                Base processing delay in microseconds. Defaults to 1.
+            save_suffix (str, optional): 
+                Suffix appended to the saved file name. Defaults to "".
 
-            destination_core_array (np.ndarray):
-                Array of per-node destination indices, corresponding one-to-one with `latency_core_array`.  
-
-            processing_level_list (list[int]):
-                Ordered list of hierarchy levels (e.g., `[4, 3, 2, 1]`) defining the traversal path from lowest to highest hierarchical layer. The function assumes the first element (e.g., 4) represents the lowest hierarchy level to start from.
-
-            save_flag (int):
-                If set to `1`, saves the computed latency results to disk as a compressed `.npz` file.  
-                If `0`, results are only returned.
-
-            save_suffix (str, optional):
-                Optional suffix to append to the output filename. For example, if `save_suffix='_test'`, the saved file will be named: `{topology_name}_latency_test.npz`.
-
-        Output:
-        --------
-            np.ndarray:
-                A 1D NumPy array containing the total end-to-end latency (in microseconds) for each lowest-level node path.
-
-        Notes:
+        Outputs:
         ---------
-            - Each end-to-end latency value includes: **1. Propagation latency** accumulated over the full path. **2. Processing overhead** added per hierarchy transition (default: 200 µs per hop).
-            - The recursion terminates at the top-level standalone HL nodes, as defined in `processing_level_list`.
-            - Saving the results is optional and controlled by `save_flag`.
+            np.ndarray: A 1D array containing the total latencies of all E2E paths found.
 
         Example:
         ---------
-            >>> E2E_latencies = planner.calc_E2E_latency_Total(
-            ...     latency_core_array=latency_core_array,
-            ...     destination_core_array=destination_core_array,
-            ...     processing_level_list=[4, 3, 2, 1],
-            ...     save_flag=1,
-            ...     save_suffix="_final"
+            >>> # Assuming 'self' is an instantiated network object
+            >>> total_latencies = self.calc_E2E_latency_Total(
+            ...     latency_core_array_SA_global=lat_SA, destination_core_array_SA_global=dest_SA,
+            ...     latency_core_array_co_global=lat_CO, destination_core_array_co_global=dest_CO,
+            ...     processing_level_list=[4, 3, 2, 1], save_flag=1,
+            ...     node_capacity_profile_annual=traffic_profile, node_cap_index_list=[0, 1, 2, 3],
+            ...     reference_year=2024, reference_router_capacities=router_caps, year=2026
             ... )
-            >>> print(f"Average E2E latency: {np.mean(E2E_latencies):.2f} µs")
-            Average E2E latency: 940.23 µs
+            >>> print(total_latencies[:3])
+            [1250.75 1310.20 1405.00]
         """
-    
-        # HLx hierarchy is traversed top-down; HL4 assumed to be the lowest
+        # HLx hierarchy is traversed top-down; 
         minimum_hierarchy_level = processing_level_list[0]
         minimum_HL_nodes = self.network.hierarchical_levels[f'HL{minimum_hierarchy_level}']['standalone']
         
         E2E_latency_list = []
         
-        for HL_node in minimum_HL_nodes:
-            latency_list = self.compute_E2E_path_latency(HL_node,
-                                                        latency_core_array,
-                                                        destination_core_array,
-                                                        processing_level_list)
-            
+        for HL_node_IDx in range(len(np.where(np.isin(self.network.all_nodes, minimum_HL_nodes))[0])):
+            HL_node_in_net = np.where(np.isin(self.network.all_nodes, minimum_HL_nodes))[0][HL_node_IDx]
+            HL_node = minimum_HL_nodes[HL_node_IDx]
+            hierarchy_level_src = self.network.get_standalone_hierarchy_level(HL_node)
+            latency_list = self.compute_E2E_path_latency(HL_node_in_net,
+                                                        latency_core_array_SA_global,
+                                                        destination_core_array_SA_global,
+                                                        latency_core_array_co_global,
+                                                        destination_core_array_co_global,
+                                                        processing_level_list, 
+                                                        hierarchy_level_src,
+                                                        node_capacity_profile_annual, 
+                                                        node_cap_index_list,
+                                                        reference_year, 
+                                                        reference_router_capacities, 
+                                                        year, 
+                                                        Avg_Bytes_Packet, 
+                                                        packet_spike_variance, 
+                                                        Pth_percentile, 
+                                                        processing_delay)
+                
             for i in range(len(latency_list)):
-                _, latency = latency_list[i]
-                latency += 200 * (len(processing_level_list) + 1)  # Add processing delay per hop
+                _, latency = latency_list[i]                    
                 E2E_latency_list.append(latency)
                 
         E2E_latency_list = np.array(E2E_latency_list)
@@ -863,4 +1038,165 @@ class analyse_result:
             )
 
         return E2E_latency_list
+    
+    def compute_E2E_path_distance(self, 
+                                    node: int, 
+                                    latency_core_array_SA_global: np.ndarray, 
+                                    destination_core_array_SA_global: np.ndarray,
+                                    latency_core_array_co_global: np.ndarray, 
+                                    destination_core_array_co_global: np.ndarray,
+                                    processing_level_list: list,
+                                    hierarchy_level_src: int):
+        """
+        Recursively compute all possible end-to-end (E2E) physical distances from a given core node 
+        to its higher-level (top-hierarchy) destination nodes.
+
+        This method traces connectivity paths and calculates the distance by converting 
+        precomputed hop latencies back into physical distances (assuming a constant of 5 µs/km).
+        The computation proceeds recursively through hierarchy levels until reaching 
+        the top-level nodes.
+
+        Args:
+        ---------
+            node (int): 
+                The index of the current node.
+            latency_core_array_SA_global (np.ndarray): 
+                Precomputed hop latencies for SA nodes.
+            destination_core_array_SA_global (np.ndarray): 
+                Destination mappings for SA nodes.
+            latency_core_array_co_global (np.ndarray): 
+                Precomputed hop latencies for CO nodes.
+            destination_core_array_co_global (np.ndarray): 
+                Destination mappings for CO nodes.
+            processing_level_list (list): 
+                List of network hierarchy levels (e.g., [4, 3, 2, 1]).
+            hierarchy_level_src (int): 
+                The hierarchy level of the current source node.
+
+        Outputs:
+        ---------
+            list: A list of tuples, where each tuple contains (path_list, total_distance_km).
+                Example: [([node1, node2, node3], 250.5), ...]
+
+        Example:
+        ---------
+            >>> # Assuming 'self' is an instantiated network object
+            >>> distances = self.compute_E2E_path_distance(
+            ...     node=5, latency_core_array_SA_global=lat_SA, destination_core_array_SA_global=dest_SA,
+            ...     latency_core_array_co_global=lat_CO, destination_core_array_co_global=dest_CO,
+            ...     processing_level_list=[4, 3, 2, 1], hierarchy_level_src=4
+            ... )
+            >>> print(distances[0])
+            ([5, 12, 0], 250.15)
+        """
+        hl_src_idx = np.where(np.array(processing_level_list) == hierarchy_level_src)[0][0]
+        if self.network.get_standalone_hierarchy_level(node) == hierarchy_level_src:
+            lat_paths = latency_core_array_SA_global[hl_src_idx][node]
+            dests = destination_core_array_SA_global[hl_src_idx][node]
+            if dests == 0:
+                dests = ()
+        else:
+            lat_paths = latency_core_array_co_global[hl_src_idx][node]
+            dests = destination_core_array_co_global[hl_src_idx][node]
+            if dests == 0:
+                dests = ()
+            
+        results = []
+        for i, d in enumerate(dests):
+            d = int(d)
+            if d != -1: # check for not valid destinations
+                hop_dist = float(lat_paths[i]) / 5
+                if hierarchy_level_src != processing_level_list[-1]:
+                    # Recursive call
+                    subpaths = self.compute_E2E_path_distance(d, latency_core_array_SA_global, destination_core_array_SA_global, latency_core_array_co_global, 
+                                                                destination_core_array_co_global, processing_level_list, processing_level_list[hl_src_idx + 1])
+                    
+                    for subpath, subdist in subpaths:
+                        results.append(([node] + subpath, hop_dist + subdist))
+                else:
+                    results.append(([node, d], hop_dist))
+                    
+        return results
+
+    def calc_E2E_distance_Total(self, 
+                                latency_core_array_SA_global: np.ndarray, 
+                                destination_core_array_SA_global: np.ndarray,
+                                latency_core_array_co_global: np.ndarray, 
+                                destination_core_array_co_global: np.ndarray,
+                                processing_level_list: list,
+                                save_flag: int, 
+                                save_suffix: str = ""
+                                ):
+        """
+        Compute and optionally save the total end-to-end (E2E) distance from the lowest 
+        hierarchy-level nodes up to the top-level core nodes.
+
+        This function iterates over all nodes at the lowest hierarchy level and calls 
+        `compute_E2E_path_distance` recursively to determine the cumulative physical distance 
+        of all possible paths. The distances are extracted by converting the propagation delays 
+        stored in `latency_core_array_...` back to kilometers.
+
+        Args:
+        ---------
+            latency_core_array_SA_global (np.ndarray): 
+                Precomputed hop latencies for SA nodes.
+            destination_core_array_SA_global (np.ndarray): 
+                Destination mappings for SA nodes.
+            latency_core_array_co_global (np.ndarray): 
+                Precomputed hop latencies for CO nodes.
+            destination_core_array_co_global (np.ndarray): 
+                Destination mappings for CO nodes.
+            processing_level_list (list): 
+                List of network hierarchy levels (e.g., [4, 3, 2, 1]).
+            save_flag (int): 
+                1 to save the resulting array to disk, 0 otherwise.
+            save_suffix (str, optional): 
+                Suffix appended to the saved file name. Defaults to "".
+
+        Outputs:
+        ---------
+            np.ndarray: A 1D array containing the total distances (in km) of all E2E paths found.
+
+        Example:
+        ---------
+            >>> # Assuming 'self' is an instantiated network object
+            >>> total_distances = self.calc_E2E_distance_Total(
+            ...     latency_core_array_SA_global=lat_SA, destination_core_array_SA_global=dest_SA,
+            ...     latency_core_array_co_global=lat_CO, destination_core_array_co_global=dest_CO,
+            ...     processing_level_list=[4, 3, 2, 1], save_flag=1
+            ... )
+            >>> print(total_distances[:3])
+            [250.15 262.04 281.00]
+        """
+        # HLx hierarchy is traversed top-down; 
+        minimum_hierarchy_level = processing_level_list[0]
+        minimum_HL_nodes = self.network.hierarchical_levels[f'HL{minimum_hierarchy_level}']['standalone']
+        
+        E2E_distance_list = []
+        for HL_node_IDx in range(len(np.where(np.isin(self.network.all_nodes, minimum_HL_nodes))[0])):
+            HL_node_in_net = np.where(np.isin(self.network.all_nodes, minimum_HL_nodes))[0][HL_node_IDx]
+            HL_node = minimum_HL_nodes[HL_node_IDx]               
+            hierarchy_level_src = self.network.get_standalone_hierarchy_level(HL_node)
+            dist_list = self.compute_E2E_path_distance(HL_node_in_net,
+                                                        latency_core_array_SA_global,
+                                                        destination_core_array_SA_global,
+                                                        latency_core_array_co_global,
+                                                        destination_core_array_co_global,
+                                                        processing_level_list, 
+                                                        hierarchy_level_src)
+                
+            for i in range(len(dist_list)):
+                _, latency = dist_list[i]                    
+                E2E_distance_list.append(latency)
+                
+        E2E_distance_list = np.array(E2E_distance_list)
+
+        # Optional: Save to disk in compressed format
+        if save_flag:
+            np.savez_compressed(
+                self.save_directory / f"{self.network.topology_name}_E2E_distance{save_suffix}.npz",
+                latency = E2E_distance_list
+            )
+
+        return E2E_distance_list
 
