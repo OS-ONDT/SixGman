@@ -141,6 +141,8 @@ class Network:
                 self.all_links[:, 2] if len(self.all_links) > 0 else np.array([])
             )
 
+            self.all_nodes = np.array(list(self.graph.nodes))
+            
             return self.graph
 
         except Exception as e:
@@ -257,7 +259,7 @@ class Network:
             
             
         """
-        for level_name in ['HL2', 'HL3', 'HL4']:
+        for level_name in list(self.hierarchical_levels.keys()):
             if node in self.hierarchical_levels[level_name]['standalone']:
                 level_number = level_name.replace('HL', '') if isinstance(level_name, str) else level_name
                 return int(level_number)
