@@ -14,10 +14,17 @@ Navigate to the **examples/** directory and start Jupyter:
 
    jupyter notebook examples/
 
-You will find examples such as:
+Inside the examples directory, you will find:
 
-- **MAN157_Singel_HL_Analysis.ipynb** – Basic single-level network planning  
-- **MAN157_Full_Hierarchical_50GHz.ipynb** – Multi-level hierarchical network simulation in 50GHz channel spacing
+- 
+**MAN157/** – Simulation scripts for the MAN157 topology.
+- 
+**TEFNET24/** – Simulation scripts for the TEFNET24 topology.
+
+*(Inside each of these topology folders, the scripts for different CAGRs are separated for both the full hierarchical and HL3 bypassed scenarios.)*
+
+- 
+**journal_plots.ipynb** – Located alongside the MAN157 and TEFNET24 directories, this script contains all the visualization graphs for the JOCN manuscript.
 
 Open a notebook and **run all cells** to see a full demo of:
 
