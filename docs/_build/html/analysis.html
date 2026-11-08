@@ -397,8 +397,12 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.plot_FP_degree"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_FP_degree()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.plot_bvt_license"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_bvt_license()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.calc_cost"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_cost()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.find_base_router_capacity"><code class="docutils literal notranslate"><span class="pre">analyse_result.find_base_router_capacity()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.compute_electrical_latency"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_electrical_latency()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_latency"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_E2E_path_latency()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.calc_E2E_latency_Total"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_E2E_latency_Total()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_distance"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_E2E_path_distance()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.calc_E2E_distance_Total"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_E2E_distance_Total()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -847,30 +851,20 @@ nodal degree evolution and bandwidth resource demands (e.g., BVTs, licenses).</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.compute_E2E_path_latency">
-<span class="sig-name descname"><span class="pre">compute_E2E_path_latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_latency" title="Link to this definition">#</a></dt>
-<dd><p>Recursively compute all possible end-to-end (E2E) latency paths from a given core node
-to its higher-level (top-hierarchy) destination nodes.</p>
-<p>This method traces both primary and secondary (dual-home) connectivity paths defined
-in the input arrays, accumulating the total propagation latency along each possible route.
-The computation proceeds recursively through hierarchy levels (e.g., HL4 → HL3 → HL2 → HL1),
-until reaching the top-level standalone HL nodes.</p>
-<p>Latency is assumed to be precomputed for each direct connection (typically derived from
-the physical link distance multiplied by a latency constant, e.g., 5 µs/km).</p>
+<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.find_base_router_capacity">
+<span class="sig-name descname"><span class="pre">find_base_router_capacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_IDx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_capacity_profile_annual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_router_capacities</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.find_base_router_capacity" title="Link to this definition">#</a></dt>
+<dd><p>Select the base capacity of IP router based on a traffic in a reference year.</p>
 <section id="id19">
 <h4>Args:<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
-<dt>node (int):</dt><dd><p>Index of the starting node (e.g., a lower-level core or access node).</p>
+<dt>node_IDx (int):</dt><dd><p>IDx of the node that we want to find the base router for.</p>
 </dd>
-<dt>latency_core_array (np.ndarray):</dt><dd><p>2D or ragged array where each element <cite>[i]</cite> stores the per-path latency values
-(in microseconds) from node <cite>i</cite> to its directly connected higher-level nodes.</p>
+<dt>node_capacity_profile_annual (np.ndarray):</dt><dd><p>Traffic profile of nodes in the network</p>
 </dd>
-<dt>destination_core_array (np.ndarray):</dt><dd><p>2D or ragged array where each element <cite>[i]</cite> contains the destination node indices
-corresponding to the latency entries in <cite>latency_core_array[i]</cite>.</p>
+<dt>reference_year (int):</dt><dd><p>The reference year that select the base capacity of IP router based on.</p>
 </dd>
-<dt>processing_level_list (List[int]):</dt><dd><p>Ordered list of hierarchy levels (e.g., <cite>[1, 2, 3, 4]</cite>) used to determine
-when recursion should terminate (the top-level HL layer).</p>
+<dt>reference_router_capacities (np.ndarray):</dt><dd><p>Array of different router types that can be deployed in the network.</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -878,70 +872,45 @@ when recursion should terminate (the top-level HL layer).</p>
 <section id="id20">
 <h4>Output:<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
 <blockquote>
-<div><dl class="simple">
-<dt>List[Tuple[List[int], float]]:</dt><dd><dl class="simple">
-<dt>A list of tuples, where each tuple represents:</dt><dd><ul class="simple">
-<li><p><cite>path_list</cite> (List[int]): Node sequence along the E2E path.</p></li>
-<li><p><cite>total_latency</cite> (float): Total accumulated latency in microseconds.</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
+<div><p>float: Choosen IP router capacity for the node</p>
 </div></blockquote>
 </section>
 <section id="id21">
-<h4>Notes:<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
-<blockquote>
-<div><ul class="simple">
-<li><p>The recursion terminates when the current node belongs to the top hierarchy</p></li>
-<li><p>Latencies are cumulative: the function sums hop latencies at each recursion step.</p></li>
-<li><p>The function supports dual-homing scenarios by computing both primary and secondary paths defined in <cite>destination_core_array</cite>.</p></li>
-<li><p>The latency constant (e.g., 5 µs/km) should be applied during the construction of <cite>latency_core_array</cite> prior to calling this method.</p></li>
-</ul>
-</div></blockquote>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Suppose each km adds 5 µs latency, and HL4 nodes connect upward</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">compute_E2E_path_latency</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">node</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">latency_core_array</span><span class="o">=</span><span class="n">latency_core_array</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">destination_core_array</span><span class="o">=</span><span class="n">destination_core_array</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">processing_level_list</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">latency</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">, Total Latency: </span><span class="si">{</span><span class="n">latency</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> µs&quot;</span><span class="p">)</span>
-<span class="go">Path: [10, 8, 5, 1], Total Latency: 1040.0 µs</span>
-<span class="go">Path: [10, 7, 3, 1], Total Latency: 960.0 µs</span>
+<h4>Example:<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">analyser</span><span class="o">.</span><span class="n">find_base_router_capacity</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">node_IDx</span> <span class="o">=</span> <span class="mi">39</span><span class="p">,</span> <span class="c1"># Calc the base IP router capacity for node 30</span>
+<span class="gp">... </span>    <span class="n">node_capacity_profile_annual</span> <span class="o">=</span> <span class="n">node_capacity_profile_annual</span><span class="p">,</span>
+<span class="go">        reference_year = 5, # the reference year for router selection is year 5</span>
+<span class="go">        reference_router_capacities = np.array([400, 800, 1600, 3200, 6400, 12800, 25600])</span>
+<span class="go">... ) # Returns the base IP router for node 30</span>
 </pre></div>
 </div>
 </section>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.calc_E2E_latency_Total">
-<span class="sig-name descname"><span class="pre">calc_E2E_latency_Total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latency_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.calc_E2E_latency_Total" title="Link to this definition">#</a></dt>
-<dd><p>Compute and optionally save the total end-to-end (E2E) latency from the lowest
-hierarchy-level nodes (e.g., HL4) up to the top-level core nodes (e.g., HL1).</p>
-<p>This function iterates over all nodes at the lowest hierarchy level and calls
-<a class="reference internal" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_latency" title="sixgman.core.post_process.analyse_result.compute_E2E_path_latency"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_E2E_path_latency()</span></code></a> recursively to determine the cumulative latency
-of all possible paths to top-level destinations. The latency values are derived
-from the propagation delay (e.g., 5 µs/km) stored in <cite>latency_core_array</cite> and
-additional per-level processing delays (default: 200 µs per hierarchy level).</p>
-<p>The resulting latencies can optionally be saved to a compressed NumPy <cite>.npz</cite> file.</p>
+<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.compute_electrical_latency">
+<span class="sig-name descname"><span class="pre">compute_electrical_latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_traffic_IP_node_Gbps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_capacity_Gbps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Avg_Bytes_Packet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1019</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_spike_variance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pth_percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.compute_electrical_latency" title="Link to this definition">#</a></dt>
+<dd><p>Computes the expected electrical latency and P-th percentile delay bound for an IP node.</p>
+<p>This function estimates the total delay (queuing + service time) using queuing theory
+principles. If the incoming traffic exceeds the reference capacity, it assumes a
+load-balancing scenario where traffic is evenly split between two identical routers.</p>
 <section id="id22">
 <h4>Args:<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
 <blockquote>
 <div><dl class="simple">
-<dt>latency_core_array (np.ndarray):</dt><dd><p>Array of per-node propagation latencies (in microseconds), where each element <cite>[i]</cite> contains a list or array of hop latencies from node <cite>i</cite> to its higher-level destination nodes.</p>
+<dt>total_traffic_IP_node_Gbps (int):</dt><dd><p>Total incoming traffic to the IP node in Gbps.</p>
 </dd>
-<dt>destination_core_array (np.ndarray):</dt><dd><p>Array of per-node destination indices, corresponding one-to-one with <cite>latency_core_array</cite>.</p>
+<dt>reference_capacity_Gbps (int):</dt><dd><p>The processing capacity of a single router in Gbps.</p>
 </dd>
-<dt>processing_level_list (list[int]):</dt><dd><p>Ordered list of hierarchy levels (e.g., <cite>[4, 3, 2, 1]</cite>) defining the traversal path from lowest to highest hierarchical layer. The function assumes the first element (e.g., 4) represents the lowest hierarchy level to start from.</p>
+<dt>Avg_Bytes_Packet (int, optional):</dt><dd><p>Average size of an incoming packet in bytes.
+Defaults to 1019.</p>
 </dd>
-<dt>save_flag (int):</dt><dd><p>If set to <cite>1</cite>, saves the computed latency results to disk as a compressed <cite>.npz</cite> file.
-If <cite>0</cite>, results are only returned.</p>
+<dt>packet_spike_variance (float, optional):</dt><dd><p>Variance multiplier used to account for bursty traffic in the expected queuing delay calculation. Defaults to 1.3.</p>
 </dd>
-<dt>save_suffix (str, optional):</dt><dd><p>Optional suffix to append to the output filename. For example, if <cite>save_suffix=’_test’</cite>, the saved file will be named: <cite>{topology_name}_latency_test.npz</cite>.</p>
+<dt>Pth_percentile (float, optional):</dt><dd><p>The target probability threshold for the worst-case delay bound (e.g., 0.99 for 99th percentile). Defaults to 0.99.</p>
+</dd>
+<dt>processing_delay (float, optional):</dt><dd><p>Base processing delay in microseconds (µs). Defaults to 1. (Note: Currently unused in the mathematical calculation).</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -949,33 +918,267 @@ If <cite>0</cite>, results are only returned.</p>
 <section id="id23">
 <h4>Output:<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
 <blockquote>
+<div><p>float: The P-th percentile worst-case delay bound (D_p) in nanoseconds.</p>
+</div></blockquote>
+</section>
+<section id="id24">
+<h4>Example:<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">NetworkNode</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">delay</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">compute_electrical_latency</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">total_traffic_IP_node_Gbps</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">reference_capacity_Gbps</span><span class="o">=</span><span class="mi">1000</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">delay</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">350.00</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.compute_E2E_path_latency">
+<span class="sig-name descname"><span class="pre">compute_E2E_path_latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_capacity_profile_annual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_cap_index_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_router_capacities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Avg_Bytes_Packet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1019</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_spike_variance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pth_percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_latency" title="Link to this definition">#</a></dt>
+<dd><p>Recursively compute all possible end-to-end (E2E) latency paths from a given core node
+to its higher-level (top-hierarchy) destination nodes.</p>
+<p>This method traces both primary and secondary (dual-home) connectivity paths defined
+in the input arrays, accumulating the total propagation latency and electrical latency
+along each possible route. The computation proceeds recursively through hierarchy levels
+until reaching the top-level nodes.</p>
+<section id="id25">
+<h4>Args:<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<blockquote>
 <div><dl class="simple">
-<dt>np.ndarray:</dt><dd><p>A 1D NumPy array containing the total end-to-end latency (in microseconds) for each lowest-level node path.</p>
+<dt>node (int):</dt><dd><p>The index of the current node.</p>
+</dd>
+<dt>latency_core_array_SA_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for standalone nodes.</p>
+</dd>
+<dt>destination_core_array_SA_global (np.ndarray):</dt><dd><p>Destination mappings for standalone nodes.</p>
+</dd>
+<dt>latency_core_array_co_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for central office nodes.</p>
+</dd>
+<dt>destination_core_array_co_global (np.ndarray):</dt><dd><p>Destination mappings for central office nodes.</p>
+</dd>
+<dt>processing_level_list (list):</dt><dd><p>List of network hierarchy levels (e.g., [4, 3, 2, 1]).</p>
+</dd>
+<dt>hierarchy_level_src (int):</dt><dd><p>The hierarchy level of the current source node.</p>
+</dd>
+<dt>node_capacity_profile_annual (np.ndarray):</dt><dd><p>Annual traffic profiles for all nodes.</p>
+</dd>
+<dt>node_cap_index_list (list):</dt><dd><p>Indices mapping hierarchy levels to traffic profiles.</p>
+</dd>
+<dt>reference_year (int):</dt><dd><p>The baseline year for capacity planning.</p>
+</dd>
+<dt>reference_router_capacities (np.ndarray):</dt><dd><p>Available router capacities to match against.</p>
+</dd>
+<dt>year (int):</dt><dd><p>The specific year for which the latency is being calculated.</p>
+</dd>
+<dt>Avg_Bytes_Packet (int, optional):</dt><dd><p>Average packet size in bytes. Defaults to 1019.</p>
+</dd>
+<dt>packet_spike_variance (float, optional):</dt><dd><p>Variance multiplier for bursty traffic. Defaults to 1.3.</p>
+</dd>
+<dt>Pth_percentile (float, optional):</dt><dd><p>Target probability threshold for latency bound. Defaults to 0.99.</p>
+</dd>
+<dt>processing_delay (float, optional):</dt><dd><p>Base processing delay in microseconds. Defaults to 1.</p>
 </dd>
 </dl>
 </div></blockquote>
 </section>
-<section id="id24">
-<h4>Notes:<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<section id="outputs">
+<h4>Outputs:<a class="headerlink" href="#outputs" title="Link to this heading">#</a></h4>
 <blockquote>
-<div><ul class="simple">
-<li><p>Each end-to-end latency value includes: <strong>1. Propagation latency</strong> accumulated over the full path. <strong>2. Processing overhead</strong> added per hierarchy transition (default: 200 µs per hop).</p></li>
-<li><p>The recursion terminates at the top-level standalone HL nodes, as defined in <cite>processing_level_list</cite>.</p></li>
-<li><p>Saving the results is optional and controlled by <cite>save_flag</cite>.</p></li>
-</ul>
+<div><dl class="simple">
+<dt>list: A list of tuples, where each tuple contains (path_list, total_latency).</dt><dd><p>Example: [([node1, node2, node3], 450.5), …]</p>
+</dd>
+</dl>
 </div></blockquote>
 </section>
-<section id="id25">
-<h4>Example:<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">E2E_latencies</span> <span class="o">=</span> <span class="n">planner</span><span class="o">.</span><span class="n">calc_E2E_latency_Total</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">latency_core_array</span><span class="o">=</span><span class="n">latency_core_array</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">destination_core_array</span><span class="o">=</span><span class="n">destination_core_array</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">processing_level_list</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-<span class="gp">... </span>    <span class="n">save_flag</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">save_suffix</span><span class="o">=</span><span class="s2">&quot;_final&quot;</span>
+<section id="id26">
+<h4>Example:<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Assuming &#39;self&#39; is an instantiated network object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_E2E_path_latency</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">node</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">latency_core_array_SA_global</span><span class="o">=</span><span class="n">lat_SA</span><span class="p">,</span> <span class="n">destination_core_array_SA_global</span><span class="o">=</span><span class="n">dest_SA</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">latency_core_array_co_global</span><span class="o">=</span><span class="n">lat_CO</span><span class="p">,</span> <span class="n">destination_core_array_co_global</span><span class="o">=</span><span class="n">dest_CO</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">processing_level_list</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">hierarchy_level_src</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">node_capacity_profile_annual</span><span class="o">=</span><span class="n">traffic_profile</span><span class="p">,</span> <span class="n">node_cap_index_list</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">reference_year</span><span class="o">=</span><span class="mi">2024</span><span class="p">,</span> <span class="n">reference_router_capacities</span><span class="o">=</span><span class="n">router_caps</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2026</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average E2E latency: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">E2E_latencies</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> µs&quot;</span><span class="p">)</span>
-<span class="go">Average E2E latency: 940.23 µs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">([5, 12, 0], 1250.75)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.calc_E2E_latency_Total">
+<span class="sig-name descname"><span class="pre">calc_E2E_latency_Total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latency_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_capacity_profile_annual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_cap_index_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_router_capacities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Avg_Bytes_Packet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1019</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packet_spike_variance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Pth_percentile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.calc_E2E_latency_Total" title="Link to this definition">#</a></dt>
+<dd><p>Compute and optionally save the total end-to-end (E2E) latency from the lowest
+hierarchy-level nodes up to the top-level core nodes.</p>
+<p>This function iterates over all nodes at the lowest hierarchy level and calls
+<cite>compute_E2E_path_latency</cite> recursively to determine the cumulative latency of all
+possible paths. Results can be saved to a <cite>.npz</cite> file.</p>
+<section id="id27">
+<h4>Args:<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><dl class="simple">
+<dt>latency_core_array_SA_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for SA nodes.</p>
+</dd>
+<dt>destination_core_array_SA_global (np.ndarray):</dt><dd><p>Destination mappings for SA nodes.</p>
+</dd>
+<dt>latency_core_array_co_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for CO nodes.</p>
+</dd>
+<dt>destination_core_array_co_global (np.ndarray):</dt><dd><p>Destination mappings for CO nodes.</p>
+</dd>
+<dt>processing_level_list (list):</dt><dd><p>List of network hierarchy levels (e.g., [4, 3, 2, 1]).</p>
+</dd>
+<dt>save_flag (int):</dt><dd><p>1 to save the resulting array to disk, 0 otherwise.</p>
+</dd>
+<dt>node_capacity_profile_annual (np.ndarray):</dt><dd><p>Annual traffic profiles for all nodes.</p>
+</dd>
+<dt>node_cap_index_list (list):</dt><dd><p>Indices mapping hierarchy levels to traffic profiles.</p>
+</dd>
+<dt>reference_year (int):</dt><dd><p>The baseline year for capacity planning.</p>
+</dd>
+<dt>reference_router_capacities (np.ndarray):</dt><dd><p>Available router capacities to match against.</p>
+</dd>
+<dt>year (int):</dt><dd><p>The specific year for which the latency is being calculated.</p>
+</dd>
+<dt>Avg_Bytes_Packet (int, optional):</dt><dd><p>Average packet size in bytes. Defaults to 1019.</p>
+</dd>
+<dt>packet_spike_variance (float, optional):</dt><dd><p>Variance multiplier for bursty traffic. Defaults to 1.3.</p>
+</dd>
+<dt>Pth_percentile (float, optional):</dt><dd><p>Target probability threshold for latency bound. Defaults to 0.99.</p>
+</dd>
+<dt>processing_delay (float, optional):</dt><dd><p>Base processing delay in microseconds. Defaults to 1.</p>
+</dd>
+<dt>save_suffix (str, optional):</dt><dd><p>Suffix appended to the saved file name. Defaults to “”.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id28">
+<h4>Outputs:<a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>np.ndarray: A 1D array containing the total latencies of all E2E paths found.</p>
+</div></blockquote>
+</section>
+<section id="id29">
+<h4>Example:<a class="headerlink" href="#id29" title="Link to this heading">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Assuming &#39;self&#39; is an instantiated network object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_latencies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_E2E_latency_Total</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">latency_core_array_SA_global</span><span class="o">=</span><span class="n">lat_SA</span><span class="p">,</span> <span class="n">destination_core_array_SA_global</span><span class="o">=</span><span class="n">dest_SA</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">latency_core_array_co_global</span><span class="o">=</span><span class="n">lat_CO</span><span class="p">,</span> <span class="n">destination_core_array_co_global</span><span class="o">=</span><span class="n">dest_CO</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">processing_level_list</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">save_flag</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">node_capacity_profile_annual</span><span class="o">=</span><span class="n">traffic_profile</span><span class="p">,</span> <span class="n">node_cap_index_list</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">reference_year</span><span class="o">=</span><span class="mi">2024</span><span class="p">,</span> <span class="n">reference_router_capacities</span><span class="o">=</span><span class="n">router_caps</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2026</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">total_latencies</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[1250.75 1310.20 1405.00]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.compute_E2E_path_distance">
+<span class="sig-name descname"><span class="pre">compute_E2E_path_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hierarchy_level_src</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_distance" title="Link to this definition">#</a></dt>
+<dd><p>Recursively compute all possible end-to-end (E2E) physical distances from a given core node
+to its higher-level (top-hierarchy) destination nodes.</p>
+<p>This method traces connectivity paths and calculates the distance by converting
+precomputed hop latencies back into physical distances (assuming a constant of 5 µs/km).
+The computation proceeds recursively through hierarchy levels until reaching
+the top-level nodes.</p>
+<section id="id30">
+<h4>Args:<a class="headerlink" href="#id30" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><dl class="simple">
+<dt>node (int):</dt><dd><p>The index of the current node.</p>
+</dd>
+<dt>latency_core_array_SA_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for SA nodes.</p>
+</dd>
+<dt>destination_core_array_SA_global (np.ndarray):</dt><dd><p>Destination mappings for SA nodes.</p>
+</dd>
+<dt>latency_core_array_co_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for CO nodes.</p>
+</dd>
+<dt>destination_core_array_co_global (np.ndarray):</dt><dd><p>Destination mappings for CO nodes.</p>
+</dd>
+<dt>processing_level_list (list):</dt><dd><p>List of network hierarchy levels (e.g., [4, 3, 2, 1]).</p>
+</dd>
+<dt>hierarchy_level_src (int):</dt><dd><p>The hierarchy level of the current source node.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id31">
+<h4>Outputs:<a class="headerlink" href="#id31" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><dl class="simple">
+<dt>list: A list of tuples, where each tuple contains (path_list, total_distance_km).</dt><dd><p>Example: [([node1, node2, node3], 250.5), …]</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id32">
+<h4>Example:<a class="headerlink" href="#id32" title="Link to this heading">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Assuming &#39;self&#39; is an instantiated network object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_E2E_path_distance</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">node</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">latency_core_array_SA_global</span><span class="o">=</span><span class="n">lat_SA</span><span class="p">,</span> <span class="n">destination_core_array_SA_global</span><span class="o">=</span><span class="n">dest_SA</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">latency_core_array_co_global</span><span class="o">=</span><span class="n">lat_CO</span><span class="p">,</span> <span class="n">destination_core_array_co_global</span><span class="o">=</span><span class="n">dest_CO</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">processing_level_list</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">hierarchy_level_src</span><span class="o">=</span><span class="mi">4</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">([5, 12, 0], 250.15)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sixgman.core.post_process.analyse_result.calc_E2E_distance_Total">
+<span class="sig-name descname"><span class="pre">calc_E2E_distance_Total</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latency_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_SA_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_core_array_co_global</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_level_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sixgman.core.post_process.analyse_result.calc_E2E_distance_Total" title="Link to this definition">#</a></dt>
+<dd><p>Compute and optionally save the total end-to-end (E2E) distance from the lowest
+hierarchy-level nodes up to the top-level core nodes.</p>
+<p>This function iterates over all nodes at the lowest hierarchy level and calls
+<cite>compute_E2E_path_distance</cite> recursively to determine the cumulative physical distance
+of all possible paths. The distances are extracted by converting the propagation delays
+stored in <cite>latency_core_array_…</cite> back to kilometers.</p>
+<section id="id33">
+<h4>Args:<a class="headerlink" href="#id33" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><dl class="simple">
+<dt>latency_core_array_SA_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for SA nodes.</p>
+</dd>
+<dt>destination_core_array_SA_global (np.ndarray):</dt><dd><p>Destination mappings for SA nodes.</p>
+</dd>
+<dt>latency_core_array_co_global (np.ndarray):</dt><dd><p>Precomputed hop latencies for CO nodes.</p>
+</dd>
+<dt>destination_core_array_co_global (np.ndarray):</dt><dd><p>Destination mappings for CO nodes.</p>
+</dd>
+<dt>processing_level_list (list):</dt><dd><p>List of network hierarchy levels (e.g., [4, 3, 2, 1]).</p>
+</dd>
+<dt>save_flag (int):</dt><dd><p>1 to save the resulting array to disk, 0 otherwise.</p>
+</dd>
+<dt>save_suffix (str, optional):</dt><dd><p>Suffix appended to the saved file name. Defaults to “”.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id34">
+<h4>Outputs:<a class="headerlink" href="#id34" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>np.ndarray: A 1D array containing the total distances (in km) of all E2E paths found.</p>
+</div></blockquote>
+</section>
+<section id="id35">
+<h4>Example:<a class="headerlink" href="#id35" title="Link to this heading">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Assuming &#39;self&#39; is an instantiated network object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_E2E_distance_Total</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">latency_core_array_SA_global</span><span class="o">=</span><span class="n">lat_SA</span><span class="p">,</span> <span class="n">destination_core_array_SA_global</span><span class="o">=</span><span class="n">dest_SA</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">latency_core_array_co_global</span><span class="o">=</span><span class="n">lat_CO</span><span class="p">,</span> <span class="n">destination_core_array_co_global</span><span class="o">=</span><span class="n">dest_CO</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">processing_level_list</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">save_flag</span><span class="o">=</span><span class="mi">1</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">total_distances</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="go">[250.15 262.04 281.00]</span>
 </pre></div>
 </div>
 </section>
@@ -1066,8 +1269,12 @@ Compute end-to-end latency across hierarchical processing levels.</p></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.plot_FP_degree"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_FP_degree()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.plot_bvt_license"><code class="docutils literal notranslate"><span class="pre">analyse_result.plot_bvt_license()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.calc_cost"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_cost()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.find_base_router_capacity"><code class="docutils literal notranslate"><span class="pre">analyse_result.find_base_router_capacity()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.compute_electrical_latency"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_electrical_latency()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_latency"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_E2E_path_latency()</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.calc_E2E_latency_Total"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_E2E_latency_Total()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.compute_E2E_path_distance"><code class="docutils literal notranslate"><span class="pre">analyse_result.compute_E2E_path_distance()</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sixgman.core.post_process.analyse_result.calc_E2E_distance_Total"><code class="docutils literal notranslate"><span class="pre">analyse_result.calc_E2E_distance_Total()</span></code></a></li>
 </ul>
 </li>
 </ul>
