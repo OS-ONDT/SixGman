@@ -6,8 +6,6 @@ from .network import Network
 from .band import Band
 import os
 
-# WSS
-
 @dataclass
 class PlanningTool:
     """
@@ -250,6 +248,11 @@ class PlanningTool:
         self.path_latency_storage = np.zeros(len(all_nodes), dtype = object)
         # Track the destination of each standalone path
         self.destinations_storage = np.zeros(len(all_nodes), dtype = object)
+        
+        # Track the latency of each secondary colocated path
+        self.path_latency_storage_colocated = np.zeros(len(all_nodes), dtype = object)
+        # Track the destination of each secondary colocated path
+        self.destinations_storage_colocated = np.zeros(len(all_nodes), dtype = object)
     
     def generate_initial_traffic_profile(self,
                                         num_nodes: int,
@@ -1186,8 +1189,10 @@ class PlanningTool:
         
         # Save segments latency
         np.savez_compressed(result_directory / f"{self.network.topology_name}_HL{hierarchy_level}_segments_latency.npz", 
-                            latency = self.path_latency_storage, 
-                            destinations = self.destinations_storage)
+                            latency_std = self.path_latency_storage, 
+                            destinations_std = self.destinations_storage, 
+                            latency_co = self.path_latency_storage_colocated, 
+                            destinations_co = self.destinations_storage_colocated)
         
     def run_planner(self, 
                     hierarchy_level: int,
@@ -1384,8 +1389,8 @@ class PlanningTool:
                         self.traffic_flow_links_array = np.load(result_directory /  f'{self.network.topology_name}_HL{prev_hierarchy_level}_link_info.npz')['traffic_flow_links_array']
                         
                         # Load path latency and destinations from previous hierarchy level
-                        self.path_latency_storage = np.load(result_directory / f"{self.network.topology_name}_HL{prev_hierarchy_level}_segments_latency.npz", allow_pickle = True)['latency']
-                        self.destinations_storage = np.load(result_directory / f"{self.network.topology_name}_HL{prev_hierarchy_level}_segments_latency.npz", allow_pickle = True)['destinations']
+                        self.path_latency_storage = np.load(result_directory / f"{self.network.topology_name}_HL{prev_hierarchy_level}_segments_latency.npz", allow_pickle = True)['latency_std']
+                        self.destinations_storage = np.load(result_directory / f"{self.network.topology_name}_HL{prev_hierarchy_level}_segments_latency.npz", allow_pickle = True)['destinations_std']
                         
 
             #######################################################
@@ -1780,7 +1785,8 @@ class PlanningTool:
                     
                     self.path_latency_storage[HL_standalone[node_idx]] = (primary_info_dict_selected['distance'] * 5, 
                                                                           secondary_info_dict_selected['distance'] * 5)
-
+                    
+                
                 if year > 1 and (hierarchy_level == minimum_level or HL_needed_traffic != 0):
 
                     # check if the required HL traffic exceeds the residual BVT throughput from the previous year (primary path)
@@ -2202,7 +2208,15 @@ class PlanningTool:
                         self.Residual_Throughput_LC_colocated_HLs_secondary[year - 1, node_idx] =\
                             num_res_license_prev_year_secondary * self.Ref_license_capacity[index_secondary] + res_cap_LC_prev_year - HL_needed_traffic
                 
-    
+                # Due to the same paths in all years, so the latecny stores just in the first year with all node need new BVT establishment
+                if year == 1:
+                    
+                    # Store latency and destinations of this node (primary_path, secondary_path)
+                    self.destinations_storage_colocated[HL_colocated[node_idx]] = [HL_colocated[node_idx], 
+                                                                                   secondary_info_dict_selected['destination']]
+                    
+                    self.path_latency_storage_colocated[HL_colocated[node_idx]] = (0, secondary_info_dict_selected['distance'] * 5)
+                    
                 if year > 1 and (hierarchy_level == minimum_level or HL_needed_traffic != 0):
 
                     # check if the required HL traffic exceeds the residual BVT throughput from the previous year (primary path)
